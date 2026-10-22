@@ -282,6 +282,14 @@ final class Ui {
         return (int) (r / n) << 16 | (int) (g / n) << 8 | (int) (b / n);
     }
 
+    /**
+     * Frees a bitmap's pixels now instead of at the next garbage collection: 8 MB for a photo in
+     * graphics memory. Only for a bitmap that nothing draws any more.
+     */
+    static void free(Bitmap b) {
+        if (b != null) b.recycle();
+    }
+
     /** Draws a 16:9 photo so it covers the rectangle. */
     void photo(Canvas c, Bitmap b, RectF dst) {
         if (b == null) return;

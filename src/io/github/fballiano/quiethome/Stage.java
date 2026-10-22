@@ -205,6 +205,8 @@ final class Stage extends View {
     /** Decodes the chosen photo when the background is a photo, and frees it when it is not. */
     void ensurePhoto() {
         if (!prefs.is(Prefs.BG, "photo")) {
+            Ui.free(photo);
+            Ui.free(blur);
             photo = null;
             blur = null;
             photoId = null;
@@ -215,8 +217,11 @@ final class Stage extends View {
         Point size = screenSize();
         Bitmap decoded = Wallpapers.decode(getContext().getAssets(), Wallpapers.find(id), size.x, size.y);
         if (decoded == null) return;
+        Bitmap oldPhoto = photo, oldBlur = blur;
         blur = Wallpapers.blur(decoded);
         // A hardware bitmap keeps the pixels in graphics memory only, not also in the app's heap.
+        // (Decoding straight to graphics memory with ImageDecoder saved nothing on a real TV and
+        // made the cold start about 100 ms slower.)
         Bitmap gpu = decoded.copy(Bitmap.Config.HARDWARE, false);
         if (gpu != null) {
             decoded.recycle();
@@ -224,6 +229,8 @@ final class Stage extends View {
         }
         photo = decoded;
         photoId = id;
+        Ui.free(oldPhoto);
+        Ui.free(oldBlur);
         Log.i(Home.TAG, "Photo " + id + ": " + photo.getWidth() + "x" + photo.getHeight() + " " + photo.getConfig());
     }
 

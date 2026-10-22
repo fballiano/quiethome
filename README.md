@@ -49,20 +49,27 @@ It has not been tested on a real TV yet. Reports are welcome.
 
 QuietHome draws everything in one custom view. It decodes one photo at screen size and keeps a 120 × 68 blurred copy for the glass effect. It does not blur live. It draws frames only while something moves. Text that scales with focus has no blurred shadow, because a shadow must be drawn again at each step of the scale.
 
-| Xiaomi MiTV-AFMU0, Google TV 14, 1080p interface | Result |
-| --- | --- |
-| An empty app: only a window, no code | about 20 MB PSS |
-| QuietHome, photo background, in front | about 40 MB PSS |
-| The Google TV launcher, in the background | about 46 MB PSS, and 28 MB more in swap |
-| Projectivy Launcher, in the background | about 54 MB PSS, and 33 MB more in swap |
+Measured on a Xiaomi MiTV-AFMU0 (Google TV 14, 1080p interface). Each memory figure is the PSS about 15 seconds after the app restarts, from five samples.
 
-On a real TV, the graphics driver runs inside each app that draws, and the graphics chip uses the normal RAM. That is why an empty app already uses about 20 MB. The emulator does not count this memory, so it shows lower numbers:
+| Measurement | Result |
+| --- | --- |
+| An empty app: only a window, no code | about 20 MB |
+| QuietHome, flat background | about 31 MB |
+| QuietHome, photo background | about 41 MB |
+| QuietHome, photo, behind another app | about 41 MB |
+| The Google TV launcher, in front | about 115 MB |
+| QuietHome cold start | 420 to 445 ms |
+| QuietHome frame time while focus moves | median 13 ms, 90th percentile 16 ms |
+
+On a real TV, the graphics driver runs inside each app that draws, and the graphics chip uses the normal RAM. That is why an empty app already uses about 20 MB. The photo adds about 10 MB: the photo itself in graphics memory, and the driver's work to draw it. A new app is a few MB larger until Android compiles it in the background.
+
+The emulator does not count graphics memory, so it shows lower numbers:
 
 | Android TV 12 emulator, host GPU, 1080p | Result |
 | --- | --- |
-| QuietHome, photo background | about 29 MB PSS |
-| QuietHome, flat background | about 25 MB PSS |
-| The stock Android TV launcher, in front | about 45 MB PSS |
+| QuietHome, photo background | about 29 MB |
+| QuietHome, flat background | about 25 MB |
+| The stock Android TV launcher, in front | about 45 MB |
 | QuietHome frame time while focus moves (median) | about 5 ms, no janky frames |
 | QuietHome cold start | about 230 ms |
 
@@ -146,7 +153,7 @@ On most Android TV and Google TV devices, the stock launcher is a system app wit
 
 ## Button mapping
 
-1. Go to Settings → Android TV → Button mapping. The QuietHome service must be on.
+1. Go to Settings → Button mapping. The QuietHome service must be on.
 2. Select **Add a button**. Press the remote button, then choose what it does.
 3. To change or remove a mapping, select the button in the list.
 
@@ -194,7 +201,7 @@ adb shell "am broadcast -n io.github.fballiano.quiethome/.Config --es config '{
 
 HDMI input ids look like `hdmi:HW5`. To see them, send an empty configuration (`--es config '{}'`), then run `adb logcat -d -s QuietHome | grep 'HDMI input'`.
 
-To map a remote button, the easiest way is on the TV: Settings → Android TV → Button mapping → Add a button. The `buttons` key needs the Android keycode, which the TV's key layout decides.
+To map a remote button, the easiest way is on the TV: Settings → Button mapping → Add a button. The `buttons` key needs the Android keycode, which the TV's key layout decides.
 
 ## Build from source
 

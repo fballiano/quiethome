@@ -100,7 +100,7 @@ Send everything in one configuration. See **Configuration** below for the keys a
 
 Ask whether the TV only shows a box on one HDMI port (for example an Nvidia Shield). If so, set `startOn` to that input's id: QuietHome then opens it at boot and on each wake.
 
-For remote buttons (for example a Netflix key), the user maps them on the TV: Settings → Android TV → Button mapping → Add a button, press the button, choose the app.
+For remote buttons (for example a Netflix key), the user maps them on the TV: Settings → Button mapping → Add a button, press the button, choose the app.
 
 Done when `adb logcat -d -s QuietHome | tail -5` shows `Configuration applied` after your last command, and no `Ignoring` line.
 

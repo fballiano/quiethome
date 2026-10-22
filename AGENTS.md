@@ -16,6 +16,6 @@ Keep the README and its screenshots current in the same commit as the change. Wh
 ## Testing
 
 - `adb shell input keyevent` skips accessibility services, so it cannot test the Home button or button mapping; an injected Home opens the stock launcher. Use the real remote or a virtual HID keyboard (`adb shell hid`).
-- The emulator shows much less memory than a real TV (28 MB against 60 MB on a Xiaomi MiTV). Check memory claims on a real TV.
+- The emulator does not count graphics memory, so it shows much less than a real TV (on a Xiaomi MiTV, an empty app already uses 20 MB). Check memory claims on a real TV, after a restart, and after `adb shell cmd package compile -m speed-profile -f io.github.fballiano.quiethome`: a fresh install runs uncompiled and uses a few MB more.
 - A TV with a release build accepts only release-signed APKs. Test a local build there only after an uninstall, which loses the settings.
 - Screenshot stub apps are manifest-only APKs: `aapt2 link` a manifest with `android:hasCode="false"` and one LEANBACK_LAUNCHER activity, under the real package name, signed with `key.jks`.

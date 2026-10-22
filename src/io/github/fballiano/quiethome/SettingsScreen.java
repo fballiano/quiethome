@@ -98,7 +98,8 @@ final class SettingsScreen extends Screen {
         p.rows.add(link("Focus", this::focusSummary, () -> push(focus())));
         p.rows.add(link("Apps on Home", () -> stage.homeScreen.items.size() + " of " + Home.MAX_HOME + " apps",
             () -> stage.open(new EditorScreen(stage))));
-        p.rows.add(link("Android TV", () -> "TV settings, button mapping and the Home button", () -> push(android())));
+        p.rows.add(buttonMapping());
+        p.rows.add(link("Android TV", () -> "The service, the Home button and when the TV turns on", () -> push(android())));
         return p;
     }
 
@@ -171,8 +172,6 @@ final class SettingsScreen extends Screen {
             () -> stage.toast(ServiceSetup.isOn(stage.getContext()) ? "The QuietHome service is on."
                 : ServiceSetup.openSettings(stage.getContext()))));
         p.rows.add(action("TV settings", () -> "Android's own settings", () -> stage.toast(stage.catalog.openSettings())));
-        p.rows.add(link("Button mapping", () -> RemoteButtons.running
-            ? stage.prefs.buttons().size() + " assigned" : "Needs the QuietHome service", () -> push(buttons())));
         Row homeKey = choice("Home button", Prefs.HOME_KEY, "QuietHome", "Android");
         homeKey.note = () -> !RemoteButtons.running ? "Needs the QuietHome service."
             : stage.prefs.is(Prefs.HOME_KEY, "quiethome") ? "Home always opens QuietHome." : "Home opens what Android chooses.";
@@ -181,6 +180,11 @@ final class SettingsScreen extends Screen {
         p.rows.add(action("Previous launcher", () -> "Opens the TV's other home screen",
             () -> stage.toast(stage.catalog.openPreviousLauncher())));
         return p;
+    }
+
+    private Row buttonMapping() {
+        return link("Button mapping", () -> RemoteButtons.running
+            ? stage.prefs.buttons().size() + " assigned" : "Needs the QuietHome service", () -> push(buttons()));
     }
 
     private Page buttons() {
@@ -358,7 +362,12 @@ final class SettingsScreen extends Screen {
         Page p = pages.remove(pages.size() - 1);
         if (p.wallpapers) {
             stage.removeCallbacks(loadCandidate);
-            for (int i = 0; i < thumbs.length; i++) thumbs[i] = null;
+            for (int i = 0; i < thumbs.length; i++) {
+                Ui.free(thumbs[i]);
+                thumbs[i] = null;
+            }
+            Ui.free(candidate);
+            Ui.free(candidateBlur);
             candidate = null;
             candidateBlur = null;
             candidateId = null;
@@ -464,9 +473,12 @@ final class SettingsScreen extends Screen {
         if (!p.wallpapers || p.focus < 0) return;
         Wallpapers.Wallpaper w = p.rows.get(p.focus).wallpaper;
         if (w.id.equals(candidateId)) return;
+        Bitmap oldCandidate = candidate, oldBlur = candidateBlur;
         candidate = Wallpapers.decodeSmall(stage.getContext().getAssets(), w.photo(), (int) PREVIEW.width());
         candidateBlur = candidate == null ? null : Wallpapers.blur(candidate);
         candidateId = w.id;
+        Ui.free(oldCandidate);
+        Ui.free(oldBlur);
         stage.invalidate();
     }
 
