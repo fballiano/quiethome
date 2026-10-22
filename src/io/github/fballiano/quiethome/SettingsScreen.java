@@ -3,6 +3,8 @@
 
 package io.github.fballiano.quiethome;
 
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.RectF;
@@ -82,11 +84,22 @@ final class SettingsScreen extends Screen {
     private final Bitmap[] thumbs = new Bitmap[Wallpapers.ALL.length];
     private Bitmap candidate, candidateBlur;
     private String candidateId;
+    private final String version;
     private final Runnable loadCandidate = this::loadCandidate;
 
     SettingsScreen(Stage stage) {
         super(stage);
+        version = "QuietHome " + versionName();
         push(root());
+    }
+
+    private String versionName() {
+        try {
+            Context c = stage.getContext();
+            return c.getPackageManager().getPackageInfo(c.getPackageName(), 0).versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            return "";
+        }
     }
 
     // ---- Pages ----
@@ -487,10 +500,9 @@ final class SettingsScreen extends Screen {
 
         ui.text(regular, 56, -1.6f, ink, 1);
         ui.line(c, p.title, LEFT, ui.baseline(104), 0, -1);
-        if (pages.size() > 1) {
-            ui.text(regular, 26, 0, ink, 0.5f);
-            ui.line(c, pages.get(pages.size() - 2).title, LEFT, ui.baseline(158), 0, -1);
-        }
+        // Under the title: the parent page, or on the first page the version.
+        ui.text(regular, 26, 0, ink, 0.5f);
+        ui.line(c, pages.size() > 1 ? pages.get(pages.size() - 2).title : version, LEFT, ui.baseline(158), 0, -1);
 
         preview(c, p, ink);
 

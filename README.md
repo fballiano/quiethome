@@ -91,7 +91,7 @@ You need no computer for this. It works on Android TV and Google TV.
 4. Select **Install** when Downloader has the file, then **Open**.
 5. QuietHome shows how to turn on its service. Select **Open Accessibility settings**, then **QuietHome**, and turn it on. If it is grey or says "Restricted setting", go back, select **App info**, allow restricted settings, and try again.
 
-Press Home: QuietHome opens. Later, install a new version the same way; your settings stay.
+Press Home: QuietHome opens. Later, install a new version the same way; your settings stay. Settings shows the installed version under its title.
 
 ## Install with a coding agent
 

@@ -12,7 +12,9 @@ cd "$(dirname "$0")"
 
 # Release builds set both from the tag (see .github/workflows/build.yml).
 VERSION_CODE=${VERSION_CODE:-1}
-VERSION_NAME=${VERSION_NAME:-0.1.0-dev}
+# A local build is named after the last tag and commit, for example 0.5.0-2-gd91b0fe.
+VERSION_NAME=${VERSION_NAME:-$(git describe --tags --always --dirty 2>/dev/null | sed 's/^v//')}
+VERSION_NAME=${VERSION_NAME:-dev}
 
 SDK=${ANDROID_HOME:-${ANDROID_SDK_ROOT:-}}
 [ -n "$SDK" ] || for d in "$HOME/Library/Android/sdk" "$HOME/Android/Sdk" /opt/homebrew/share/android-commandlinetools; do
