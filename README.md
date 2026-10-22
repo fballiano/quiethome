@@ -1,3 +1,5 @@
+<img src="docs/images/logo.svg" width="96" height="96" alt="The QuietHome logo: a sun over a horizon">
+
 # QuietHome
 
 A quiet home screen for Android TV and Google TV. It shows your apps, your HDMI inputs, a photograph and the time. It is made for the TV remote.
