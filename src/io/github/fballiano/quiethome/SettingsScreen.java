@@ -597,7 +597,7 @@ final class SettingsScreen extends Screen {
                     ui.text(regular, 26, 0, ink, 0.6f * (active ? 1 : 0.8f));
                     ui.line(c, note, LEFT, ui.baseline(y + 80), COLUMN - 40, -1);
                 }
-                if (row.type == LINK) chevron(c, LEFT + COLUMN - 6, y + 40, ink, 0.6f * dim);
+                if (row.type == LINK) chevron(c, LEFT + COLUMN - 6, y + h / 2, ink, 0.6f * dim);
             }
         }
     }
