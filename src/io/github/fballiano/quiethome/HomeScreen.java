@@ -491,8 +491,9 @@ final class HomeScreen extends Screen {
                 // Icons only: the focused control shows its name.
                 ui.text(face, 28, -0.2f, ink, e);
                 ui.shadow(photo);
-                if (dock) ui.line(c, controlNames[k], iconLeft + 18, ui.baseline(cy + 56), 0, 0);
-                else ui.line(c, controlNames[k], right - 54, ui.baseline(cy), 0, 1);
+                // Dock: the name under the icon. List: left of the icon, and with Glass focus left of its plate.
+                if (dock) ui.line(c, controlNames[k], iconLeft + 18, ui.baseline(cy + 60), 0, 0);
+                else ui.line(c, controlNames[k], left - (glass ? 22 : 0) - 18, ui.baseline(cy), 0, 1);
             }
             x = left - (always ? 56 : 44);
         }
