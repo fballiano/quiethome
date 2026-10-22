@@ -56,7 +56,7 @@ Measured on a Xiaomi Google TV box (MiTV-AFMU0, Google TV 14, 1080p interface on
 | An empty app: only a window, no code | about 20 MB |
 | QuietHome, flat background | about 31 MB |
 | QuietHome, photo background | about 41 MB |
-| QuietHome, photo, behind another app | about 41 MB |
+| QuietHome in the background, while you use another app (it keeps the photo, so Home opens at once) | about 41 MB |
 | The Google TV launcher, in front | about 115 MB |
 | QuietHome cold start | 420 to 445 ms |
 | QuietHome frame time while focus moves | median 13 ms, 90th percentile 16 ms |
