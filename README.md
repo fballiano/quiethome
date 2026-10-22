@@ -164,7 +164,7 @@ Android lets an accessibility service see key presses. QuietHome acts only on Ho
 
 ## When the TV turns on
 
-Go to Settings → Android TV → When the TV turns on, and choose the HDMI input of your box (or an app). QuietHome opens it at boot and each time the TV wakes from standby. At boot the TV can list its inputs a few seconds late, so QuietHome tries again for about 30 seconds. To show Home again at start, choose **Show Home**, the first tile in the same screen. Press Home on the remote to reach QuietHome at any time.
+Go to Settings → Android TV → When the TV turns on, and choose the HDMI input of your box (or an app). QuietHome opens it at boot and each time the TV wakes from standby. At boot the TV can list its inputs a few seconds late, so QuietHome tries again for about 30 seconds. To show Home again at start, choose **Show Home**, the first tile in the same screen. With Show Home, QuietHome opens itself at boot, so it is the first screen even on a TV whose stock launcher has a higher priority. Press Home on the remote to reach QuietHome at any time.
 
 This needs the QuietHome service: Android lets an app open another screen from the background only with a service like this.
 

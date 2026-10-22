@@ -16,7 +16,8 @@ import android.util.Log;
 
 /**
  * "When the TV turns on": opens the chosen input or app at boot and each time the TV wakes from
- * standby. For a TV that only shows a box on one HDMI port. Home still shows QuietHome.
+ * standby. For a TV that only shows a box on one HDMI port. Home still shows QuietHome. With
+ * Show Home (nothing chosen), it opens QuietHome at boot, in front of a stock launcher.
  *
  * Android lets an app start an activity from the background only while it shows a window or has
  * a bound accessibility service, so this works from Home in front or with button mapping on.
@@ -47,10 +48,10 @@ final class StartOn {
         app.registerReceiver(new BroadcastReceiver() {
             @Override
             public void onReceive(Context c, Intent intent) {
-                main.postDelayed(() -> open(app, main, WAKE_TRIES), 1000);
+                main.postDelayed(() -> open(app, main, WAKE_TRIES, false), 1000);
             }
         }, new IntentFilter(Intent.ACTION_SCREEN_ON));
-        if (isNewBoot(app)) main.postDelayed(() -> open(app, main, BOOT_TRIES), 1500);
+        if (isNewBoot(app)) main.postDelayed(() -> open(app, main, BOOT_TRIES, true), 1500);
     }
 
     /**
@@ -66,14 +67,20 @@ final class StartOn {
         return true;
     }
 
-    private static void open(Context app, Handler main, int tries) {
+    private static void open(Context app, Handler main, int tries, boolean boot) {
         Prefs prefs = new Prefs(app);
         String target = prefs.get(Prefs.START_ON);
-        if (target.isEmpty() || SystemClock.elapsedRealtime() - lastOpened < SAME_EVENT_MS) return;
+        // Show Home: at boot QuietHome opens itself, because a stock launcher with a higher
+        // priority would be the first screen otherwise. A wake keeps the app that was in front.
+        if (target.isEmpty()) {
+            if (!boot || prefs.is(Prefs.HOME_KEY, "system")) return;
+            target = Catalog.ACTION_HOME;
+        }
+        if (SystemClock.elapsedRealtime() - lastOpened < SAME_EVENT_MS) return;
         Catalog catalog = new Catalog(app, prefs);
         catalog.load();
         if (catalog.get(target) == null) {
-            if (tries > 1) main.postDelayed(() -> open(app, main, tries - 1), RETRY_MS);
+            if (tries > 1) main.postDelayed(() -> open(app, main, tries - 1, boot), RETRY_MS);
             else Log.w(Home.TAG, "Start on: " + target + " is not on the TV");
             return;
         }
