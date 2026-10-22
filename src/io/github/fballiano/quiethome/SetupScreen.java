@@ -16,9 +16,10 @@ final class SetupScreen extends Screen {
         "·  opening an HDMI input when the TV turns on",
         "",
         "In Accessibility, select QuietHome and turn it on.",
+        "If it is grey or says \"Restricted setting\", open App info, allow restricted settings, and try again.",
         "The service sees only key presses. It cannot read the screen and sends nothing.",
     };
-    private static final String[] BUTTONS = {"Open Accessibility settings", "Later"};
+    private static final String[] BUTTONS = {"Open Accessibility settings", "App info", "Later"};
 
     private final RectF r = new RectF();
     private int button;
@@ -35,6 +36,7 @@ final class SetupScreen extends Screen {
     @Override
     void ok() {
         if (button == 0) stage.toast(ServiceSetup.openSettings(stage.getContext()));
+        else if (button == 1) stage.toast(ServiceSetup.openAppInfo(stage.getContext()));
         else back();
     }
 
@@ -54,7 +56,7 @@ final class SetupScreen extends Screen {
         ui.line(c, "Turn on the QuietHome service", 140, ui.baseline(220), 0, -1);
         float y = 320;
         for (String line : LINES) {
-            ui.text(regular, 32, -0.3f, ink, line.startsWith("·") ? 0.9f : 0.7f);
+            ui.text(regular, 30, -0.3f, ink, line.startsWith("·") ? 0.9f : 0.7f);
             ui.line(c, line, 140, ui.baseline(y), 1640, -1);
             y += 54;
         }

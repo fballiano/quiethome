@@ -53,6 +53,23 @@ Measure on your own TV with `adb shell dumpsys meminfo io.github.fballiano.quiet
 
 QuietHome keeps the photo while another app is in front, so Home comes back at once, with no new decode.
 
+## Install with the remote only
+
+You need no computer for this. It works on Android TV and Google TV.
+
+1. Install **Downloader** by AFTVnews from the Play Store on the TV.
+2. Open Downloader. Allow it to install apps when the TV asks. If the TV does not ask, go to Settings → Apps → Security & restrictions → Unknown sources (the path changes a little between TVs) and turn on Downloader.
+3. In Downloader's address field, type this address, then select **Go**:
+
+   ```text
+   github.com/fballiano/quiethome/releases/latest/download/quiethome.apk
+   ```
+
+4. Select **Install** when Downloader has the file, then **Open**.
+5. QuietHome shows how to turn on its service. Select **Open Accessibility settings**, then **QuietHome**, and turn it on. If it is grey or says "Restricted setting", go back, select **App info**, allow restricted settings, and try again.
+
+Press Home: QuietHome opens. Later, install a new version the same way; your settings stay.
+
 ## Install with a coding agent
 
 Open this repository in a coding agent with shell access, such as Claude Code or Codex. Turn on developer options on the TV (see below). Then ask:
@@ -179,7 +196,13 @@ git tag v0.2.0
 git push origin v0.2.0
 ```
 
-The workflow then builds the APK with that version, signs it with the release key from the repository secrets `KEYSTORE_BASE64` and `KEYSTORE_PASS`, and publishes it as a GitHub Release.
+The workflow then builds the APK with that version, signs it with the release key from the repository secrets `KEYSTORE_BASE64` and `KEYSTORE_PASS`, and publishes it as a GitHub Release. Releases are immutable, and each APK has a build provenance attestation. To check that GitHub built an APK from this repository:
+
+```sh
+gh attestation verify quiethome.apk --repo fballiano/quiethome
+```
+
+To report a security problem, see [SECURITY.md](SECURITY.md).
 
 | Location | Contents |
 | --- | --- |
@@ -189,6 +212,10 @@ The workflow then builds the APK with that version, signs it with the release ke
 | `tools/` | The source SVG marks and `svg2vector.py`, which converts them to vector drawables |
 | `build.sh` | The build: aapt2, javac, d8, zipalign and apksigner |
 | `.github/workflows/` | The build on GitHub, and the releases |
+
+## Support QuietHome
+
+QuietHome is free and has no ads. If it makes your TV better, you can support its work through [GitHub Sponsors](https://github.com/sponsors/fballiano), [Buy Me a Coffee](https://buymeacoffee.com/fballiano) or [PayPal](https://paypal.me/fabrizioballiano).
 
 ## Licence
 

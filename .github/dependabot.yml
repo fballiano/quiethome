@@ -1,0 +1,7 @@
+# Keeps the pinned GitHub actions current. The app itself has no dependencies.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly

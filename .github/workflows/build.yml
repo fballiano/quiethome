@@ -1,6 +1,9 @@
 # Builds the APK on every push and pull request. A tag such as v0.2.0 also publishes a GitHub
 # Release with quiethome.apk, signed with the release key from the repository secrets
-# KEYSTORE_BASE64 (the keystore file, base64) and KEYSTORE_PASS.
+# KEYSTORE_BASE64 (the keystore file, base64) and KEYSTORE_PASS, with a build provenance
+# attestation: gh attestation verify quiethome.apk --repo fballiano/quiethome
+#
+# Actions are pinned to full commit SHAs; Dependabot keeps them current.
 name: Build
 
 on:
@@ -10,16 +13,20 @@ on:
   pull_request:
   workflow_dispatch:
 
-permissions:
-  contents: write
+# Each job asks for only what it needs.
+permissions: {}
 
 jobs:
   build:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
-      - uses: actions/setup-java@v6
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
         with:
           distribution: temurin
           java-version: "17"
@@ -56,13 +63,34 @@ jobs:
       - name: Build
         run: PLATFORM=android-36 BUILD_TOOLS=36.0.0 sh build.sh
 
-      - uses: actions/upload-artifact@v7
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: quiethome-${{ env.VERSION_NAME }}
           path: out/quiethome.apk
 
+  release:
+    if: github.ref_type == 'tag'
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write       # create the release
+      id-token: write       # sign the build provenance attestation
+      attestations: write
+    steps:
+      - name: Set the version
+        run: echo "VERSION_NAME=${GITHUB_REF_NAME#v}" >> "$GITHUB_ENV"
+
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: quiethome-${{ env.VERSION_NAME }}
+
+      - name: Attest the build provenance
+        uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+        with:
+          subject-path: quiethome.apk
+
+      # gh uploads the APK to a draft and publishes it after, which immutable releases need.
       - name: Publish the release
-        if: github.ref_type == 'tag'
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create "$GITHUB_REF_NAME" out/quiethome.apk --title "QuietHome $VERSION_NAME" --generate-notes
+        run: gh release create "$GITHUB_REF_NAME" quiethome.apk --repo "$GITHUB_REPOSITORY" --verify-tag --title "QuietHome $VERSION_NAME" --generate-notes

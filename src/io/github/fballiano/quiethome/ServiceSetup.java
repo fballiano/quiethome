@@ -7,6 +7,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.provider.Settings;
 import android.util.Log;
 
@@ -51,6 +52,17 @@ final class ServiceSetup {
         } catch (SecurityException e) {
             Log.w(Home.TAG, "Could not turn the QuietHome service on", e);
             return false;
+        }
+    }
+
+    /** Opens QuietHome's app info, where Android 13+ can "allow restricted settings" for sideloaded apps. */
+    static String openAppInfo(Context context) {
+        try {
+            context.startActivity(new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                Uri.fromParts("package", context.getPackageName(), null)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            return null;
+        } catch (ActivityNotFoundException | SecurityException e) {
+            return "Open Settings → Apps → QuietHome on the TV.";
         }
     }
 
