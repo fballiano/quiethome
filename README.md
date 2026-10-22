@@ -22,7 +22,7 @@ QuietHome is inspired by [CleanFrame](https://github.com/nthnclrk/CleanFrame), a
 - **All apps.** It shows every TV app and every HDMI input. OK opens the item. Hold OK to close an app and free its memory. The first tile, **Edit Home**, opens the Apps on Home editor.
 - **Your own order.** Hold OK on an app on Home for a short menu: **Move**, **Remove from Home** or **Close app**. In move mode the arrows move the app, OK places it and Back cancels. Settings → Apps on Home adds apps, with up to nine on Home.
 - **Typography and focus.** Choose Manrope, Geist or Newsreader. Choose Type focus or Glass focus, with a Soft, Frost or Clear material.
-- **Your language.** QuietHome uses the language of the TV: English, Czech, Danish, Dutch, Finnish, French, German, Italian, Norwegian, Polish, Portuguese, Spanish, Swedish or Turkish. For other languages, it uses English.
+- **Your language.** QuietHome uses the language of the TV, in 14 languages (see [Languages](#languages)).
 - **Updates.** Settings shows the installed version under its title. Settings → Update QuietHome opens Downloader, where the code 9591315 gets the latest release. If Downloader is not on the TV, it opens Downloader in the Play Store. QuietHome does not check for updates itself, because it has no network access.
 - **The QuietHome service.** An accessibility service that gives QuietHome the features below. If it is off, QuietHome shows how to turn it on.
   - **Home button.** Home always opens QuietHome, also on TVs that keep their own launcher (for example Google TV). When the stock launcher comes back by itself, for example after the TV wakes from standby, QuietHome replaces it at once. Settings → Android TV → Previous launcher still lets you visit it.
@@ -35,6 +35,17 @@ QuietHome is inspired by [CleanFrame](https://github.com/nthnclrk/CleanFrame), a
 | All apps | Settings, with a live preview |
 | --- | --- |
 | ![All apps: every app and HDMI input in a grid](docs/images/allapps.jpg) | ![Settings: the wallpaper list and a preview of Home](docs/images/settings.jpg) |
+
+## Languages
+
+QuietHome shows its text in the language of the TV. For a language that is not in this list, it uses English.
+
+<table align=center>
+<tr><td align=center>🇬🇧<br />English</td><td align=center>🇨🇿<br />Čeština</td><td align=center>🇩🇰<br />Dansk</td><td align=center>🇩🇪<br />Deutsch</td><td align=center>🇪🇸<br />Español</td><td align=center>🇫🇷<br />Français</td><td align=center>🇮🇹<br />Italiano</td></tr>
+<tr><td align=center>🇳🇱<br />Nederlands</td><td align=center>🇳🇴<br />Norsk</td><td align=center>🇵🇱<br />Polski</td><td align=center>🇧🇷<br />Português</td><td align=center>🇫🇮<br />Suomi</td><td align=center>🇸🇪<br />Svenska</td><td align=center>🇹🇷<br />Türkçe</td></tr>
+</table>
+
+To add a language, see [Translate QuietHome](#translate-quiethome).
 
 ## Compatibility
 
