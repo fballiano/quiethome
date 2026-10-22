@@ -447,6 +447,9 @@ final class Ui {
      * A value that eases towards its target. step() returns true while it still moves, so the
      * Stage keeps drawing frames only during an animation.
      */
+    /** Time constants in ms: the focus moving between items, and a list or grid scrolling. */
+    static final float FOCUS_MS = 50, SCROLL_MS = 70;
+
     static final class Anim {
         float value, target;
         private final float tau;

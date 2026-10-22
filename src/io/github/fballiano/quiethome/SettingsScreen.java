@@ -66,7 +66,7 @@ final class SettingsScreen extends Screen {
     private final class Page {
         final String title;
         final List<Row> rows = new ArrayList<>();
-        final Ui.Anim scroll = new Ui.Anim(120);
+        final Ui.Anim scroll = new Ui.Anim(Ui.SCROLL_MS);
         Supplier<List<Row>> builder;
         boolean wallpapers;
         int focus, choice;

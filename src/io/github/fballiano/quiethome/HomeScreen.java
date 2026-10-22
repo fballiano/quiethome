@@ -36,15 +36,15 @@ final class HomeScreen extends Screen {
 
     final List<Catalog.Entry> items = new ArrayList<>();
     private final List<Ui.Anim> emphasis = new ArrayList<>();
-    private final Ui.Anim[] controls = {new Ui.Anim(90), new Ui.Anim(90), new Ui.Anim(90)};
+    private final Ui.Anim[] controls = {new Ui.Anim(Ui.FOCUS_MS), new Ui.Anim(Ui.FOCUS_MS), new Ui.Anim(Ui.FOCUS_MS)};
     /** The press on the app that is opening: 1 at the press, back to 0 as the item springs back. */
     private final Ui.Anim press = new Ui.Anim(140);
     private int pressed = -1;
-    private final Ui.Anim scroll = new Ui.Anim(120);
+    private final Ui.Anim scroll = new Ui.Anim(Ui.SCROLL_MS);
     private final RectF dockArea = new RectF();
-    private final Ui.Anim plate = new Ui.Anim(90);
-    private final Ui.Anim plateWidth = new Ui.Anim(90);
-    private final Ui.Anim plateAlpha = new Ui.Anim(90);
+    private final Ui.Anim plate = new Ui.Anim(Ui.FOCUS_MS);
+    private final Ui.Anim plateWidth = new Ui.Anim(Ui.FOCUS_MS);
+    private final Ui.Anim plateAlpha = new Ui.Anim(Ui.FOCUS_MS);
     private final RectF r = new RectF();
     private final Calendar calendar = Calendar.getInstance();
     private Shader[] scrims;
@@ -75,7 +75,7 @@ final class HomeScreen extends Screen {
             if (e != null && items.size() < Home.MAX_HOME) items.add(e);
         }
         if (items.isEmpty()) for (String id : stage.catalog.defaults()) items.add(stage.catalog.get(id));
-        while (emphasis.size() < items.size()) emphasis.add(new Ui.Anim(90));
+        while (emphasis.size() < items.size()) emphasis.add(new Ui.Anim(Ui.FOCUS_MS));
         focus = 0;
         for (int i = 0; i < items.size(); i++) if (items.get(i).id.equals(focused)) focus = i;
         if (items.isEmpty()) zone = CONTROLS;

@@ -27,7 +27,7 @@ final class EditorScreen extends Screen {
     private final Map<String, Integer> removedAt = new HashMap<>();
     private final List<List<String>> undo = new ArrayList<>();
     private final List<String> others = new ArrayList<>();
-    private final Ui.Anim scroll = new Ui.Anim(120);
+    private final Ui.Anim scroll = new Ui.Anim(Ui.SCROLL_MS);
     private final RectF r = new RectF();
     private final Path arrow = new Path();
     private int zone = NAME, index, button = 1;

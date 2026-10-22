@@ -30,7 +30,7 @@ final class AllAppsScreen extends Screen {
     private final String title;
     private final String assigned;
     private final List<Catalog.Entry> list = new ArrayList<>();
-    private final Ui.Anim scroll = new Ui.Anim(120), plateX = new Ui.Anim(80), plateY = new Ui.Anim(80);
+    private final Ui.Anim scroll = new Ui.Anim(Ui.SCROLL_MS), plateX = new Ui.Anim(Ui.FOCUS_MS), plateY = new Ui.Anim(Ui.FOCUS_MS);
     private final RectF r = new RectF();
     private int focus, lastFocus;
     private boolean snap = true;
