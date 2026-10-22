@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">QuietHome</string>
+    <string name="service_label">QuietHome</string>
+    <string name="service_description">Makes the Home button open QuietHome, gives remote buttons such as a Netflix key the job you choose, and opens your chosen input when the TV turns on. It acts only on those buttons. All other key presses pass through. It stores and sends nothing, and it cannot read the screen.</string>
+</resources>

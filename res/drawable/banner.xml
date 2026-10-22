@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The TV launcher banner (320 x 180): the icon's sun and horizon, wide. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="320dp" android:height="180dp"
+    android:viewportWidth="320" android:viewportHeight="180">
+    <path android:fillColor="#FF1D2A30" android:pathData="M0,0h320v180h-320Z" />
+    <path android:fillColor="#FFF6F1E7" android:pathData="M160,52a18,18 0 1 0 0.01,0Z" />
+    <path android:fillColor="#99F6F1E7" android:pathData="M0,140 L80,104 L140,126 L200,110 L320,140 L320,180 L0,180Z" />
+</vector>

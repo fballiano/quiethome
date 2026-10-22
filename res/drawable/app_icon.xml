@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A sun over a horizon: a quiet photo. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp" android:height="96dp"
+    android:viewportWidth="96" android:viewportHeight="96">
+    <path android:fillColor="#FF1D2A30" android:pathData="M20,0h56a20,20 0 0 1 20,20v56a20,20 0 0 1 -20,20h-56a20,20 0 0 1 -20,-20v-56a20,20 0 0 1 20,-20Z" />
+    <path android:fillColor="#FFF6F1E7" android:pathData="M48,30a10,10 0 1 0 0.01,0Z" />
+    <path android:fillColor="#99F6F1E7" android:pathData="M8,70 L34,52 L50,62 L64,54 L88,70 L88,76 a12,12 0 0 1 -12,12 h-56 a12,12 0 0 1 -12,-12Z" />
+</vector>
