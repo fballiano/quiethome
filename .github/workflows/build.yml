@@ -1,0 +1,68 @@
+# Builds the APK on every push and pull request. A tag such as v0.2.0 also publishes a GitHub
+# Release with quiethome.apk, signed with the release key from the repository secrets
+# KEYSTORE_BASE64 (the keystore file, base64) and KEYSTORE_PASS.
+name: Build
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Install the Android platform and build tools
+        run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-36" "build-tools;36.0.0" > /dev/null
+
+      - name: Set the version
+        run: |
+          if [ "${GITHUB_REF_TYPE}" = tag ]; then
+            # v1.2.3 gives version 1.2.3 and version code 10203.
+            name=${GITHUB_REF_NAME#v}
+            core=${name%%-*}
+            major=$(echo "$core" | cut -d. -f1)
+            minor=$(echo "$core" | cut -d. -f2)
+            patch=$(echo "$core" | cut -d. -f3)
+            echo "VERSION_NAME=$name" >> "$GITHUB_ENV"
+            echo "VERSION_CODE=$(( major * 10000 + ${minor:-0} * 100 + ${patch:-0} ))" >> "$GITHUB_ENV"
+          else
+            echo "VERSION_NAME=0.0.0-${GITHUB_SHA::7}" >> "$GITHUB_ENV"
+          fi
+
+      - name: Use the release key
+        if: github.ref_type == 'tag'
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          KEYSTORE_PASS: ${{ secrets.KEYSTORE_PASS }}
+        run: |
+          [ -n "$KEYSTORE_BASE64" ] || { echo "The KEYSTORE_BASE64 secret is missing." >&2; exit 1; }
+          echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.jks"
+          echo "KEYSTORE=$RUNNER_TEMP/release.jks" >> "$GITHUB_ENV"
+          echo "KEYSTORE_PASS=$KEYSTORE_PASS" >> "$GITHUB_ENV"
+
+      - name: Build
+        run: PLATFORM=android-36 BUILD_TOOLS=36.0.0 sh build.sh
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: quiethome-${{ env.VERSION_NAME }}
+          path: out/quiethome.apk
+
+      - name: Publish the release
+        if: github.ref_type == 'tag'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" out/quiethome.apk --title "QuietHome $VERSION_NAME" --generate-notes

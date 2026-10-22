@@ -36,15 +36,23 @@ Done when the recovery record holds: model, Android version, SDK, the current Ho
 
 ### 3. Get the APK
 
-Use `out/quiethome.apk` if it is newer than every file in `src/`, `res/` and `assets/`. Otherwise run `sh build.sh` from the repository root. It needs a JDK and the Android SDK; read its header comment if it fails.
+Use the latest release, which GitHub builds and signs with the release key:
 
-Done when `out/quiethome.apk` exists and is current.
+```sh
+curl -fL -o quiethome.apk https://github.com/fballiano/quiethome/releases/latest/download/quiethome.apk
+```
+
+Build it instead (`sh build.sh`, which writes `out/quiethome.apk`) only when the user asks for their own changes, or the download fails. A local build has a different signing key from the releases.
+
+Done when the APK file exists.
 
 ### 4. Install
 
 ```sh
-adb install -r out/quiethome.apk
+adb install -r quiethome.apk
 ```
+
+If the output contains `INSTALL_FAILED_UPDATE_INCOMPATIBLE`, the installed QuietHome has a different signing key (a local build). Tell the user that its settings will be lost, and ask before you run `adb uninstall io.github.fballiano.quiethome` and install again.
 
 Done when the output ends with `Success`.
 

@@ -67,16 +67,21 @@ You can also ask it to change the configuration later, or to remove QuietHome.
 
 ## Install
 
+Download `quiethome.apk` from the [latest release](https://github.com/fballiano/quiethome/releases/latest), or build it (see below).
+
 You need a computer with [ADB](https://developer.android.com/tools/adb) and debugging enabled on the TV. To enable it, go to Settings → System (or Device Preferences) → About. Select Build seven times. Then turn on Developer options → USB debugging.
 
 ```sh
+curl -fLO https://github.com/fballiano/quiethome/releases/latest/download/quiethome.apk
 adb connect <tv-address>:5555
-adb install quiethome.apk
+adb install -r quiethome.apk
 adb shell cmd role add-role-holder --user 0 android.app.role.HOME io.github.fballiano.quiethome
 adb shell cmd package set-home-activity io.github.fballiano.quiethome/.Home
 adb shell pm grant io.github.fballiano.quiethome android.permission.WRITE_SECURE_SETTINGS
 adb shell input keyevent KEYCODE_HOME
 ```
+
+Release APKs are all signed with the same key, so a new release installs over an older one and keeps your settings. An APK that you build yourself has a different key: to change between the two, uninstall QuietHome first.
 
 Before you install, write down the name of your current launcher:
 
@@ -165,7 +170,16 @@ You need a JDK (17 or newer) and the Android SDK with a platform (34 or newer) a
 sh build.sh
 ```
 
-The script writes `out/quiethome.apk`. The first build creates a signing key, `key.jks`. Keep this file: updates must have the same signature. To use your own key, set `KEYSTORE` and `KEYSTORE_PASS`.
+The script writes `out/quiethome.apk`. The first build creates a local test key, `key.jks`. Keep this file: an update installs over an earlier build only with the same key. To use your own key, set `KEYSTORE` and `KEYSTORE_PASS`.
+
+GitHub Actions ([`.github/workflows/build.yml`](.github/workflows/build.yml)) runs the same script on every push and pull request, and keeps the APK as a build artifact. To publish a release, push a version tag:
+
+```sh
+git tag v0.2.0
+git push origin v0.2.0
+```
+
+The workflow then builds the APK with that version, signs it with the release key from the repository secrets `KEYSTORE_BASE64` and `KEYSTORE_PASS`, and publishes it as a GitHub Release.
 
 | Location | Contents |
 | --- | --- |
@@ -174,6 +188,7 @@ The script writes `out/quiethome.apk`. The first build creates a signing key, `k
 | `assets/` | The photographs and the fonts |
 | `tools/` | The source SVG marks and `svg2vector.py`, which converts them to vector drawables |
 | `build.sh` | The build: aapt2, javac, d8, zipalign and apksigner |
+| `.github/workflows/` | The build on GitHub, and the releases |
 
 ## Licence
 

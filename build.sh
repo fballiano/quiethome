@@ -7,8 +7,9 @@
 set -e
 cd "$(dirname "$0")"
 
-VERSION_CODE=1
-VERSION_NAME=0.1.0
+# Release builds set both from the tag (see .github/workflows/build.yml).
+VERSION_CODE=${VERSION_CODE:-1}
+VERSION_NAME=${VERSION_NAME:-0.1.0-dev}
 
 SDK=${ANDROID_HOME:-${ANDROID_SDK_ROOT:-}}
 [ -n "$SDK" ] || for d in "$HOME/Library/Android/sdk" "$HOME/Android/Sdk" /opt/homebrew/share/android-commandlinetools; do
@@ -42,7 +43,8 @@ cp out/base.apk out/unsigned.apk
 (cd out/dex && zip -q ../unsigned.apk classes.dex)
 "$BT/zipalign" -f -p 4 out/unsigned.apk out/aligned.apk
 
-# A signing key is made on the first build. Keep key.jks: updates must be signed with the same key.
+# Without KEYSTORE, a local test key (key.jks) is made on the first build. Keep it: an update installs
+# over an earlier APK only with the same key. Releases on GitHub use their own key (KEYSTORE secrets).
 KS=${KEYSTORE:-key.jks}
 PASS=${KEYSTORE_PASS:-quiethome}
 [ -f "$KS" ] || keytool -genkeypair -keystore "$KS" -storepass "$PASS" -keypass "$PASS" -alias quiethome \
