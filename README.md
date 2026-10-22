@@ -18,7 +18,6 @@ QuietHome is inspired by [CleanFrame](https://github.com/nthnclrk/CleanFrame), a
 - **List or Dock layout.** Show names, icons or both. Show a 24-hour or 12-hour clock.
 - **One-colour icons.** Known services use a built-in mark. For every other app, QuietHome turns the app's own icon into a mark in the same colour.
 - **Backgrounds.** Choose one of 15 photographs, a light colour or a dark colour. Photos can rotate each time Home opens, or every 5, 15 or 60 minutes.
-- **Photo mode.** It shows only the photo and the clock. Any key brings Home back.
 - **Two settings buttons.** Settings (the sliders) opens QuietHome's settings. TV settings (the gear) opens Android's own settings.
 - **All apps.** It shows every TV app and every HDMI input. OK opens the item. Hold OK to close an app and free its memory.
 - **Your own order.** Hold OK on an app on Home for a short menu: **Move**, **Remove from Home** or **Close app**. In move mode the arrows move the app, OK places it and Back cancels. Settings → Apps on Home adds apps, with up to nine on Home.

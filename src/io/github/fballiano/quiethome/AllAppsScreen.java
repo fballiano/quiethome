@@ -129,6 +129,7 @@ final class AllAppsScreen extends Screen {
         }
         String error = stage.catalog.launch(e.id);
         if (error != null) stage.toast(error);
+        else stage.opening(e);
     }
 
     @Override

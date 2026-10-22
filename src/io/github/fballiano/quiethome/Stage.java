@@ -23,7 +23,7 @@ import java.util.List;
  */
 final class Stage extends View {
     static final long HOLD_MS = 650;
-    private static final long STATUS_MS = 2600;
+    private static final long STATUS_MS = 2600, OPENING_MS = 10000;
 
     final Home home;
     final Prefs prefs;
@@ -41,7 +41,6 @@ final class Stage extends View {
     private boolean started;
 
     private boolean okPending, okLongDone;
-    private int swallowUntilUp;
 
     private long rotationSince, rotationSpent;
 
@@ -87,6 +86,8 @@ final class Stage extends View {
 
     void stop() {
         started = false;
+        // An app now covers Home: its "Opening" message is done.
+        status = null;
         removeCallbacks(tick);
         cancelOk();
         updateRotation();
@@ -116,10 +117,9 @@ final class Stage extends View {
         if (setup == null && !SetupScreen.later && top() == homeScreen) open(new SetupScreen(this));
     }
 
-    /** The Home button while QuietHome is in front: close panels and Photo mode. */
+    /** The Home button while QuietHome is in front: close panels. */
     void goHome() {
         while (screens.size() > 1) close(top());
-        homeScreen.exitPhotoMode();
         homeScreen.reset();
         invalidate();
     }
@@ -162,11 +162,20 @@ final class Stage extends View {
     }
 
     void toast(String message) {
+        toast(message, STATUS_MS);
+    }
+
+    private void toast(String message, long ms) {
         if (message == null) return;
         status = message;
-        statusUntil = SystemClock.uptimeMillis() + STATUS_MS;
+        statusUntil = SystemClock.uptimeMillis() + ms;
         invalidate();
-        postDelayed(this::invalidate, STATUS_MS + 50);
+        postDelayed(this::invalidate, ms + 50);
+    }
+
+    /** "Opening Netflix" until the app covers Home; some TV apps take seconds to show. */
+    void opening(Catalog.Entry e) {
+        toast("Opening " + Catalog.title(e), OPENING_MS);
     }
 
     /** Saves a choice and applies what it changes. */
@@ -331,17 +340,6 @@ final class Stage extends View {
     boolean key(KeyEvent e) {
         int code = e.getKeyCode();
         boolean down = e.getAction() == KeyEvent.ACTION_DOWN;
-        if (swallowUntilUp != 0 && code == swallowUntilUp) {
-            if (!down) swallowUntilUp = 0;
-            return true;
-        }
-        // Photo mode: any key returns, without doing its usual job.
-        if (top() == homeScreen && homeScreen.photoMode && down) {
-            homeScreen.exitPhotoMode();
-            if (e.getRepeatCount() == 0) swallowUntilUp = code;
-            invalidate();
-            return true;
-        }
         switch (code) {
             case KeyEvent.KEYCODE_BACK:
             case KeyEvent.KEYCODE_ESCAPE:

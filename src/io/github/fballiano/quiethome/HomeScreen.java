@@ -18,14 +18,13 @@ import java.util.List;
 
 /**
  * Home: the chosen apps as a List (large names down the left) or a Dock (tiles on a glass band),
- * the clock, and four controls: Photo mode, All apps, Settings (QuietHome's) and TV settings.
+ * the clock, and three controls: All apps, Settings (QuietHome's) and TV settings.
  */
 final class HomeScreen extends Screen {
     private static final int APPS = 0, CONTROLS = 1;
-    static final String[] CONTROL_NAMES = {"Photo mode", "All apps", "Settings", "TV settings"};
+    static final String[] CONTROL_NAMES = {"All apps", "Settings", "TV settings"};
     private static final String MOVE = "Move", REMOVE = "Remove from Home", CLOSE = "Close app";
-    private static final int[] CONTROL_MARKS = {R.drawable.icon_photo, R.drawable.icon_apps, R.drawable.icon_settings,
-        R.drawable.icon_tvsettings};
+    private static final int[] CONTROL_MARKS = {R.drawable.icon_apps, R.drawable.icon_settings, R.drawable.icon_tvsettings};
 
     private static final float LEFT = 140, RIGHT = 1780;
     private static final float LIST_TOP = 236, ROW = 128;
@@ -35,7 +34,10 @@ final class HomeScreen extends Screen {
 
     final List<Catalog.Entry> items = new ArrayList<>();
     private final List<Ui.Anim> emphasis = new ArrayList<>();
-    private final Ui.Anim[] controls = {new Ui.Anim(90), new Ui.Anim(90), new Ui.Anim(90), new Ui.Anim(90)};
+    private final Ui.Anim[] controls = {new Ui.Anim(90), new Ui.Anim(90), new Ui.Anim(90)};
+    /** The press on the app that is opening: 1 at the press, back to 0 as the item springs back. */
+    private final Ui.Anim press = new Ui.Anim(140);
+    private int pressed = -1;
     private final Ui.Anim scroll = new Ui.Anim(120);
     private final Ui.Anim plate = new Ui.Anim(90);
     private final Ui.Anim plateWidth = new Ui.Anim(90);
@@ -45,7 +47,6 @@ final class HomeScreen extends Screen {
     private Shader[] scrims;
     private int focus, zone = APPS, control;
     private boolean snapNext = true;
-    boolean photoMode;
     /** The hold-OK menu of the focused app, or null. */
     private List<String> menu;
     private int menuIndex;
@@ -89,10 +90,6 @@ final class HomeScreen extends Screen {
     void layoutChanged() {
         snapNext = true;
         targets();
-    }
-
-    void exitPhotoMode() {
-        photoMode = false;
     }
 
     /** Home pressed while QuietHome is in front: close the menu and cancel a move. */
@@ -154,13 +151,19 @@ final class HomeScreen extends Screen {
             if (items.isEmpty()) return;
             Catalog.Entry e = items.get(focus);
             String error = stage.catalog.launch(e.id);
-            if (error != null) stage.toast(error);
-            else stage.prefs.sp.edit().putString(Prefs.LAST, e.id).apply();
+            if (error != null) {
+                stage.toast(error);
+                return;
+            }
+            stage.prefs.sp.edit().putString(Prefs.LAST, e.id).apply();
+            stage.opening(e);
+            pressed = focus;
+            press.snap(1);
+            press.to(0);
             return;
         }
-        if (control == 0) photoMode = true;
-        else if (control == 1) stage.open(new AllAppsScreen(stage, null));
-        else if (control == 2) stage.open(new SettingsScreen(stage));
+        if (control == 0) stage.open(new AllAppsScreen(stage, null));
+        else if (control == 1) stage.open(new SettingsScreen(stage));
         else stage.toast(stage.catalog.openSettings());
     }
 
@@ -254,6 +257,7 @@ final class HomeScreen extends Screen {
         } else {
             for (Ui.Anim a : emphasis) moving |= a.step(dt);
             for (Ui.Anim a : controls) moving |= a.step(dt);
+            moving |= press.step(dt);
             moving |= scroll.step(dt);
             moving |= plate.step(dt);
             moving |= plateWidth.step(dt);
@@ -268,6 +272,11 @@ final class HomeScreen extends Screen {
         paint(c, false, blur);
     }
 
+    /** The opening app dips and springs back, so OK shows at once that it worked. */
+    private float pressScale(int i, boolean live) {
+        return live && i == pressed ? 1 - 0.08f * press.value : 1;
+    }
+
     private float v(Ui.Anim a, boolean live) {
         return live ? a.value : a.target;
     }
@@ -278,11 +287,6 @@ final class HomeScreen extends Screen {
         boolean photo = "photo".equals(bg);
         boolean dock = prefs.is(Prefs.LAYOUT, "dock");
         int ink = Ui.ink(bg);
-        if (live && photoMode) {
-            clock(c, dock, ink, photo);
-            if (photo) caption(c);
-            return;
-        }
         if (photo) scrims(c, dock);
         if (dock) dock(c, live, blur, bg, ink);
         else list(c, live, blur, bg, ink);
@@ -346,7 +350,7 @@ final class HomeScreen extends Screen {
             float e = v(emphasis.get(i), live);
             float a = alpha(e, rest, selected) * fade;
             float top = LIST_TOP + pos * ROW, cy = top + ROW / 2;
-            float scale = glass ? 1 : 1 + 0.05f * Math.max(0, e * 2 - 1);
+            float scale = (glass ? 1 : 1 + 0.05f * Math.max(0, e * 2 - 1)) * pressScale(i, live);
             c.save();
             c.scale(scale, scale, LEFT + 28, cy);
             Catalog.Entry entry = items.get(i);
@@ -410,7 +414,7 @@ final class HomeScreen extends Screen {
             if (x > DOCK.right || x + TILE_W < DOCK.left) continue;
             float e = v(emphasis.get(i), live);
             float a = alpha(e, rest, selected);
-            float scale = glass ? 1 : 1 + 0.05f * Math.max(0, e * 2 - 1);
+            float scale = (glass ? 1 : 1 + 0.05f * Math.max(0, e * 2 - 1)) * pressScale(i, live);
             float cx = x + TILE_W / 2, y = TILE_TOP;
             Catalog.Entry entry = items.get(i);
             c.save();
@@ -526,14 +530,6 @@ final class HomeScreen extends Screen {
         ui.shadow(photo);
         if (dock) ui.line(c, time, LEFT, ui.baseline(104), 0, -1);
         else ui.line(c, time, RIGHT, ui.baseline(145), 0, 1);
-    }
-
-    private void caption(Canvas c) {
-        Wallpapers.Wallpaper w = Wallpapers.find(stage.prefs.get(Prefs.WALLPAPER));
-        if (w == null) return;
-        ui.text(ui.font("manrope", 500), 26, -0.2f, Ui.PHOTO_INK, 0.85f);
-        ui.shadow(true);
-        ui.line(c, w.name + " · Photo by " + w.credit + " on Unsplash", LEFT, 1012, 0, -1);
     }
 
     private static String two(int v) {
