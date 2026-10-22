@@ -18,13 +18,14 @@ import java.util.List;
 
 /**
  * Home: the chosen apps as a List (large names down the left) or a Dock (tiles on a glass band),
- * the clock, and three controls: Photo mode, All apps and Settings.
+ * the clock, and four controls: Photo mode, All apps, Settings (QuietHome's) and TV settings.
  */
 final class HomeScreen extends Screen {
     private static final int APPS = 0, CONTROLS = 1;
-    static final String[] CONTROL_NAMES = {"Photo mode", "All apps", "Settings"};
+    static final String[] CONTROL_NAMES = {"Photo mode", "All apps", "Settings", "TV settings"};
     private static final String MOVE = "Move", REMOVE = "Remove from Home", CLOSE = "Close app";
-    private static final int[] CONTROL_MARKS = {R.drawable.icon_photo, R.drawable.icon_apps, R.drawable.icon_settings};
+    private static final int[] CONTROL_MARKS = {R.drawable.icon_photo, R.drawable.icon_apps, R.drawable.icon_settings,
+        R.drawable.icon_tvsettings};
 
     private static final float LEFT = 140, RIGHT = 1780;
     private static final float LIST_TOP = 236, ROW = 128;
@@ -34,7 +35,7 @@ final class HomeScreen extends Screen {
 
     final List<Catalog.Entry> items = new ArrayList<>();
     private final List<Ui.Anim> emphasis = new ArrayList<>();
-    private final Ui.Anim[] controls = {new Ui.Anim(90), new Ui.Anim(90), new Ui.Anim(90)};
+    private final Ui.Anim[] controls = {new Ui.Anim(90), new Ui.Anim(90), new Ui.Anim(90), new Ui.Anim(90)};
     private final Ui.Anim scroll = new Ui.Anim(120);
     private final Ui.Anim plate = new Ui.Anim(90);
     private final Ui.Anim plateWidth = new Ui.Anim(90);
@@ -123,7 +124,7 @@ final class HomeScreen extends Screen {
             if (along != 0) focus = Math.max(0, Math.min(items.size() - 1, focus + along));
             else if (dock ? dy < 0 : dx > 0) zone = CONTROLS;
         } else {
-            if (along != 0) control = Math.max(0, Math.min(2, control + along));
+            if (along != 0) control = Math.max(0, Math.min(controls.length - 1, control + along));
             else if ((dock ? dy > 0 : dx < 0) && !items.isEmpty()) zone = APPS;
         }
         targets();
@@ -159,7 +160,8 @@ final class HomeScreen extends Screen {
         }
         if (control == 0) photoMode = true;
         else if (control == 1) stage.open(new AllAppsScreen(stage, null));
-        else stage.open(new SettingsScreen(stage));
+        else if (control == 2) stage.open(new SettingsScreen(stage));
+        else stage.toast(stage.catalog.openSettings());
     }
 
     @Override
@@ -215,7 +217,7 @@ final class HomeScreen extends Screen {
         for (int i = 0; i < emphasis.size(); i++) {
             emphasis.get(i).to(i != focus || i >= n ? 0 : zone == APPS ? 1 : 0.5f);
         }
-        for (int k = 0; k < 3; k++) controls[k].to(zone == CONTROLS && k == control ? 1 : 0);
+        for (int k = 0; k < controls.length; k++) controls[k].to(zone == CONTROLS && k == control ? 1 : 0);
         plateAlpha.to(n == 0 ? 0 : zone == APPS ? 1 : 0.5f);
         if (stage.prefs.is(Prefs.LAYOUT, "dock")) {
             float s = scroll.target;
@@ -443,13 +445,13 @@ final class HomeScreen extends Screen {
         boolean icon = !"text".equals(mode), always = !"icons".equals(mode);
         Typeface face = ui.font(stage.prefs.get(Prefs.FONT), 500);
         float x = RIGHT;
-        for (int k = 2; k >= 0; k--) {
+        for (int k = controls.length - 1; k >= 0; k--) {
             float e = v(controls[k], live);
             float a = 0.66f + 0.34f * e;
             ui.text(face, 28, -0.2f, ink, a);
             float textWidth = ui.width(CONTROL_NAMES[k]);
             float width = (icon ? 36 : 0) + (always ? textWidth + (icon ? 14 : 0) : 0);
-            float cy = dock ? 104 : 808 + k * 64;
+            float cy = dock ? 104 : 936 - (controls.length - 1 - k) * 64;
             float right = dock ? x : RIGHT;
             float left = right - width;
             if (glass && e > 0) {

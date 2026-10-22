@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generated from tools/icons/tvsettings.svg by tools/svg2vector.py. Do not edit. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp"
+    android:viewportWidth="24" android:viewportHeight="24">
+    <group android:translateX="0" android:translateY="0">
+        <path android:pathData="M10.36 4.89L10.62 2.20L13.38 2.20L13.64 4.89A7.3 7.3 0 0 1 15.87 5.81L17.96 4.09L19.91 6.04L18.19 8.13A7.3 7.3 0 0 1 19.11 10.36L21.80 10.62L21.80 13.38L19.11 13.64A7.3 7.3 0 0 1 18.19 15.87L19.91 17.96L17.96 19.91L15.87 18.19A7.3 7.3 0 0 1 13.64 19.11L13.38 21.80L10.62 21.80L10.36 19.11A7.3 7.3 0 0 1 8.13 18.19L6.04 19.91L4.09 17.96L5.81 15.87A7.3 7.3 0 0 1 4.89 13.64L2.20 13.38L2.20 10.62L4.89 10.36A7.3 7.3 0 0 1 5.81 8.13L4.09 6.04L6.04 4.09L8.13 5.81A7.3 7.3 0 0 1 10.36 4.89Z"
+            android:strokeColor="#FFFFFFFF"
+            android:strokeWidth="1.6"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round" />
+        <path android:pathData="M9,12a3,3 0 1 0 6,0a3,3 0 1 0 -6,0Z"
+            android:strokeColor="#FFFFFFFF"
+            android:strokeWidth="1.6"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round" />
+    </group>
+</vector>
