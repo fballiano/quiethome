@@ -80,6 +80,18 @@ jobs:
       - name: Set the version
         run: echo "VERSION_NAME=${GITHUB_REF_NAME#v}" >> "$GITHUB_ENV"
 
+      # The notes are the section "## <version>" of CHANGELOG.md at the tag. Without it, nothing is released.
+      - name: Read the release notes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api -H "Accept: application/vnd.github.raw" "repos/$GITHUB_REPOSITORY/contents/CHANGELOG.md?ref=$GITHUB_REF_NAME" \
+            | awk -v v="$VERSION_NAME" '/^## / { if (found) exit; if ($2 == v) { found = 1; next } } found' > notes.md
+          if ! grep -q '[^[:space:]]' notes.md; then
+            echo "::error::CHANGELOG.md has no section for $VERSION_NAME"
+            exit 1
+          fi
+
       - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
           name: quiethome-${{ env.VERSION_NAME }}
@@ -90,7 +102,8 @@ jobs:
           subject-path: quiethome.apk
 
       # gh uploads the APK to a draft and publishes it after, which immutable releases need.
+      # GitHub adds its generated notes (the compare link) after notes.md.
       - name: Publish the release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create "$GITHUB_REF_NAME" quiethome.apk --repo "$GITHUB_REPOSITORY" --verify-tag --title "QuietHome $VERSION_NAME" --generate-notes
+        run: gh release create "$GITHUB_REF_NAME" quiethome.apk --repo "$GITHUB_REPOSITORY" --verify-tag --title "QuietHome $VERSION_NAME" --notes-file notes.md --generate-notes

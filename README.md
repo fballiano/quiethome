@@ -225,14 +225,14 @@ sh build.sh
 
 The script writes `out/quiethome.apk`. The first build creates a local test key, `key.jks`. Keep this file: an update installs over an earlier build only with the same key. To use your own key, set `KEYSTORE` and `KEYSTORE_PASS`.
 
-GitHub Actions ([`.github/workflows/build.yml`](.github/workflows/build.yml)) runs the same script on every push and pull request, and keeps the APK as a build artifact. To publish a release, push a version tag:
+GitHub Actions ([`.github/workflows/build.yml`](.github/workflows/build.yml)) runs the same script on every push and pull request, and keeps the APK as a build artifact. To publish a release, first add a section for the version at the top of [`CHANGELOG.md`](CHANGELOG.md). Then push a version tag:
 
 ```sh
 git tag v0.2.0
 git push origin v0.2.0
 ```
 
-The workflow then builds the APK with that version, signs it with the release key from the repository secrets `KEYSTORE_BASE64` and `KEYSTORE_PASS`, and publishes it as a GitHub Release. Releases are immutable, and each APK has a build provenance attestation. To check that GitHub built an APK from this repository:
+The workflow then builds the APK with that version, signs it with the release key from the repository secrets `KEYSTORE_BASE64` and `KEYSTORE_PASS`, and publishes it as a GitHub Release. The notes of the release are the section of `CHANGELOG.md` for that version. Without that section, the workflow stops. Releases are immutable, and each APK has a build provenance attestation. To check that GitHub built an APK from this repository:
 
 ```sh
 gh attestation verify quiethome.apk --repo fballiano/quiethome
