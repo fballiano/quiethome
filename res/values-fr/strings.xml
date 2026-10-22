@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="service_description">Le bouton Accueil ouvre QuietHome. Les boutons de la télécommande, par exemple un bouton Netflix, reçoivent la fonction que vous choisissez. Quand le téléviseur s’allume, il ouvre l’entrée que vous choisissez. Le service agit seulement sur ces boutons. Toutes les autres touches passent sans changement. Il voit aussi le nom de l’appli au premier plan, pour remplacer l’écran d’accueil du téléviseur quand celui-ci revient. Il n’enregistre et n’envoie rien, et il ne peut pas lire l’écran.</string>
+
+    <!-- Home -->
+    <string name="all_apps">Toutes les applis</string>
+    <string name="settings">Paramètres</string>
+    <string name="tv_settings">Paramètres TV</string>
+    <string name="move">Déplacer</string>
+    <string name="remove_from_home">Retirer de l’accueil</string>
+    <string name="close_app">Fermer l’appli</string>
+    <string name="order_saved">Le nouvel ordre est enregistré.</string>
+    <string name="home_needs_one">L’accueil doit avoir au moins une appli.</string>
+    <string name="home_full">L’accueil contient au maximum neuf applis.</string>
+    <string name="removed_from_home">%1$s n’est plus sur l’accueil.</string>
+    <string name="closed">Vous avez fermé %1$s.</string>
+    <string name="opening">Ouverture de %1$s</string>
+    <string name="no_apps_on_home">Aucune appli sur l’accueil</string>
+    <string name="move_hint_list">Haut et Bas déplacent l’appli. OK la place, Retour annule.</string>
+    <string name="move_hint_dock">Gauche et Droite déplacent l’appli. OK la place, Retour annule.</string>
+
+    <!-- All apps and the pickers -->
+    <string name="edit_home">Modifier l’accueil</string>
+    <string name="on_home">Sur l’accueil</string>
+    <string name="current">Actuel</string>
+    <string name="its_own_job">Sa fonction normale</string>
+    <string name="nothing">Rien</string>
+    <string name="default_job">Par défaut</string>
+    <string name="show_home">Afficher l’accueil</string>
+
+    <!-- Apps on Home -->
+    <string name="apps_on_home">Applis sur l’accueil</string>
+    <string name="editor_hint">OK sur une appli la prend pour la déplacer. L’accueil contient au maximum neuf applis.</string>
+    <string name="editor_hint_lifted">Haut et Bas déplacent l’appli. OK la place, Retour la remet en place.</string>
+    <string name="undo">Annuler</string>
+    <string name="done">Terminé</string>
+    <string name="on_home_count">Sur l’accueil · %1$d sur %2$d</string>
+    <string name="not_on_home">Pas sur l’accueil</string>
+    <string name="remove">Retirer</string>
+    <string name="removed">Retiré</string>
+    <string name="input">Entrée</string>
+
+    <!-- Messages from the TV -->
+    <string name="input_gone">Cette entrée n’est pas sur le téléviseur pour le moment.</string>
+    <string name="app_gone">Cette appli n’est plus sur le téléviseur.</string>
+    <string name="only_apps_close">Seules les applis peuvent se fermer.</string>
+    <string name="close_refused">Le téléviseur ne laisse pas QuietHome fermer cette appli.</string>
+    <string name="cannot_open">Le téléviseur ne peut pas ouvrir cet élément.</string>
+    <string name="open_app_info_by_hand">Sur le téléviseur, ouvrez Paramètres → Applications → QuietHome.</string>
+    <string name="open_accessibility_by_hand">Sur le téléviseur, ouvrez Paramètres → Système → Accessibilité.</string>
+
+    <!-- The QuietHome service -->
+    <string name="service_title">Activer le service QuietHome</string>
+    <string name="service_needed">QuietHome a besoin de son service pour ces fonctions :</string>
+    <string name="service_home">le bouton Accueil, sur les téléviseurs qui gardent leur propre lanceur</string>
+    <string name="service_buttons">l’attribution des boutons, par exemple pour un bouton Netflix</string>
+    <string name="service_start">l’ouverture d’une entrée HDMI quand le téléviseur s’allume</string>
+    <string name="service_how">Dans Accessibilité, sélectionnez QuietHome et activez-le.</string>
+    <string name="service_restricted">S’il est gris ou indique « Paramètre restreint », ouvrez Infos sur l’appli, autorisez les paramètres restreints et réessayez.</string>
+    <string name="service_privacy">Le service voit les touches et le nom de l’appli au premier plan. Il ne peut pas lire l’écran et n’envoie rien.</string>
+    <string name="open_accessibility">Ouvrir Accessibilité</string>
+    <string name="app_info">Infos sur l’appli</string>
+    <string name="later">Plus tard</string>
+    <string name="service_is_on">Le service QuietHome est activé.</string>
+
+    <!-- Button mapping -->
+    <string name="press_a_button">Appuyez sur un bouton de la télécommande</string>
+    <string name="press_example">Par exemple un bouton qui ouvre l’appli du fabricant du téléviseur.</string>
+    <string name="press_keep">Les flèches, OK, Retour, Accueil, le volume et l’alimentation gardent leur fonction. Retour annule.</string>
+    <string name="no_button_pressed">Aucun bouton n’a été pressé.</string>
+    <string name="key_number">Touche %1$d</string>
+    <string name="button_mapping">Attribution des boutons</string>
+    <plurals name="buttons_assigned">
+        <item quantity="one">%1$d attribué</item>
+        <item quantity="other">%1$d attribués</item>
+    </plurals>
+    <string name="needs_service">Nécessite le service QuietHome</string>
+    <string name="needs_service_note">Nécessite le service QuietHome.</string>
+    <string name="button_mapping_needs_it">L’attribution des boutons en a besoin</string>
+    <string name="does_nothing">Ne fait rien</string>
+    <string name="opens">Ouvre %1$s</string>
+    <string name="add_a_button">Ajouter un bouton</string>
+    <string name="add_a_button_note">Appuyez dessus, puis choisissez sa fonction</string>
+    <string name="service_first">Activez d’abord le service QuietHome.</string>
+    <string name="choose_what_button_does">Fonction de %1$s</string>
+    <string name="button_default_again">%1$s retrouve sa fonction normale.</string>
+    <string name="button_does_nothing">%1$s ne fait plus rien.</string>
+    <string name="button_opens">%1$s ouvre %2$s.</string>
+
+    <!-- Settings -->
+    <string name="background">Arrière-plan</string>
+    <string name="layout">Disposition</string>
+    <string name="typography">Police</string>
+    <string name="focus">Sélection</string>
+    <string name="apps_on_home_count">%1$d applis sur %2$d</string>
+    <string name="android_tv_note">Le service, le bouton Accueil et l’allumage</string>
+    <string name="photo">Photo</string>
+    <string name="light">Clair</string>
+    <string name="dark">Sombre</string>
+    <string name="wallpaper">Image</string>
+    <string name="wallpaper_needs_photo">Choisissez Photo pour choisir une image.</string>
+    <string name="rotation">Rotation</string>
+    <string name="rotation_needs_photo">Choisissez Photo pour changer les images.</string>
+    <string name="rotation_fixed">Fixe</string>
+    <string name="rotation_open">À chaque ouverture de l’accueil</string>
+    <string name="rotation_5">Toutes les 5 minutes</string>
+    <string name="rotation_15">Toutes les 15 minutes</string>
+    <string name="rotation_60">Toutes les heures</string>
+    <string name="list">Liste</string>
+    <string name="dock">Dock</string>
+    <string name="apps">Applis</string>
+    <string name="controls">Commandes</string>
+    <string name="both">Les deux</string>
+    <string name="names">Noms</string>
+    <string name="icons">Icônes</string>
+    <string name="names_and_icons">Noms et icônes</string>
+    <string name="clock">Horloge</string>
+    <string name="hour_24">24 heures</string>
+    <string name="hour_12">12 heures</string>
+    <string name="clock_24">Horloge 24 heures</string>
+    <string name="clock_12">Horloge 12 heures</string>
+    <string name="type">Texte</string>
+    <string name="glass">Verre</string>
+    <string name="material">Matière</string>
+    <string name="soft">Doux</string>
+    <string name="frost">Givré</string>
+    <string name="clear">Transparent</string>
+    <string name="material_when">Pour une photo, le Dock ou la sélection Verre.</string>
+    <string name="quiethome_service">Service QuietHome</string>
+    <string name="service_on_note">Activé : Accueil, boutons et démarrage marchent</string>
+    <string name="service_off_note">Désactivé · sélectionnez pour l’activer</string>
+    <string name="tv_settings_note">Les paramètres d’Android</string>
+    <string name="home_button">Bouton Accueil</string>
+    <string name="home_opens_quiethome">Accueil ouvre toujours QuietHome.</string>
+    <string name="home_opens_android">Accueil ouvre ce que choisit Android.</string>
+    <string name="when_tv_turns_on">À l’allumage du téléviseur</string>
+    <string name="open_target">Ouvrir %1$s</string>
+    <string name="open_target_needs_service">Ouvrir %1$s · nécessite le service</string>
+    <string name="open_when_tv_turns_on">Ouvrir à l’allumage</string>
+    <string name="tv_shows_home">Le téléviseur affiche l’accueil quand il s’allume.</string>
+    <string name="tv_opens">Le téléviseur ouvre %1$s quand il s’allume.</string>
+    <string name="previous_launcher">Lanceur précédent</string>
+    <string name="previous_launcher_note">Ouvre l’autre écran d’accueil du téléviseur</string>
+    <string name="home">Accueil</string>
+    <string name="photo_credit">%1$s · Photo de %2$s sur Unsplash</string>
+    <string name="not_applied">%1$s · Non appliquée</string>
+
+    <!-- Updates -->
+    <string name="update">Mettre à jour QuietHome</string>
+    <string name="update_note">Ouvre Downloader · code %1$s</string>
+    <string name="update_no_store">Installez Downloader d’AFTVnews depuis le Play Store.</string>
+
+    <!-- Wallpapers -->
+    <string name="wallpaper_misty">Côte dans la brume</string>
+    <string name="wallpaper_cove">Crique paisible</string>
+    <string name="wallpaper_forest">Forêt dans la brume</string>
+    <string name="wallpaper_valley">Vallée de montagne</string>
+    <string name="wallpaper_night">Étoiles du désert</string>
+    <string name="wallpaper_peaks">Sommets bleus</string>
+    <string name="wallpaper_bridge">Pont au crépuscule</string>
+    <string name="wallpaper_ridge">Crêtes au soleil</string>
+    <string name="wallpaper_golden">Heure dorée</string>
+    <string name="wallpaper_summit">Cimes au soleil</string>
+    <string name="wallpaper_goldcoast">Gold Coast au crépuscule</string>
+    <string name="wallpaper_sydney">Port de Sydney</string>
+    <string name="wallpaper_amber">Collines ambrées</string>
+    <string name="wallpaper_mint">Vague menthe</string>
+    <string name="wallpaper_alpine">Lumière alpine</string>
+</resources>

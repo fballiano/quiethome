@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="service_description">Koti-painike avaa QuietHomen. Kaukosäätimen painikkeet, esimerkiksi Netflix-painike, saavat valitsemasi tehtävän. Kun TV käynnistyy, se avaa valitsemasi tulon. Palvelu toimii vain näillä painikkeilla. Kaikki muut näppäimet menevät läpi ilman muutosta. Se näkee myös edessä olevan sovelluksen nimen, jotta se voi korvata TV:n oman aloitusnäytön, kun se palaa. Se ei tallenna eikä lähetä mitään, eikä se voi lukea näyttöä.</string>
+
+    <!-- Home -->
+    <string name="all_apps">Kaikki sovellukset</string>
+    <string name="settings">Asetukset</string>
+    <string name="tv_settings">TV:n asetukset</string>
+    <string name="move">Siirrä</string>
+    <string name="remove_from_home">Poista aloitusnäytöltä</string>
+    <string name="close_app">Sulje sovellus</string>
+    <string name="order_saved">Uusi järjestys on tallennettu.</string>
+    <string name="home_needs_one">Aloitusnäytöllä täytyy olla vähintään yksi sovellus.</string>
+    <string name="home_full">Aloitusnäytölle mahtuu enintään yhdeksän sovellusta.</string>
+    <string name="removed_from_home">%1$s ei ole enää aloitusnäytöllä.</string>
+    <string name="closed">%1$s on suljettu.</string>
+    <string name="opening">Avataan: %1$s</string>
+    <string name="no_apps_on_home">Aloitusnäytöllä ei ole sovelluksia</string>
+    <string name="move_hint_list">Ylös ja Alas siirtävät sovellusta. OK asettaa sen, Takaisin peruu.</string>
+    <string name="move_hint_dock">Vasen ja Oikea siirtävät sovellusta. OK asettaa sen, Takaisin peruu.</string>
+
+    <!-- All apps and the pickers -->
+    <string name="edit_home">Muokkaa</string>
+    <string name="on_home">Aloitusnäytöllä</string>
+    <string name="current">Nykyinen</string>
+    <string name="its_own_job">Oma tehtävä</string>
+    <string name="nothing">Ei mitään</string>
+    <string name="default_job">Oletus</string>
+    <string name="show_home">Aloitusnäyttö</string>
+
+    <!-- Apps on Home -->
+    <string name="apps_on_home">Sovellukset aloitusnäytöllä</string>
+    <string name="editor_hint">OK sovelluksen kohdalla nostaa sen siirrettäväksi. Mahtuu enintään yhdeksän sovellusta.</string>
+    <string name="editor_hint_lifted">Ylös ja Alas siirtävät sovellusta. OK asettaa sen, Takaisin palauttaa sen.</string>
+    <string name="undo">Kumoa</string>
+    <string name="done">Valmis</string>
+    <string name="on_home_count">Aloitusnäytöllä · %1$d / %2$d</string>
+    <string name="not_on_home">Ei aloitusnäytöllä</string>
+    <string name="remove">Poista</string>
+    <string name="removed">Poistettu</string>
+    <string name="input">Tulo</string>
+
+    <!-- Messages from the TV -->
+    <string name="input_gone">Tätä tuloa ei nyt ole TV:ssä.</string>
+    <string name="app_gone">Tätä sovellusta ei enää ole TV:ssä.</string>
+    <string name="only_apps_close">Vain sovellukset voi sulkea.</string>
+    <string name="close_refused">TV ei anna QuietHomen sulkea tätä sovellusta.</string>
+    <string name="cannot_open">TV ei voi avata tätä.</string>
+    <string name="open_app_info_by_hand">Avaa TV:ssä Asetukset → Sovellukset → QuietHome.</string>
+    <string name="open_accessibility_by_hand">Avaa TV:ssä Asetukset → Järjestelmä → Saavutettavuus.</string>
+
+    <!-- The QuietHome service -->
+    <string name="service_title">Ota QuietHome-palvelu käyttöön</string>
+    <string name="service_needed">QuietHome tarvitsee palveluaan näihin ominaisuuksiin:</string>
+    <string name="service_home">Koti-painike TV:issä, jotka pitävät oman aloitusnäyttönsä</string>
+    <string name="service_buttons">painikkeiden määritys, esimerkiksi Netflix-painikkeelle</string>
+    <string name="service_start">HDMI-tulon avaaminen, kun TV käynnistyy</string>
+    <string name="service_how">Valitse Saavutettavuus-kohdassa QuietHome ja ota se käyttöön.</string>
+    <string name="service_restricted">Jos se on harmaa tai siinä lukee ”Rajoitettu asetus”, avaa Sovelluksen tiedot, salli rajoitetut asetukset ja yritä uudelleen.</string>
+    <string name="service_privacy">Palvelu näkee näppäinten painallukset ja edessä olevan sovelluksen nimen. Se ei voi lukea näyttöä eikä lähetä mitään.</string>
+    <string name="open_accessibility">Avaa Saavutettavuus</string>
+    <string name="app_info">Sovelluksen tiedot</string>
+    <string name="later">Myöhemmin</string>
+    <string name="service_is_on">QuietHome-palvelu on käytössä.</string>
+
+    <!-- Button mapping -->
+    <string name="press_a_button">Paina kaukosäätimen painiketta</string>
+    <string name="press_example">Esimerkiksi painiketta, joka avaa TV:n valmistajan oman sovelluksen.</string>
+    <string name="press_keep">Nuolet, OK, Takaisin, Koti, äänenvoimakkuus ja virta pitävät tehtävänsä. Takaisin peruu.</string>
+    <string name="no_button_pressed">Painiketta ei painettu.</string>
+    <string name="key_number">Näppäin %1$d</string>
+    <string name="button_mapping">Painikkeiden määritys</string>
+    <plurals name="buttons_assigned">
+        <item quantity="one">%1$d määritetty</item>
+        <item quantity="other">%1$d määritetty</item>
+    </plurals>
+    <string name="needs_service">Vaatii QuietHome-palvelun</string>
+    <string name="needs_service_note">Vaatii QuietHome-palvelun.</string>
+    <string name="button_mapping_needs_it">Painikkeiden määritys tarvitsee sen</string>
+    <string name="does_nothing">Ei tee mitään</string>
+    <string name="opens">Avaa: %1$s</string>
+    <string name="add_a_button">Lisää painike</string>
+    <string name="add_a_button_note">Paina sitä ja valitse sitten sen tehtävä</string>
+    <string name="service_first">Ota ensin QuietHome-palvelu käyttöön.</string>
+    <string name="choose_what_button_does">Valitse tehtävä: %1$s</string>
+    <string name="button_default_again">%1$s tekee taas oman tehtävänsä.</string>
+    <string name="button_does_nothing">%1$s ei nyt tee mitään.</string>
+    <string name="button_opens">%1$s avaa: %2$s.</string>
+
+    <!-- Settings -->
+    <string name="background">Tausta</string>
+    <string name="layout">Asettelu</string>
+    <string name="typography">Fontti</string>
+    <string name="focus">Valinta</string>
+    <string name="apps_on_home_count">%1$d / %2$d sovellusta</string>
+    <string name="android_tv_note">Palvelu, Koti-painike ja TV:n käynnistys</string>
+    <string name="photo">Kuva</string>
+    <string name="light">Vaalea</string>
+    <string name="dark">Tumma</string>
+    <string name="wallpaper">Taustakuva</string>
+    <string name="wallpaper_needs_photo">Valitse Kuva, niin voit valita taustakuvan.</string>
+    <string name="rotation">Vaihtuminen</string>
+    <string name="rotation_needs_photo">Valitse Kuva, niin taustakuvat voivat vaihtua.</string>
+    <string name="rotation_fixed">Kiinteä</string>
+    <string name="rotation_open">Aina kun aloitusnäyttö avautuu</string>
+    <string name="rotation_5">5 minuutin välein</string>
+    <string name="rotation_15">15 minuutin välein</string>
+    <string name="rotation_60">Tunnin välein</string>
+    <string name="list">Luettelo</string>
+    <string name="dock">Telakka</string>
+    <string name="apps">Sovellukset</string>
+    <string name="controls">Painikkeet</string>
+    <string name="both">Molemmat</string>
+    <string name="names">Nimet</string>
+    <string name="icons">Kuvakkeet</string>
+    <string name="names_and_icons">Nimet ja kuvakkeet</string>
+    <string name="clock">Kello</string>
+    <string name="hour_24">24 h</string>
+    <string name="hour_12">12 h</string>
+    <string name="clock_24">24 tunnin kello</string>
+    <string name="clock_12">12 tunnin kello</string>
+    <string name="type">Teksti</string>
+    <string name="glass">Lasi</string>
+    <string name="material">Materiaali</string>
+    <string name="soft">Pehmeä</string>
+    <string name="frost">Huurre</string>
+    <string name="clear">Kirkas</string>
+    <string name="material_when">Kuvalle, telakalle tai Lasi-valinnalle.</string>
+    <string name="quiethome_service">QuietHome-palvelu</string>
+    <string name="service_on_note">Käytössä: Koti, painikkeet ja käynnistys toimivat</string>
+    <string name="service_off_note">Ei käytössä · valitse ottaaksesi käyttöön</string>
+    <string name="tv_settings_note">Androidin omat asetukset</string>
+    <string name="home_button">Koti-painike</string>
+    <string name="home_opens_quiethome">Koti avaa aina QuietHomen.</string>
+    <string name="home_opens_android">Koti avaa sen, minkä Android valitsee.</string>
+    <string name="when_tv_turns_on">Kun TV käynnistyy</string>
+    <string name="open_target">Avaa %1$s</string>
+    <string name="open_target_needs_service">Avaa %1$s · vaatii palvelun</string>
+    <string name="open_when_tv_turns_on">Avaa, kun TV käynnistyy</string>
+    <string name="tv_shows_home">TV näyttää aloitusnäytön, kun se käynnistyy.</string>
+    <string name="tv_opens">TV avaa käynnistyessään: %1$s.</string>
+    <string name="previous_launcher">Edellinen aloitusnäyttö</string>
+    <string name="previous_launcher_note">Avaa TV:n toisen aloitusnäytön</string>
+    <string name="home">Aloitusnäyttö</string>
+    <string name="photo_credit">%1$s · Kuva: %2$s, Unsplash</string>
+    <string name="not_applied">%1$s · Ei käytössä</string>
+
+    <!-- Updates -->
+    <string name="update">Päivitä QuietHome</string>
+    <string name="update_note">Avaa Downloaderin · koodi %1$s</string>
+    <string name="update_no_store">Asenna AFTVnewsin Downloader Play Kaupasta.</string>
+
+    <!-- Wallpapers -->
+    <string name="wallpaper_misty">Sumuinen rannikko</string>
+    <string name="wallpaper_cove">Hiljainen lahti</string>
+    <string name="wallpaper_forest">Metsä sumussa</string>
+    <string name="wallpaper_valley">Vuorilaakso</string>
+    <string name="wallpaper_night">Aavikon tähdet</string>
+    <string name="wallpaper_peaks">Siniset huiput</string>
+    <string name="wallpaper_bridge">Silta hämärässä</string>
+    <string name="wallpaper_ridge">Auringon valaisemat harjanteet</string>
+    <string name="wallpaper_golden">Kultainen tunti</string>
+    <string name="wallpaper_summit">Auringon valaisemat huiput</string>
+    <string name="wallpaper_goldcoast">Gold Coast hämärässä</string>
+    <string name="wallpaper_sydney">Sydneyn satama</string>
+    <string name="wallpaper_amber">Meripihkaiset kukkulat</string>
+    <string name="wallpaper_mint">Minttuaalto</string>
+    <string name="wallpaper_alpine">Alppihehku</string>
+</resources>

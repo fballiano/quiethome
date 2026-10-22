@@ -110,7 +110,7 @@ final class Stage extends View {
         if (ServiceSetup.isOn(getContext()) || ServiceSetup.turnOnItself(getContext())) {
             if (setup != null) {
                 close(setup);
-                toast("The QuietHome service is on.");
+                toast(text(R.string.service_is_on));
             }
             return;
         }
@@ -157,6 +157,11 @@ final class Stage extends View {
         invalidate();
     }
 
+    /** A string from res/values, in the TV's language. */
+    String text(int id, Object... args) {
+        return args.length == 0 ? getContext().getString(id) : getContext().getString(id, args);
+    }
+
     boolean isOpen(Screen s) {
         return screens.contains(s);
     }
@@ -175,7 +180,7 @@ final class Stage extends View {
 
     /** "Opening Netflix" until the app covers Home; some TV apps take seconds to show. */
     void opening(Catalog.Entry e) {
-        toast("Opening " + Catalog.title(e), OPENING_MS);
+        toast(text(R.string.opening, Catalog.title(e)), OPENING_MS);
     }
 
     /** Saves a choice and applies what it changes. */

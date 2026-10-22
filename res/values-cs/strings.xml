@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="service_description">Tlačítko Domů otevře QuietHome. Tlačítka dálkového ovladače, například tlačítko Netflix, dostanou úkol, který zvolíte. Když se televizor zapne, otevře vstup, který zvolíte. Služba působí jen na tato tlačítka. Všechny ostatní klávesy projdou beze změny. Vidí také název aplikace v popředí, aby mohla nahradit vlastní plochu televizoru, když se vrátí. Nic neukládá ani neodesílá a nemůže číst obrazovku.</string>
+
+    <!-- Home -->
+    <string name="all_apps">Všechny aplikace</string>
+    <string name="settings">Nastavení</string>
+    <string name="tv_settings">Nastavení TV</string>
+    <string name="move">Přesunout</string>
+    <string name="remove_from_home">Odebrat z plochy</string>
+    <string name="close_app">Zavřít aplikaci</string>
+    <string name="order_saved">Nové pořadí je uloženo.</string>
+    <string name="home_needs_one">Plocha musí mít aspoň jednu aplikaci.</string>
+    <string name="home_full">Na plochu se vejde nejvýše devět aplikací.</string>
+    <string name="removed_from_home">%1$s už není na ploše.</string>
+    <string name="closed">Zavřeno: %1$s.</string>
+    <string name="opening">Otevírání: %1$s</string>
+    <string name="no_apps_on_home">Na ploše nejsou žádné aplikace</string>
+    <string name="move_hint_list">Nahoru a Dolů přesouvají aplikaci. OK ji položí, Zpět zruší.</string>
+    <string name="move_hint_dock">Vlevo a Vpravo přesouvají aplikaci. OK ji položí, Zpět zruší.</string>
+
+    <!-- All apps and the pickers -->
+    <string name="edit_home">Upravit plochu</string>
+    <string name="on_home">Na ploše</string>
+    <string name="current">Aktuální</string>
+    <string name="its_own_job">Vlastní úkol</string>
+    <string name="nothing">Nic</string>
+    <string name="default_job">Výchozí</string>
+    <string name="show_home">Zobrazit plochu</string>
+
+    <!-- Apps on Home -->
+    <string name="apps_on_home">Aplikace na ploše</string>
+    <string name="editor_hint">OK na aplikaci ji zvedne k přesunu. Na plochu se vejde nejvýše devět aplikací.</string>
+    <string name="editor_hint_lifted">Nahoru a Dolů přesouvají aplikaci. OK ji položí, Zpět ji vrátí.</string>
+    <string name="undo">Zpět</string>
+    <string name="done">Hotovo</string>
+    <string name="on_home_count">Na ploše · %1$d z %2$d</string>
+    <string name="not_on_home">Mimo plochu</string>
+    <string name="remove">Odebrat</string>
+    <string name="removed">Odebráno</string>
+    <string name="input">Vstup</string>
+
+    <!-- Messages from the TV -->
+    <string name="input_gone">Tento vstup teď na televizoru není.</string>
+    <string name="app_gone">Tato aplikace už na televizoru není.</string>
+    <string name="only_apps_close">Zavřít lze jen aplikace.</string>
+    <string name="close_refused">Televizor nedovolil QuietHome tuto aplikaci zavřít.</string>
+    <string name="cannot_open">Televizor to nemůže otevřít.</string>
+    <string name="open_app_info_by_hand">Na televizoru otevřete Nastavení → Aplikace → QuietHome.</string>
+    <string name="open_accessibility_by_hand">Na televizoru otevřete Nastavení → Systém → Přístupnost.</string>
+
+    <!-- The QuietHome service -->
+    <string name="service_title">Zapněte službu QuietHome</string>
+    <string name="service_needed">QuietHome potřebuje svou službu pro tyto funkce:</string>
+    <string name="service_home">tlačítko Domů, na televizorech, které si nechávají vlastní plochu</string>
+    <string name="service_buttons">přiřazení tlačítek, například pro tlačítko Netflix</string>
+    <string name="service_start">otevření vstupu HDMI po zapnutí televizoru</string>
+    <string name="service_how">V Přístupnosti vyberte QuietHome a zapněte ho.</string>
+    <string name="service_restricted">Pokud je šedé („Omezené nastavení“), otevřete Informace o aplikaci, povolte tato nastavení a zkuste to znovu.</string>
+    <string name="service_privacy">Služba vidí stisky kláves a název aplikace v popředí. Nemůže číst obrazovku a nic neodesílá.</string>
+    <string name="open_accessibility">Otevřít Přístupnost</string>
+    <string name="app_info">Informace o aplikaci</string>
+    <string name="later">Později</string>
+    <string name="service_is_on">Služba QuietHome je zapnutá.</string>
+
+    <!-- Button mapping -->
+    <string name="press_a_button">Stiskněte tlačítko dálkového ovladače</string>
+    <string name="press_example">Například tlačítko, které otevírá aplikaci výrobce televizoru.</string>
+    <string name="press_keep">Šipky, OK, Zpět, Domů, hlasitost a vypínač si nechávají své úkoly. Zpět zruší.</string>
+    <string name="no_button_pressed">Nebylo stisknuto žádné tlačítko.</string>
+    <string name="key_number">Klávesa %1$d</string>
+    <string name="button_mapping">Přiřazení tlačítek</string>
+    <plurals name="buttons_assigned">
+        <item quantity="one">%1$d přiřazeno</item>
+        <item quantity="few">%1$d přiřazena</item>
+        <item quantity="many">%1$d přiřazeno</item>
+        <item quantity="other">%1$d přiřazeno</item>
+    </plurals>
+    <string name="needs_service">Vyžaduje službu QuietHome</string>
+    <string name="needs_service_note">Vyžaduje službu QuietHome.</string>
+    <string name="button_mapping_needs_it">Přiřazení tlačítek ji potřebuje</string>
+    <string name="does_nothing">Nedělá nic</string>
+    <string name="opens">Otevře %1$s</string>
+    <string name="add_a_button">Přidat tlačítko</string>
+    <string name="add_a_button_note">Stiskněte ho a pak zvolte, co dělá</string>
+    <string name="service_first">Nejdřív zapněte službu QuietHome.</string>
+    <string name="choose_what_button_does">Co dělá %1$s</string>
+    <string name="button_default_again">%1$s znovu dělá svůj vlastní úkol.</string>
+    <string name="button_does_nothing">%1$s teď nedělá nic.</string>
+    <string name="button_opens">%1$s otevře %2$s.</string>
+
+    <!-- Settings -->
+    <string name="background">Pozadí</string>
+    <string name="layout">Rozložení</string>
+    <string name="typography">Písmo</string>
+    <string name="focus">Výběr</string>
+    <string name="apps_on_home_count">%1$d z %2$d aplikací</string>
+    <string name="android_tv_note">Služba, tlačítko Domů a zapnutí televizoru</string>
+    <string name="photo">Fotka</string>
+    <string name="light">Světlé</string>
+    <string name="dark">Tmavé</string>
+    <string name="wallpaper">Obrázek</string>
+    <string name="wallpaper_needs_photo">Zvolte Fotka, abyste mohli vybrat obrázek.</string>
+    <string name="rotation">Střídání</string>
+    <string name="rotation_needs_photo">Zvolte Fotka, aby se obrázky mohly střídat.</string>
+    <string name="rotation_fixed">Pevně</string>
+    <string name="rotation_open">Při každém otevření plochy</string>
+    <string name="rotation_5">Každých 5 minut</string>
+    <string name="rotation_15">Každých 15 minut</string>
+    <string name="rotation_60">Každou hodinu</string>
+    <string name="list">Seznam</string>
+    <string name="dock">Dok</string>
+    <string name="apps">Aplikace</string>
+    <string name="controls">Ovládání</string>
+    <string name="both">Obojí</string>
+    <string name="names">Názvy</string>
+    <string name="icons">Ikony</string>
+    <string name="names_and_icons">Názvy a ikony</string>
+    <string name="clock">Hodiny</string>
+    <string name="hour_24">24 hodin</string>
+    <string name="hour_12">12 hodin</string>
+    <string name="clock_24">24hodinové hodiny</string>
+    <string name="clock_12">12hodinové hodiny</string>
+    <string name="type">Text</string>
+    <string name="glass">Sklo</string>
+    <string name="material">Materiál</string>
+    <string name="soft">Jemné</string>
+    <string name="frost">Matné</string>
+    <string name="clear">Čiré</string>
+    <string name="material_when">Pro fotku, dok nebo výběr Sklo.</string>
+    <string name="quiethome_service">Služba QuietHome</string>
+    <string name="service_on_note">Zapnuto: Domů, tlačítka a vstup po zapnutí fungují</string>
+    <string name="service_off_note">Vypnuto · vyberte pro zapnutí</string>
+    <string name="tv_settings_note">Vlastní nastavení Androidu</string>
+    <string name="home_button">Tlačítko Domů</string>
+    <string name="home_opens_quiethome">Domů vždy otevře QuietHome.</string>
+    <string name="home_opens_android">Domů otevře to, co zvolí Android.</string>
+    <string name="when_tv_turns_on">Po zapnutí televizoru</string>
+    <string name="open_target">Otevřít %1$s</string>
+    <string name="open_target_needs_service">Otevřít %1$s · vyžaduje službu</string>
+    <string name="open_when_tv_turns_on">Otevřít po zapnutí</string>
+    <string name="tv_shows_home">Po zapnutí televizor zobrazí plochu.</string>
+    <string name="tv_opens">Po zapnutí televizor otevře %1$s.</string>
+    <string name="previous_launcher">Předchozí plocha</string>
+    <string name="previous_launcher_note">Otevře jinou plochu televizoru</string>
+    <string name="home">Plocha</string>
+    <string name="photo_credit">%1$s · Foto: %2$s, Unsplash</string>
+    <string name="not_applied">%1$s · Nepoužito</string>
+
+    <!-- Updates -->
+    <string name="update">Aktualizovat QuietHome</string>
+    <string name="update_note">Otevře Downloader · kód %1$s</string>
+    <string name="update_no_store">Nainstalujte Downloader od AFTVnews z Obchodu Play.</string>
+
+    <!-- Wallpapers -->
+    <string name="wallpaper_misty">Pobřeží v mlze</string>
+    <string name="wallpaper_cove">Tichá zátoka</string>
+    <string name="wallpaper_forest">Les v mlze</string>
+    <string name="wallpaper_valley">Horské údolí</string>
+    <string name="wallpaper_night">Hvězdy nad pouští</string>
+    <string name="wallpaper_peaks">Modré štíty</string>
+    <string name="wallpaper_bridge">Most za soumraku</string>
+    <string name="wallpaper_ridge">Hřebeny ve slunci</string>
+    <string name="wallpaper_golden">Zlatá hodinka</string>
+    <string name="wallpaper_summit">Vrcholy ve slunci</string>
+    <string name="wallpaper_goldcoast">Gold Coast za soumraku</string>
+    <string name="wallpaper_sydney">Přístav v Sydney</string>
+    <string name="wallpaper_amber">Jantarové kopce</string>
+    <string name="wallpaper_mint">Mátová vlna</string>
+    <string name="wallpaper_alpine">Alpská záře</string>
+</resources>

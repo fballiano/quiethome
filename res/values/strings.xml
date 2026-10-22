@@ -1,6 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- All the text that QuietHome shows. Each values-xx folder translates every string here. -->
 <resources>
-    <string name="app_name">QuietHome</string>
-    <string name="service_label">QuietHome</string>
+    <string name="app_name" translatable="false">QuietHome</string>
+    <string name="service_label" translatable="false">QuietHome</string>
+    <string name="android_name" translatable="false">Android</string>
     <string name="service_description">Makes the Home button open QuietHome, gives remote buttons such as a Netflix key the job you choose, and opens your chosen input when the TV turns on. It acts only on those buttons. All other key presses pass through. It also sees the name of the app in front, so it can replace the TV\'s own home screen when that one comes back. It stores and sends nothing, and it cannot read the screen.</string>
+
+    <!-- Home -->
+    <string name="all_apps">All apps</string>
+    <string name="settings">Settings</string>
+    <string name="tv_settings">TV settings</string>
+    <string name="move">Move</string>
+    <string name="remove_from_home">Remove from Home</string>
+    <string name="close_app">Close app</string>
+    <string name="order_saved">Saved the new order.</string>
+    <string name="home_needs_one">Home needs at least one app.</string>
+    <string name="home_full">Home holds up to nine apps.</string>
+    <string name="removed_from_home">Removed %1$s from Home.</string>
+    <string name="closed">Closed %1$s.</string>
+    <string name="opening">Opening %1$s</string>
+    <string name="no_apps_on_home">No apps on Home</string>
+    <string name="move_hint_list">Up and Down move the app. OK places it, Back cancels.</string>
+    <string name="move_hint_dock">Left and Right move the app. OK places it, Back cancels.</string>
+
+    <!-- All apps and the pickers -->
+    <string name="edit_home">Edit Home</string>
+    <string name="on_home">On Home</string>
+    <string name="current">Current</string>
+    <string name="its_own_job">Its own job</string>
+    <string name="nothing">Nothing</string>
+    <string name="default_job">Default</string>
+    <string name="show_home">Show Home</string>
+
+    <!-- Apps on Home -->
+    <string name="apps_on_home">Apps on Home</string>
+    <string name="editor_hint">OK on an app picks it up to move it. Home holds up to nine apps.</string>
+    <string name="editor_hint_lifted">Up and Down move the app. OK places it, Back puts it back.</string>
+    <string name="undo">Undo</string>
+    <string name="done">Done</string>
+    <string name="on_home_count">On Home · %1$d of %2$d</string>
+    <string name="not_on_home">Not on Home</string>
+    <string name="remove">Remove</string>
+    <string name="removed">Removed</string>
+    <string name="input">Input</string>
+
+    <!-- Messages from the TV -->
+    <string name="input_gone">This input is not on the TV now.</string>
+    <string name="app_gone">This app is no longer on the TV.</string>
+    <string name="only_apps_close">Only apps can close.</string>
+    <string name="close_refused">The TV did not let QuietHome close this app.</string>
+    <string name="cannot_open">The TV cannot open this.</string>
+    <string name="open_app_info_by_hand">Open Settings → Apps → QuietHome on the TV.</string>
+    <string name="open_accessibility_by_hand">Open Settings → System → Accessibility on the TV.</string>
+
+    <!-- The QuietHome service -->
+    <string name="service_title">Turn on the QuietHome service</string>
+    <string name="service_needed">QuietHome needs its service for these features:</string>
+    <string name="service_home">the Home button, on TVs that keep their own launcher</string>
+    <string name="service_buttons">button mapping, for example for a Netflix key</string>
+    <string name="service_start">opening an HDMI input when the TV turns on</string>
+    <string name="service_how">In Accessibility, select QuietHome and turn it on.</string>
+    <string name="service_restricted">If it is grey or says \"Restricted setting\", open App info, allow restricted settings, and try again.</string>
+    <string name="service_privacy">The service sees key presses and the name of the app in front. It cannot read the screen and sends nothing.</string>
+    <string name="open_accessibility">Open Accessibility settings</string>
+    <string name="app_info">App info</string>
+    <string name="later">Later</string>
+    <string name="service_is_on">The QuietHome service is on.</string>
+
+    <!-- Button mapping -->
+    <string name="press_a_button">Press a remote button</string>
+    <string name="press_example">For example a button that opens the TV maker\'s own app.</string>
+    <string name="press_keep">Arrows, OK, Back, Home, volume and power keep their jobs. Back cancels.</string>
+    <string name="no_button_pressed">No button was pressed.</string>
+    <string name="key_number">Key %1$d</string>
+    <string name="button_mapping">Button mapping</string>
+    <plurals name="buttons_assigned">
+        <item quantity="one">%1$d assigned</item>
+        <item quantity="other">%1$d assigned</item>
+    </plurals>
+    <string name="needs_service">Needs the QuietHome service</string>
+    <string name="needs_service_note">Needs the QuietHome service.</string>
+    <string name="button_mapping_needs_it">Button mapping needs it</string>
+    <string name="does_nothing">Does nothing</string>
+    <string name="opens">Opens %1$s</string>
+    <string name="add_a_button">Add a button</string>
+    <string name="add_a_button_note">Press it, then choose what it does</string>
+    <string name="service_first">Turn on the QuietHome service first.</string>
+    <string name="choose_what_button_does">Choose what %1$s does</string>
+    <string name="button_default_again">%1$s does its own job again.</string>
+    <string name="button_does_nothing">%1$s now does nothing.</string>
+    <string name="button_opens">%1$s opens %2$s.</string>
+
+    <!-- Settings -->
+    <string name="background">Background</string>
+    <string name="layout">Layout</string>
+    <string name="typography">Typography</string>
+    <string name="focus">Focus</string>
+    <string name="apps_on_home_count">%1$d of %2$d apps</string>
+    <string name="android_tv" translatable="false">Android TV</string>
+    <string name="android_tv_note">The service, the Home button and the start input</string>
+    <string name="photo">Photo</string>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+    <string name="wallpaper">Wallpaper</string>
+    <string name="wallpaper_needs_photo">Choose Photo to pick a wallpaper.</string>
+    <string name="rotation">Rotation</string>
+    <string name="rotation_needs_photo">Choose Photo to rotate wallpapers.</string>
+    <string name="rotation_fixed">Fixed</string>
+    <string name="rotation_open">Each time Home opens</string>
+    <string name="rotation_5">Every 5 minutes</string>
+    <string name="rotation_15">Every 15 minutes</string>
+    <string name="rotation_60">Every hour</string>
+    <string name="list">List</string>
+    <string name="dock">Dock</string>
+    <string name="apps">Apps</string>
+    <string name="controls">Controls</string>
+    <string name="both">Both</string>
+    <string name="names">Names</string>
+    <string name="icons">Icons</string>
+    <string name="names_and_icons">Names and icons</string>
+    <string name="clock">Clock</string>
+    <string name="hour_24">24-hour</string>
+    <string name="hour_12">12-hour</string>
+    <string name="clock_24">24-hour clock</string>
+    <string name="clock_12">12-hour clock</string>
+    <string name="type">Type</string>
+    <string name="glass">Glass</string>
+    <string name="material">Material</string>
+    <string name="soft">Soft</string>
+    <string name="frost">Frost</string>
+    <string name="clear">Clear</string>
+    <string name="material_when">Used on a photo, by the Dock or by Glass focus.</string>
+    <string name="quiethome_service">QuietHome service</string>
+    <string name="service_on_note">On: Home button, mapping and start input work</string>
+    <string name="service_off_note">Off · select to turn it on</string>
+    <string name="tv_settings_note">Android\'s own settings</string>
+    <string name="home_button">Home button</string>
+    <string name="home_opens_quiethome">Home always opens QuietHome.</string>
+    <string name="home_opens_android">Home opens what Android chooses.</string>
+    <string name="when_tv_turns_on">When the TV turns on</string>
+    <string name="open_target">Open %1$s</string>
+    <string name="open_target_needs_service">Open %1$s · needs the QuietHome service</string>
+    <string name="open_when_tv_turns_on">Open when the TV turns on</string>
+    <string name="tv_shows_home">The TV shows Home when it turns on.</string>
+    <string name="tv_opens">The TV opens %1$s when it turns on.</string>
+    <string name="previous_launcher">Previous launcher</string>
+    <string name="previous_launcher_note">Opens the TV\'s other home screen</string>
+    <string name="home">Home</string>
+    <string name="photo_credit">%1$s · Photo by %2$s on Unsplash</string>
+    <string name="not_applied">%1$s · Not applied</string>
+
+    <!-- Updates -->
+    <string name="update">Update QuietHome</string>
+    <string name="update_note">Opens Downloader · code %1$s</string>
+    <string name="update_no_store">Install Downloader by AFTVnews from the Play Store.</string>
+
+    <!-- Wallpapers -->
+    <string name="wallpaper_misty">Misty coast</string>
+    <string name="wallpaper_cove">Quiet cove</string>
+    <string name="wallpaper_forest">Forest mist</string>
+    <string name="wallpaper_valley">Mountain valley</string>
+    <string name="wallpaper_night">Desert stars</string>
+    <string name="wallpaper_peaks">Blue peaks</string>
+    <string name="wallpaper_bridge">Bridge at dusk</string>
+    <string name="wallpaper_ridge">Sunlit ridges</string>
+    <string name="wallpaper_golden">Golden hour</string>
+    <string name="wallpaper_summit">Sunlit summits</string>
+    <string name="wallpaper_goldcoast">Gold Coast dusk</string>
+    <string name="wallpaper_sydney">Sydney Harbour</string>
+    <string name="wallpaper_amber">Amber hills</string>
+    <string name="wallpaper_mint">Mint wave</string>
+    <string name="wallpaper_alpine">Alpine glow</string>
 </resources>

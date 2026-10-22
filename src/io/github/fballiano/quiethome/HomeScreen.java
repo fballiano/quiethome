@@ -22,8 +22,7 @@ import java.util.List;
  */
 final class HomeScreen extends Screen {
     private static final int APPS = 0, CONTROLS = 1;
-    static final String[] CONTROL_NAMES = {"All apps", "Settings", "TV settings"};
-    private static final String MOVE = "Move", REMOVE = "Remove from Home", CLOSE = "Close app";
+    private static final int[] CONTROL_TEXTS = {R.string.all_apps, R.string.settings, R.string.tv_settings};
     private static final int[] CONTROL_MARKS = {R.drawable.icon_apps, R.drawable.icon_settings, R.drawable.icon_tvsettings};
 
     private static final float LEFT = 140, RIGHT = 1780;
@@ -47,11 +46,13 @@ final class HomeScreen extends Screen {
     private final Ui.Anim plateAlpha = new Ui.Anim(Ui.FOCUS_MS);
     private final RectF r = new RectF();
     private final Calendar calendar = Calendar.getInstance();
+    /** The control names in the TV's language, read again by refresh() when the language changes. */
+    private final String[] controlNames = new String[CONTROL_TEXTS.length];
     private Shader[] scrims;
     private int focus, zone = APPS, control;
     private boolean snapNext = true;
-    /** The hold-OK menu of the focused app, or null. */
-    private List<String> menu;
+    /** The hold-OK menu of the focused app as string ids, or null. */
+    private List<Integer> menu;
     private int menuIndex;
     /** Move mode: the arrows move the focused app; OK saves the order, Back restores it. */
     private boolean moving;
@@ -64,6 +65,7 @@ final class HomeScreen extends Screen {
 
     @Override
     void refresh() {
+        for (int k = 0; k < controlNames.length; k++) controlNames[k] = text(CONTROL_TEXTS[k]);
         menu = null;
         moving = false;
         String focused = focus < items.size() ? items.get(focus).id : stage.prefs.sp.getString(Prefs.LAST, null);
@@ -138,7 +140,7 @@ final class HomeScreen extends Screen {
     @Override
     void ok() {
         if (menu != null) {
-            String choice = menu.get(menuIndex);
+            int choice = menu.get(menuIndex);
             menu = null;
             act(choice);
             return;
@@ -147,7 +149,7 @@ final class HomeScreen extends Screen {
             moving = false;
             stage.prefs.setHome(ids());
             targets();
-            stage.toast("Saved the new order.");
+            stage.toast(text(R.string.order_saved));
             return;
         }
         if (zone == APPS) {
@@ -174,30 +176,30 @@ final class HomeScreen extends Screen {
     void okLong() {
         if (zone != APPS || items.isEmpty()) return;
         menu = new ArrayList<>();
-        menu.add(MOVE);
-        menu.add(REMOVE);
-        if (!items.get(focus).isInput()) menu.add(CLOSE);
+        menu.add(R.string.move);
+        menu.add(R.string.remove_from_home);
+        if (!items.get(focus).isInput()) menu.add(R.string.close_app);
         menuIndex = 0;
     }
 
-    private void act(String choice) {
+    private void act(int choice) {
         Catalog.Entry e = items.get(focus);
-        if (MOVE.equals(choice)) {
+        if (choice == R.string.move) {
             moving = true;
             targets();
-        } else if (REMOVE.equals(choice)) {
+        } else if (choice == R.string.remove_from_home) {
             if (items.size() <= 1) {
-                stage.toast("Home needs at least one app.");
+                stage.toast(text(R.string.home_needs_one));
                 return;
             }
             List<String> ids = ids();
             ids.remove(focus);
             stage.prefs.setHome(ids);
             refresh();
-            stage.toast("Removed " + Catalog.title(e) + " from Home.");
+            stage.toast(text(R.string.removed_from_home, Catalog.title(e)));
         } else {
             String error = stage.catalog.close(e.id);
-            stage.toast(error != null ? error : "Closed " + Catalog.title(e) + ".");
+            stage.toast(error != null ? error : text(R.string.closed, Catalog.title(e)));
         }
     }
 
@@ -373,7 +375,7 @@ final class HomeScreen extends Screen {
         }
         if (n == 0) {
             ui.text(face, 64, -1.8f, ink, 0.8f);
-            ui.line(c, "No apps on Home", LEFT, ui.baseline(LIST_TOP + ROW / 2), 0, -1);
+            ui.line(c, text(R.string.no_apps_on_home), LEFT, ui.baseline(LIST_TOP + ROW / 2), 0, -1);
         }
     }
 
@@ -468,7 +470,7 @@ final class HomeScreen extends Screen {
             float e = v(controls[k], live);
             float a = 0.66f + 0.34f * e;
             ui.text(face, 28, -0.2f, ink, a);
-            float textWidth = ui.width(CONTROL_NAMES[k]);
+            float textWidth = ui.width(controlNames[k]);
             float width = (icon ? 36 : 0) + (always ? textWidth + (icon ? 14 : 0) : 0);
             float cy = dock ? 104 : 936 - (controls.length - 1 - k) * 64;
             float right = dock ? x : RIGHT;
@@ -483,14 +485,14 @@ final class HomeScreen extends Screen {
             if (always) {
                 ui.text(face, 28, -0.2f, ink, a);
                 ui.shadow(photo);
-                if (dock) ui.line(c, CONTROL_NAMES[k], left + (icon ? 50 : 0), ui.baseline(cy), 0, -1);
-                else ui.line(c, CONTROL_NAMES[k], right - (icon ? 50 : 0), ui.baseline(cy), 0, 1);
+                if (dock) ui.line(c, controlNames[k], left + (icon ? 50 : 0), ui.baseline(cy), 0, -1);
+                else ui.line(c, controlNames[k], right - (icon ? 50 : 0), ui.baseline(cy), 0, 1);
             } else if (e > 0) {
                 // Icons only: the focused control shows its name.
                 ui.text(face, 28, -0.2f, ink, e);
                 ui.shadow(photo);
-                if (dock) ui.line(c, CONTROL_NAMES[k], iconLeft + 18, ui.baseline(cy + 56), 0, 0);
-                else ui.line(c, CONTROL_NAMES[k], right - 54, ui.baseline(cy), 0, 1);
+                if (dock) ui.line(c, controlNames[k], iconLeft + 18, ui.baseline(cy + 56), 0, 0);
+                else ui.line(c, controlNames[k], right - 54, ui.baseline(cy), 0, 1);
             }
             x = left - (always ? 56 : 44);
         }
@@ -501,7 +503,7 @@ final class HomeScreen extends Screen {
         Typeface face = ui.font("manrope", 500);
         ui.text(face, 30, -0.3f, Ui.PHOTO_INK, 1);
         float w = 0;
-        for (String item : menu) w = Math.max(w, ui.width(item));
+        for (int item : menu) w = Math.max(w, ui.width(text(item)));
         w += 96;
         float h = menu.size() * 68 + 24;
         float left, top;
@@ -522,17 +524,17 @@ final class HomeScreen extends Screen {
             r.set(left + 12, top + 12 + i * 68, left + w - 12, top + 12 + i * 68 + 68);
             if (i == menuIndex) ui.round(c, r, 22, 0x33FFFFFF);
             ui.text(face, 30, -0.3f, Ui.PHOTO_INK, i == menuIndex ? 1 : 0.7f);
-            ui.line(c, menu.get(i), r.left + 36, ui.baseline(r.centerY()), 0, -1);
+            ui.line(c, text(menu.get(i)), r.left + 36, ui.baseline(r.centerY()), 0, -1);
         }
     }
 
     private void hint(Canvas c, boolean dock) {
-        String text = (dock ? "Left and Right" : "Up and Down") + " move the app. OK places it, Back cancels.";
+        String hint = text(dock ? R.string.move_hint_dock : R.string.move_hint_list);
         ui.text(ui.font("manrope", 500), 30, -0.3f, Ui.PHOTO_INK, 1);
-        float w = ui.width(text);
+        float w = ui.width(hint);
         r.set(Ui.W / 2 - w / 2 - 32, 960, Ui.W / 2 + w / 2 + 32, 1024);
         ui.round(c, r, 32, 0xB3101214);
-        ui.line(c, text, Ui.W / 2, ui.baseline(992), 0, 0);
+        ui.line(c, hint, Ui.W / 2, ui.baseline(992), 0, 0);
     }
 
     private void clock(Canvas c, boolean dock, int ink, boolean photo) {

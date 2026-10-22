@@ -105,37 +105,39 @@ final class SettingsScreen extends Screen {
     // ---- Pages ----
 
     private Page root() {
-        Page p = new Page("Settings");
-        p.rows.add(link("Background", this::backgroundSummary, () -> push(background())));
-        p.rows.add(link("Layout", this::layoutSummary, () -> push(layout())));
-        p.rows.add(link("Typography", () -> name(Prefs.FONT), () -> push(typography())));
-        p.rows.add(link("Focus", this::focusSummary, () -> push(focus())));
-        p.rows.add(link("Apps on Home", () -> stage.homeScreen.items.size() + " of " + Home.MAX_HOME + " apps",
+        Page p = new Page(text(R.string.settings));
+        p.rows.add(link(text(R.string.background), this::backgroundSummary, () -> push(background())));
+        p.rows.add(link(text(R.string.layout), this::layoutSummary, () -> push(layout())));
+        p.rows.add(link(text(R.string.typography), () -> name(Prefs.FONT), () -> push(typography())));
+        p.rows.add(link(text(R.string.focus), this::focusSummary, () -> push(focus())));
+        p.rows.add(link(text(R.string.apps_on_home), () -> text(R.string.apps_on_home_count, stage.homeScreen.items.size(), Home.MAX_HOME),
             () -> stage.open(new EditorScreen(stage))));
         p.rows.add(buttonMapping());
-        p.rows.add(link("Android TV", () -> "The service, the Home button and when the TV turns on", () -> push(android())));
+        p.rows.add(link(text(R.string.android_tv), () -> text(R.string.android_tv_note), () -> push(android())));
+        p.rows.add(action(text(R.string.update), () -> text(R.string.update_note, DOWNLOADER_CODE), this::update));
         return p;
     }
 
     private Page background() {
-        Page p = new Page("Background");
-        p.rows.add(choice("Background", Prefs.BG, "Photo", "Light", "Dark"));
-        Row wallpaper = link("Wallpaper", () -> Wallpapers.find(stage.prefs.get(Prefs.WALLPAPER)).name, () -> push(wallpapers()));
+        Page p = new Page(text(R.string.background));
+        p.rows.add(choice(text(R.string.background), Prefs.BG, text(R.string.photo), text(R.string.light), text(R.string.dark)));
+        Row wallpaper = link(text(R.string.wallpaper), () -> text(Wallpapers.find(stage.prefs.get(Prefs.WALLPAPER)).name),
+            () -> push(wallpapers()));
         wallpaper.active = this::isPhoto;
-        wallpaper.inactive = "Choose Photo to pick a wallpaper.";
+        wallpaper.inactive = text(R.string.wallpaper_needs_photo);
         p.rows.add(wallpaper);
-        Row rotation = link("Rotation", () -> name(Prefs.ROTATION), () -> push(rotation()));
+        Row rotation = link(text(R.string.rotation), () -> name(Prefs.ROTATION), () -> push(rotation()));
         rotation.active = this::isPhoto;
-        rotation.inactive = "Choose Photo to rotate wallpapers.";
+        rotation.inactive = text(R.string.rotation_needs_photo);
         p.rows.add(rotation);
         return p;
     }
 
     private Page wallpapers() {
-        Page p = new Page("Wallpaper");
+        Page p = new Page(text(R.string.wallpaper));
         p.wallpapers = true;
         for (Wallpapers.Wallpaper w : Wallpapers.ALL) {
-            Row row = option(w.name, Prefs.WALLPAPER, w.id);
+            Row row = option(text(w.name), Prefs.WALLPAPER, w.id);
             row.wallpaper = w;
             p.rows.add(row);
         }
@@ -143,23 +145,23 @@ final class SettingsScreen extends Screen {
     }
 
     private Page rotation() {
-        Page p = new Page("Rotation");
+        Page p = new Page(text(R.string.rotation));
         String[] values = Prefs.CHOICES.get(Prefs.ROTATION);
-        for (int i = 0; i < values.length; i++) p.rows.add(option(ROTATION_NAMES[i], Prefs.ROTATION, values[i]));
+        for (int i = 0; i < values.length; i++) p.rows.add(option(text(ROTATION_TEXTS[i]), Prefs.ROTATION, values[i]));
         return p;
     }
 
     private Page layout() {
-        Page p = new Page("Layout");
-        p.rows.add(choice("Layout", Prefs.LAYOUT, "List", "Dock"));
-        p.rows.add(choice("Apps", Prefs.APPS, "Both", "Names", "Icons"));
-        p.rows.add(choice("Controls", Prefs.CONTROLS, "Both", "Names", "Icons"));
-        p.rows.add(choice("Clock", Prefs.CLOCK, "24-hour", "12-hour"));
+        Page p = new Page(text(R.string.layout));
+        p.rows.add(choice(text(R.string.layout), Prefs.LAYOUT, text(R.string.list), text(R.string.dock)));
+        p.rows.add(choice(text(R.string.apps), Prefs.APPS, text(R.string.both), text(R.string.names), text(R.string.icons)));
+        p.rows.add(choice(text(R.string.controls), Prefs.CONTROLS, text(R.string.both), text(R.string.names), text(R.string.icons)));
+        p.rows.add(choice(text(R.string.clock), Prefs.CLOCK, text(R.string.hour_24), text(R.string.hour_12)));
         return p;
     }
 
     private Page typography() {
-        Page p = new Page("Typography");
+        Page p = new Page(text(R.string.typography));
         String[] values = Prefs.CHOICES.get(Prefs.FONT);
         for (String v : values) {
             Row row = option(FONT_NAMES[indexOf(values, v)], Prefs.FONT, v);
@@ -170,56 +172,57 @@ final class SettingsScreen extends Screen {
     }
 
     private Page focus() {
-        Page p = new Page("Focus");
-        p.rows.add(choice("Focus", Prefs.FOCUS, "Type", "Glass"));
-        Row material = choice("Material", Prefs.MATERIAL, "Soft", "Frost", "Clear");
+        Page p = new Page(text(R.string.focus));
+        p.rows.add(choice(text(R.string.focus), Prefs.FOCUS, text(R.string.type), text(R.string.glass)));
+        Row material = choice(text(R.string.material), Prefs.MATERIAL, text(R.string.soft), text(R.string.frost), text(R.string.clear));
         material.active = () -> isPhoto() && (stage.prefs.is(Prefs.LAYOUT, "dock") || stage.prefs.is(Prefs.FOCUS, "glass"));
-        material.inactive = "Used on a photo, by the Dock or by Glass focus.";
+        material.inactive = text(R.string.material_when);
         p.rows.add(material);
         return p;
     }
 
     private Page android() {
-        Page p = new Page("Android TV");
-        p.rows.add(action("QuietHome service", () -> ServiceSetup.isOn(stage.getContext())
-                ? "On: Home button, button mapping and start input work" : "Off · select to turn it on",
-            () -> stage.toast(ServiceSetup.isOn(stage.getContext()) ? "The QuietHome service is on."
+        Page p = new Page(text(R.string.android_tv));
+        p.rows.add(action(text(R.string.quiethome_service), () -> text(ServiceSetup.isOn(stage.getContext())
+                ? R.string.service_on_note : R.string.service_off_note),
+            () -> stage.toast(ServiceSetup.isOn(stage.getContext()) ? text(R.string.service_is_on)
                 : ServiceSetup.openSettings(stage.getContext()))));
-        p.rows.add(action("TV settings", () -> "Android's own settings", () -> stage.toast(stage.catalog.openSettings())));
-        Row homeKey = choice("Home button", Prefs.HOME_KEY, "QuietHome", "Android");
-        homeKey.note = () -> !RemoteButtons.running ? "Needs the QuietHome service."
-            : stage.prefs.is(Prefs.HOME_KEY, "quiethome") ? "Home always opens QuietHome." : "Home opens what Android chooses.";
+        p.rows.add(action(text(R.string.tv_settings), () -> text(R.string.tv_settings_note), () -> stage.toast(stage.catalog.openSettings())));
+        Row homeKey = choice(text(R.string.home_button), Prefs.HOME_KEY, text(R.string.app_name), text(R.string.android_name));
+        homeKey.note = () -> text(!RemoteButtons.running ? R.string.needs_service_note
+            : stage.prefs.is(Prefs.HOME_KEY, "quiethome") ? R.string.home_opens_quiethome : R.string.home_opens_android);
         p.rows.add(homeKey);
-        p.rows.add(link("When the TV turns on", this::startOnSummary, this::pickStartOn));
-        p.rows.add(action("Previous launcher", () -> "Opens the TV's other home screen",
+        p.rows.add(link(text(R.string.when_tv_turns_on), this::startOnSummary, this::pickStartOn));
+        p.rows.add(action(text(R.string.previous_launcher), () -> text(R.string.previous_launcher_note),
             () -> stage.toast(stage.catalog.openPreviousLauncher())));
         return p;
     }
 
     private Row buttonMapping() {
-        return link("Button mapping", () -> RemoteButtons.running
-            ? stage.prefs.buttons().size() + " assigned" : "Needs the QuietHome service", () -> push(buttons()));
+        return link(text(R.string.button_mapping), () -> RemoteButtons.running
+            ? stage.getResources().getQuantityString(R.plurals.buttons_assigned, stage.prefs.buttons().size(), stage.prefs.buttons().size())
+            : text(R.string.needs_service), () -> push(buttons()));
     }
 
     private Page buttons() {
-        Page p = new Page("Button mapping");
+        Page p = new Page(text(R.string.button_mapping));
         p.builder = () -> {
             List<Row> rows = new ArrayList<>();
             if (!RemoteButtons.running) {
-                rows.add(action("Turn on the QuietHome service", () -> "Button mapping needs it",
+                rows.add(action(text(R.string.service_title), () -> text(R.string.button_mapping_needs_it),
                     () -> stage.toast(ServiceSetup.openSettings(stage.getContext()))));
             }
             for (Map.Entry<Integer, String> b : stage.prefs.buttons().entrySet()) {
                 int code = b.getKey();
                 Catalog.Entry target = stage.catalog.get(b.getValue());
                 String opens = target == null ? b.getValue() : Catalog.title(target);
-                String does = Catalog.ACTION_NONE.equals(b.getValue()) ? "Does nothing" : "Opens " + opens;
-                rows.add(link(RemoteButtons.name(code), () -> does, () -> pick(code)));
+                String does = Catalog.ACTION_NONE.equals(b.getValue()) ? text(R.string.does_nothing) : text(R.string.opens, opens);
+                rows.add(link(RemoteButtons.name(stage.getContext(), code), () -> does, () -> pick(code)));
             }
-            Row add = action("Add a button", () -> "Press it, then choose what it does",
+            Row add = action(text(R.string.add_a_button), () -> text(R.string.add_a_button_note),
                 () -> stage.open(new LearnScreen(stage, this::pick)));
             add.active = () -> RemoteButtons.running;
-            add.inactive = "Turn on the QuietHome service first.";
+            add.inactive = text(R.string.service_first);
             rows.add(add);
             return rows;
         };
@@ -228,49 +231,62 @@ final class SettingsScreen extends Screen {
 
     private String startOnSummary() {
         String id = stage.prefs.get(Prefs.START_ON);
-        if (id.isEmpty()) return "Show Home";
+        if (id.isEmpty()) return text(R.string.show_home);
         Catalog.Entry e = stage.catalog.get(id);
-        String open = "Open " + (e == null ? id : Catalog.title(e));
-        return RemoteButtons.running ? open : open + " · needs the QuietHome service";
+        String name = e == null ? id : Catalog.title(e);
+        return text(RemoteButtons.running ? R.string.open_target : R.string.open_target_needs_service, name);
     }
 
     /** For a TV that only shows a box on HDMI: open that input (or an app) at boot and on wake. */
     private void pickStartOn() {
         String current = stage.prefs.get(Prefs.START_ON);
-        List<Catalog.Entry> lead = Collections.singletonList(new Catalog.Entry(Catalog.ACTION_HOME, "Show Home", null, null));
+        List<Catalog.Entry> lead = Collections.singletonList(new Catalog.Entry(Catalog.ACTION_HOME, text(R.string.show_home), null, null));
         AllAppsScreen[] picker = new AllAppsScreen[1];
         picker[0] = new AllAppsScreen(stage, id -> {
             boolean home = Catalog.ACTION_HOME.equals(id);
             stage.prefs.set(Prefs.START_ON, home ? "" : id);
             stage.close(picker[0]);
             Catalog.Entry e = stage.catalog.get(id);
-            stage.toast(home ? "The TV shows Home when it turns on."
-                : "The TV opens " + (e == null ? id : Catalog.title(e)) + " when it turns on.");
-        }, "Open when the TV turns on", lead, current.isEmpty() ? Catalog.ACTION_HOME : current);
+            stage.toast(home ? text(R.string.tv_shows_home) : text(R.string.tv_opens, e == null ? id : Catalog.title(e)));
+        }, text(R.string.open_when_tv_turns_on), lead, current.isEmpty() ? Catalog.ACTION_HOME : current);
         stage.open(picker[0]);
     }
 
     /** Chooses, changes or removes what a mapped button does. */
     private void pick(int code) {
-        String name = RemoteButtons.name(code);
+        String name = RemoteButtons.name(stage.getContext(), code);
         String current = stage.prefs.buttons().get(code);
         List<Catalog.Entry> lead = new ArrayList<>();
-        lead.add(new Catalog.Entry(Catalog.ACTION_DEFAULT, "Default", null, null));
-        lead.addAll(Catalog.actions());
+        lead.add(new Catalog.Entry(Catalog.ACTION_DEFAULT, text(R.string.default_job), null, null));
+        lead.addAll(stage.catalog.actions());
         AllAppsScreen[] picker = new AllAppsScreen[1];
         picker[0] = new AllAppsScreen(stage, id -> {
             boolean free = Catalog.ACTION_DEFAULT.equals(id);
             stage.prefs.setButton(code, free ? null : id);
             stage.close(picker[0]);
             Catalog.Entry e = stage.catalog.get(id);
-            stage.toast(free ? name + " does its own job again."
-                : Catalog.ACTION_NONE.equals(id) ? name + " now does nothing."
-                : name + " opens " + (e == null ? id : Catalog.title(e)) + ".");
-        }, "Choose what " + name + " does", lead, current == null ? Catalog.ACTION_DEFAULT : current);
+            stage.toast(free ? text(R.string.button_default_again, name)
+                : Catalog.ACTION_NONE.equals(id) ? text(R.string.button_does_nothing, name)
+                : text(R.string.button_opens, name, e == null ? id : Catalog.title(e)));
+        }, text(R.string.choose_what_button_does, name), lead, current == null ? Catalog.ACTION_DEFAULT : current);
         stage.open(picker[0]);
     }
 
-    private static final String[] ROTATION_NAMES = {"Fixed", "Each time Home opens", "Every 5 minutes", "Every 15 minutes", "Every hour"};
+    /** QuietHome has no network access. Downloader (AFTVnews) gets each release with this code. */
+    static final String DOWNLOADER = "com.esaba.downloader", DOWNLOADER_CODE = "9591315";
+
+    /** Opens Downloader, where the code gets the latest release; without Downloader, its Play Store page. */
+    private void update() {
+        if (stage.catalog.get(DOWNLOADER) != null) {
+            stage.toast(stage.catalog.launch(DOWNLOADER));
+            return;
+        }
+        if (stage.catalog.openStorePage(DOWNLOADER) != null) stage.toast(text(R.string.update_no_store));
+    }
+
+    private static final int[] ROTATION_TEXTS = {
+        R.string.rotation_fixed, R.string.rotation_open, R.string.rotation_5, R.string.rotation_15, R.string.rotation_60,
+    };
     private static final String[] FONT_NAMES = {"Manrope", "Geist", "Newsreader"};
 
     private Row choice(String label, String key, String... names) {
@@ -310,27 +326,27 @@ final class SettingsScreen extends Screen {
         String[] values = Prefs.CHOICES.get(key);
         int i = indexOf(values, stage.prefs.get(key));
         if (Prefs.FONT.equals(key)) return FONT_NAMES[i];
-        if (Prefs.ROTATION.equals(key)) return ROTATION_NAMES[i];
+        if (Prefs.ROTATION.equals(key)) return text(ROTATION_TEXTS[i]);
         return values[i];
     }
 
     private String backgroundSummary() {
         String bg = stage.prefs.get(Prefs.BG);
-        if ("photo".equals(bg)) return "Photo · " + Wallpapers.find(stage.prefs.get(Prefs.WALLPAPER)).name;
-        return "light".equals(bg) ? "Light" : "Dark";
+        if ("photo".equals(bg)) return text(R.string.photo) + " · " + text(Wallpapers.find(stage.prefs.get(Prefs.WALLPAPER)).name);
+        return text("light".equals(bg) ? R.string.light : R.string.dark);
     }
 
     private String layoutSummary() {
         String apps = stage.prefs.get(Prefs.APPS);
-        return (stage.prefs.is(Prefs.LAYOUT, "dock") ? "Dock" : "List") + " · "
-            + ("both".equals(apps) ? "Names and icons" : "text".equals(apps) ? "Names" : "Icons")
-            + " · " + stage.prefs.get(Prefs.CLOCK) + "-hour clock";
+        return text(stage.prefs.is(Prefs.LAYOUT, "dock") ? R.string.dock : R.string.list) + " · "
+            + text("both".equals(apps) ? R.string.names_and_icons : "text".equals(apps) ? R.string.names : R.string.icons)
+            + " · " + text(stage.prefs.is(Prefs.CLOCK, "12") ? R.string.clock_12 : R.string.clock_24);
     }
 
     private String focusSummary() {
-        if (stage.prefs.is(Prefs.FOCUS, "type")) return "Type";
+        if (stage.prefs.is(Prefs.FOCUS, "type")) return text(R.string.type);
         String m = stage.prefs.get(Prefs.MATERIAL);
-        return "Glass · " + Character.toUpperCase(m.charAt(0)) + m.substring(1);
+        return text(R.string.glass) + " · " + text("frost".equals(m) ? R.string.frost : "clear".equals(m) ? R.string.clear : R.string.soft);
     }
 
     private static int indexOf(String[] values, String v) {
@@ -604,7 +620,7 @@ final class SettingsScreen extends Screen {
     /** The committed Home, scaled down. In Wallpaper it shows the focused photo before it is applied. */
     private void preview(Canvas c, Page p, int ink) {
         Bitmap photo = stage.photo(), blur = stage.blur();
-        String caption = "Home";
+        String caption = text(R.string.home);
         if (p.wallpapers && p.focus >= 0) {
             Wallpapers.Wallpaper w = p.rows.get(p.focus).wallpaper;
             if (w.id.equals(candidateId) && candidate != null) {
@@ -614,8 +630,8 @@ final class SettingsScreen extends Screen {
                 stage.removeCallbacks(loadCandidate);
                 stage.postDelayed(loadCandidate, 220);
             }
-            caption = w.name + " · Photo by " + w.credit + " on Unsplash";
-            if (!stage.prefs.is(Prefs.WALLPAPER, w.id)) caption += " · Not applied";
+            caption = text(R.string.photo_credit, text(w.name), w.credit);
+            if (!stage.prefs.is(Prefs.WALLPAPER, w.id)) caption = text(R.string.not_applied, caption);
         }
         c.save();
         c.clipRect(PREVIEW);

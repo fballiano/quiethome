@@ -17,7 +17,7 @@ final class LearnScreen extends Screen {
     private final Learned learned;
     private final Runnable timeout = () -> {
         stage.close(this);
-        stage.toast("No button was pressed.");
+        stage.toast(text(R.string.no_button_pressed));
     };
 
     LearnScreen(Stage stage, Learned learned) {
@@ -48,10 +48,10 @@ final class LearnScreen extends Screen {
         ui.sheet(c, stage.blur(), bg);
         Typeface regular = ui.font("manrope", 500);
         ui.text(regular, 64, -1.8f, ink, 1);
-        ui.line(c, "Press a remote button", Ui.W / 2, ui.baseline(480), 0, 0);
+        ui.line(c, text(R.string.press_a_button), Ui.W / 2, ui.baseline(480), 0, 0);
         ui.text(regular, 30, -0.2f, ink, 0.66f);
-        ui.line(c, "For example a button that opens the TV maker's own app.", Ui.W / 2, ui.baseline(570), 0, 0);
-        ui.line(c, "Arrows, OK, Back, Home, volume and power keep their jobs. Back cancels.", Ui.W / 2, ui.baseline(620), 0, 0);
+        ui.line(c, text(R.string.press_example), Ui.W / 2, ui.baseline(570), 0, 0);
+        ui.line(c, text(R.string.press_keep), Ui.W / 2, ui.baseline(620), 0, 0);
         return false;
     }
 }

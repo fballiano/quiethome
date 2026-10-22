@@ -81,11 +81,11 @@ final class Catalog {
         this.prefs = prefs;
     }
 
-    static List<Entry> actions() {
+    List<Entry> actions() {
         List<Entry> out = new ArrayList<>();
-        out.add(new Entry(ACTION_NONE, "Nothing", null, null));
-        out.add(new Entry(ACTION_HOME, "QuietHome", null, null));
-        out.add(new Entry(ACTION_SETTINGS, "TV settings", null, null));
+        out.add(new Entry(ACTION_NONE, context.getString(R.string.nothing), null, null));
+        out.add(new Entry(ACTION_HOME, context.getString(R.string.app_name), null, null));
+        out.add(new Entry(ACTION_SETTINGS, context.getString(R.string.tv_settings), null, null));
         return out;
     }
 
@@ -222,14 +222,14 @@ final class Catalog {
         }
         if (isHdmi(id)) {
             Entry e = byId.get(id);
-            if (e == null) return "This input is not on the TV now.";
+            if (e == null) return context.getString(R.string.input_gone);
             // The passthrough channel of an input shows that input in the TV's own player.
             Uri channel = TvContract.buildChannelUriForPassthroughInput(e.inputId);
             return start(new Intent(Intent.ACTION_VIEW, channel));
         }
         Intent app = pm.getLeanbackLaunchIntentForPackage(id);
         if (app == null) app = pm.getLaunchIntentForPackage(id);
-        if (app == null) return "This app is no longer on the TV.";
+        if (app == null) return context.getString(R.string.app_gone);
         return start(app);
     }
 
@@ -238,19 +238,24 @@ final class Catalog {
      * stronger close; an app that runs a foreground service continues.
      */
     String close(String id) {
-        if (isHdmi(id) || isAction(id)) return "Only apps can close.";
+        if (isHdmi(id) || isAction(id)) return context.getString(R.string.only_apps_close);
         try {
             pm.getApplicationInfo(id, 0);
         } catch (PackageManager.NameNotFoundException e) {
-            return "This app is no longer on the TV.";
+            return context.getString(R.string.app_gone);
         }
         try {
             ((ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE)).killBackgroundProcesses(id);
             return null;
         } catch (SecurityException e) {
             Log.w(Home.TAG, "Close refused for " + id, e);
-            return "The TV did not let QuietHome close this app.";
+            return context.getString(R.string.close_refused);
         }
+    }
+
+    /** Opens the app's page in the store (the Play Store on most TVs). */
+    String openStorePage(String id) {
+        return start(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + id)));
     }
 
     String openSettings() {
@@ -288,7 +293,7 @@ final class Catalog {
             return null;
         } catch (RuntimeException e) {
             Log.w(Home.TAG, "Could not start " + intent, e);
-            return "The TV cannot open this.";
+            return context.getString(R.string.cannot_open);
         }
     }
 

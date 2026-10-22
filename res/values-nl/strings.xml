@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="service_description">De Home-knop opent QuietHome. Knoppen op de afstandsbediening, bijvoorbeeld een Netflix-knop, krijgen de taak die je kiest. Als de tv aangaat, opent hij de ingang die je kiest. De service werkt alleen op die knoppen. Alle andere toetsen gaan ongewijzigd door. Hij ziet ook de naam van de app op de voorgrond, zodat hij het startscherm van de tv kan vervangen als dat terugkomt. Hij bewaart en verstuurt niets en kan het scherm niet lezen.</string>
+
+    <!-- Home -->
+    <string name="all_apps">Alle apps</string>
+    <string name="settings">Instellingen</string>
+    <string name="tv_settings">Tv-instellingen</string>
+    <string name="move">Verplaatsen</string>
+    <string name="remove_from_home">Verwijderen van startscherm</string>
+    <string name="close_app">App sluiten</string>
+    <string name="order_saved">De nieuwe volgorde is opgeslagen.</string>
+    <string name="home_needs_one">Het startscherm heeft minstens één app nodig.</string>
+    <string name="home_full">Het startscherm heeft plaats voor maximaal negen apps.</string>
+    <string name="removed_from_home">%1$s staat niet meer op het startscherm.</string>
+    <string name="closed">%1$s is gesloten.</string>
+    <string name="opening">%1$s openen</string>
+    <string name="no_apps_on_home">Geen apps op het startscherm</string>
+    <string name="move_hint_list">Omhoog en Omlaag verplaatsen de app. OK zet hem neer, Terug annuleert.</string>
+    <string name="move_hint_dock">Links en Rechts verplaatsen de app. OK zet hem neer, Terug annuleert.</string>
+
+    <!-- All apps and the pickers -->
+    <string name="edit_home">Bewerken</string>
+    <string name="on_home">Op startscherm</string>
+    <string name="current">Huidig</string>
+    <string name="its_own_job">Eigen taak</string>
+    <string name="nothing">Niets</string>
+    <string name="default_job">Standaard</string>
+    <string name="show_home">Startscherm tonen</string>
+
+    <!-- Apps on Home -->
+    <string name="apps_on_home">Apps op het startscherm</string>
+    <string name="editor_hint">OK op een app pakt hem op om te verplaatsen. Er passen maximaal negen apps.</string>
+    <string name="editor_hint_lifted">Omhoog en Omlaag verplaatsen de app. OK zet hem neer, Terug zet hem terug.</string>
+    <string name="undo">Ongedaan maken</string>
+    <string name="done">Klaar</string>
+    <string name="on_home_count">Op het startscherm · %1$d van %2$d</string>
+    <string name="not_on_home">Niet op het startscherm</string>
+    <string name="remove">Verwijderen</string>
+    <string name="removed">Verwijderd</string>
+    <string name="input">Ingang</string>
+
+    <!-- Messages from the TV -->
+    <string name="input_gone">Deze ingang is nu niet op de tv.</string>
+    <string name="app_gone">Deze app staat niet meer op de tv.</string>
+    <string name="only_apps_close">Alleen apps kunnen sluiten.</string>
+    <string name="close_refused">De tv laat QuietHome deze app niet sluiten.</string>
+    <string name="cannot_open">De tv kan dit niet openen.</string>
+    <string name="open_app_info_by_hand">Open op de tv Instellingen → Apps → QuietHome.</string>
+    <string name="open_accessibility_by_hand">Open op de tv Instellingen → Systeem → Toegankelijkheid.</string>
+
+    <!-- The QuietHome service -->
+    <string name="service_title">Zet de QuietHome-service aan</string>
+    <string name="service_needed">QuietHome heeft zijn service nodig voor deze functies:</string>
+    <string name="service_home">de Home-knop, op tv’s die hun eigen launcher houden</string>
+    <string name="service_buttons">knoppen toewijzen, bijvoorbeeld een Netflix-knop</string>
+    <string name="service_start">een HDMI-ingang openen als de tv aangaat</string>
+    <string name="service_how">Kies in Toegankelijkheid QuietHome en zet het aan.</string>
+    <string name="service_restricted">Is het grijs of staat er ‘Beperkte instelling’? Open dan App-info, sta beperkte instellingen toe en probeer het opnieuw.</string>
+    <string name="service_privacy">De service ziet toetsen en de naam van de app op de voorgrond. Hij kan het scherm niet lezen en verstuurt niets.</string>
+    <string name="open_accessibility">Toegankelijkheid openen</string>
+    <string name="app_info">App-info</string>
+    <string name="later">Later</string>
+    <string name="service_is_on">De QuietHome-service staat aan.</string>
+
+    <!-- Button mapping -->
+    <string name="press_a_button">Druk op een knop van de afstandsbediening</string>
+    <string name="press_example">Bijvoorbeeld een knop die de app van de tv-fabrikant opent.</string>
+    <string name="press_keep">Pijlen, OK, Terug, Home, volume en aan/uit houden hun taak. Terug annuleert.</string>
+    <string name="no_button_pressed">Er is geen knop ingedrukt.</string>
+    <string name="key_number">Toets %1$d</string>
+    <string name="button_mapping">Knoppen toewijzen</string>
+    <plurals name="buttons_assigned">
+        <item quantity="one">%1$d toegewezen</item>
+        <item quantity="other">%1$d toegewezen</item>
+    </plurals>
+    <string name="needs_service">Heeft de QuietHome-service nodig</string>
+    <string name="needs_service_note">Heeft de QuietHome-service nodig.</string>
+    <string name="button_mapping_needs_it">Knoppen toewijzen heeft hem nodig</string>
+    <string name="does_nothing">Doet niets</string>
+    <string name="opens">Opent %1$s</string>
+    <string name="add_a_button">Knop toevoegen</string>
+    <string name="add_a_button_note">Druk erop en kies dan wat hij doet</string>
+    <string name="service_first">Zet eerst de QuietHome-service aan.</string>
+    <string name="choose_what_button_does">Kies wat %1$s doet</string>
+    <string name="button_default_again">%1$s doet weer zijn eigen taak.</string>
+    <string name="button_does_nothing">%1$s doet nu niets.</string>
+    <string name="button_opens">%1$s opent %2$s.</string>
+
+    <!-- Settings -->
+    <string name="background">Achtergrond</string>
+    <string name="layout">Indeling</string>
+    <string name="typography">Lettertype</string>
+    <string name="focus">Selectie</string>
+    <string name="apps_on_home_count">%1$d van %2$d apps</string>
+    <string name="android_tv_note">De service, de Home-knop en het aanzetten</string>
+    <string name="photo">Foto</string>
+    <string name="light">Licht</string>
+    <string name="dark">Donker</string>
+    <string name="wallpaper">Afbeelding</string>
+    <string name="wallpaper_needs_photo">Kies Foto om een afbeelding te kiezen.</string>
+    <string name="rotation">Wisselen</string>
+    <string name="rotation_needs_photo">Kies Foto om afbeeldingen te wisselen.</string>
+    <string name="rotation_fixed">Vast</string>
+    <string name="rotation_open">Elke keer dat het startscherm opent</string>
+    <string name="rotation_5">Elke 5 minuten</string>
+    <string name="rotation_15">Elke 15 minuten</string>
+    <string name="rotation_60">Elk uur</string>
+    <string name="list">Lijst</string>
+    <string name="dock">Dock</string>
+    <string name="apps">Apps</string>
+    <string name="controls">Bediening</string>
+    <string name="both">Beide</string>
+    <string name="names">Namen</string>
+    <string name="icons">Pictogrammen</string>
+    <string name="names_and_icons">Namen en pictogrammen</string>
+    <string name="clock">Klok</string>
+    <string name="hour_24">24 uur</string>
+    <string name="hour_12">12 uur</string>
+    <string name="clock_24">24-uursklok</string>
+    <string name="clock_12">12-uursklok</string>
+    <string name="type">Tekst</string>
+    <string name="glass">Glas</string>
+    <string name="material">Materiaal</string>
+    <string name="soft">Zacht</string>
+    <string name="frost">Mat</string>
+    <string name="clear">Helder</string>
+    <string name="material_when">Voor een foto, het Dock of Glas-selectie.</string>
+    <string name="quiethome_service">QuietHome-service</string>
+    <string name="service_on_note">Aan: Home-knop, knoppen en starten werken</string>
+    <string name="service_off_note">Uit · kies om hem aan te zetten</string>
+    <string name="tv_settings_note">De instellingen van Android</string>
+    <string name="home_button">Home-knop</string>
+    <string name="home_opens_quiethome">Home opent altijd QuietHome.</string>
+    <string name="home_opens_android">Home opent wat Android kiest.</string>
+    <string name="when_tv_turns_on">Als de tv aangaat</string>
+    <string name="open_target">%1$s openen</string>
+    <string name="open_target_needs_service">%1$s openen · heeft de service nodig</string>
+    <string name="open_when_tv_turns_on">Openen als de tv aangaat</string>
+    <string name="tv_shows_home">De tv toont het startscherm als hij aangaat.</string>
+    <string name="tv_opens">De tv opent %1$s als hij aangaat.</string>
+    <string name="previous_launcher">Vorige launcher</string>
+    <string name="previous_launcher_note">Opent het andere startscherm van de tv</string>
+    <string name="home">Startscherm</string>
+    <string name="photo_credit">%1$s · Foto van %2$s op Unsplash</string>
+    <string name="not_applied">%1$s · Niet toegepast</string>
+
+    <!-- Updates -->
+    <string name="update">QuietHome bijwerken</string>
+    <string name="update_note">Opent Downloader · code %1$s</string>
+    <string name="update_no_store">Installeer Downloader van AFTVnews uit de Play Store.</string>
+
+    <!-- Wallpapers -->
+    <string name="wallpaper_misty">Mistige kust</string>
+    <string name="wallpaper_cove">Stille baai</string>
+    <string name="wallpaper_forest">Bos in de mist</string>
+    <string name="wallpaper_valley">Bergdal</string>
+    <string name="wallpaper_night">Sterren boven de woestijn</string>
+    <string name="wallpaper_peaks">Blauwe toppen</string>
+    <string name="wallpaper_bridge">Brug in de schemering</string>
+    <string name="wallpaper_ridge">Zonnige bergkammen</string>
+    <string name="wallpaper_golden">Gouden uur</string>
+    <string name="wallpaper_summit">Zonnige toppen</string>
+    <string name="wallpaper_goldcoast">Gold Coast in de schemering</string>
+    <string name="wallpaper_sydney">Haven van Sydney</string>
+    <string name="wallpaper_amber">Amberkleurige heuvels</string>
+    <string name="wallpaper_mint">Mintgolf</string>
+    <string name="wallpaper_alpine">Alpengloed</string>
+</resources>

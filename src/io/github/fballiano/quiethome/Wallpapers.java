@@ -23,10 +23,11 @@ import java.io.InputStream;
 final class Wallpapers {
     static final class Wallpaper {
         final String id;
-        final String name;
+        /** The string id of its name. */
+        final int name;
         final String credit;
 
-        Wallpaper(String id, String name, String credit) {
+        Wallpaper(String id, int name, String credit) {
             this.id = id;
             this.name = name;
             this.credit = credit;
@@ -42,21 +43,21 @@ final class Wallpapers {
     }
 
     static final Wallpaper[] ALL = {
-        new Wallpaper("misty", "Misty coast", "Ganapathy Kumar"),
-        new Wallpaper("cove", "Quiet cove", "Joshua Wordel"),
-        new Wallpaper("forest", "Forest mist", "Dejan Zakic"),
-        new Wallpaper("valley", "Mountain valley", "Aniket Deole"),
-        new Wallpaper("night", "Desert stars", "Mohammad Alizade"),
-        new Wallpaper("peaks", "Blue peaks", "John Rodenn Castillo"),
-        new Wallpaper("bridge", "Bridge at dusk", "Justin Wolff"),
-        new Wallpaper("ridge", "Sunlit ridges", "Cristina Gottardi"),
-        new Wallpaper("golden", "Golden hour", "Karthik Sreenivas"),
-        new Wallpaper("summit", "Sunlit summits", "Rudra Gupta"),
-        new Wallpaper("goldcoast", "Gold Coast dusk", "City of Gold Coast"),
-        new Wallpaper("sydney", "Sydney Harbour", "Caleb"),
-        new Wallpaper("amber", "Amber hills", "Chris Barbalis"),
-        new Wallpaper("mint", "Mint wave", "MagicPattern"),
-        new Wallpaper("alpine", "Alpine glow", "Cristina Gottardi"),
+        new Wallpaper("misty", R.string.wallpaper_misty, "Ganapathy Kumar"),
+        new Wallpaper("cove", R.string.wallpaper_cove, "Joshua Wordel"),
+        new Wallpaper("forest", R.string.wallpaper_forest, "Dejan Zakic"),
+        new Wallpaper("valley", R.string.wallpaper_valley, "Aniket Deole"),
+        new Wallpaper("night", R.string.wallpaper_night, "Mohammad Alizade"),
+        new Wallpaper("peaks", R.string.wallpaper_peaks, "John Rodenn Castillo"),
+        new Wallpaper("bridge", R.string.wallpaper_bridge, "Justin Wolff"),
+        new Wallpaper("ridge", R.string.wallpaper_ridge, "Cristina Gottardi"),
+        new Wallpaper("golden", R.string.wallpaper_golden, "Karthik Sreenivas"),
+        new Wallpaper("summit", R.string.wallpaper_summit, "Rudra Gupta"),
+        new Wallpaper("goldcoast", R.string.wallpaper_goldcoast, "City of Gold Coast"),
+        new Wallpaper("sydney", R.string.wallpaper_sydney, "Caleb"),
+        new Wallpaper("amber", R.string.wallpaper_amber, "Chris Barbalis"),
+        new Wallpaper("mint", R.string.wallpaper_mint, "MagicPattern"),
+        new Wallpaper("alpine", R.string.wallpaper_alpine, "Cristina Gottardi"),
     };
 
     /** Width of the blurred copy. 1920 / 16: enough for soft glass, and only 30 KB. */

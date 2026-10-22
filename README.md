@@ -22,6 +22,8 @@ QuietHome is inspired by [CleanFrame](https://github.com/nthnclrk/CleanFrame), a
 - **All apps.** It shows every TV app and every HDMI input. OK opens the item. Hold OK to close an app and free its memory. The first tile, **Edit Home**, opens the Apps on Home editor.
 - **Your own order.** Hold OK on an app on Home for a short menu: **Move**, **Remove from Home** or **Close app**. In move mode the arrows move the app, OK places it and Back cancels. Settings → Apps on Home adds apps, with up to nine on Home.
 - **Typography and focus.** Choose Manrope, Geist or Newsreader. Choose Type focus or Glass focus, with a Soft, Frost or Clear material.
+- **Your language.** QuietHome uses the language of the TV: English, Czech, Danish, Dutch, Finnish, French, German, Italian, Norwegian, Polish, Portuguese, Spanish, Swedish or Turkish. For other languages, it uses English.
+- **Updates.** Settings shows the installed version under its title. Settings → Update QuietHome opens Downloader, where the code 9591315 gets the latest release. If Downloader is not on the TV, it opens Downloader in the Play Store. QuietHome does not check for updates itself, because it has no network access.
 - **The QuietHome service.** An accessibility service that gives QuietHome the features below. If it is off, QuietHome shows how to turn it on.
   - **Home button.** Home always opens QuietHome, also on TVs that keep their own launcher (for example Google TV). When the stock launcher comes back by itself, for example after the TV wakes from standby, QuietHome replaces it at once. Settings → Android TV → Previous launcher still lets you visit it.
   - **Button mapping.** Press a remote button, for example the Netflix key, and choose what it does: open an app or an HDMI input, open QuietHome or TV settings, or nothing. You do not need a separate button mapper app.
@@ -91,7 +93,7 @@ You need no computer for this. It works on Android TV and Google TV.
 4. Select **Install** when Downloader has the file, then **Open**.
 5. QuietHome shows how to turn on its service. Select **Open Accessibility settings**, then **QuietHome**, and turn it on. If it is grey or says "Restricted setting", go back, select **App info**, allow restricted settings, and try again.
 
-Press Home: QuietHome opens. Later, install a new version the same way; your settings stay. Settings shows the installed version under its title.
+Press Home: QuietHome opens. To install a new version later, select Settings → Update QuietHome. It opens Downloader, where you type the same code. Your settings stay. Settings shows the installed version under its title.
 
 ## Install with a coding agent
 
@@ -235,6 +237,19 @@ gh attestation verify quiethome.apk --repo fballiano/quiethome
 | `tools/` | The source SVG marks and `svg2vector.py`, which converts them to vector drawables |
 | `build.sh` | The build: aapt2, javac, d8, zipalign and apksigner |
 | `.github/workflows/` | The build on GitHub, and the releases |
+
+## Translate QuietHome
+
+All the text that QuietHome shows is in `res/values/strings.xml`. Each language has a copy in its own folder, for example `res/values-it/strings.xml` for Italian.
+
+To add a language:
+
+1. Copy `res/values/strings.xml` to `res/values-<code>/strings.xml`. Use the Android language code, for example `values-ro` for Romanian.
+2. Remove the strings that have `translatable="false"`.
+3. Translate each string. Keep `%1$s` and `%1$d`: Android puts a name or a number there.
+4. Keep the text short. Each line has a fixed width on the TV, and longer text ends with "…".
+5. Use only letters that the three fonts have. Manrope, Geist and Newsreader have the Latin letters. Geist has no Greek letters, and Newsreader has no Cyrillic or Greek letters.
+6. Build the APK and look at each screen in the new language.
 
 ## Support QuietHome
 

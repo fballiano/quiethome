@@ -8,6 +8,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
@@ -22,6 +23,8 @@ public final class Home extends Activity {
     private static WeakReference<Home> shown = new WeakReference<>(null);
 
     private Stage stage;
+    /** The languages that the text on screen is in. */
+    private String locales;
 
     private final BroadcastReceiver packages = new BroadcastReceiver() {
         @Override
@@ -37,6 +40,7 @@ public final class Home extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        locales = getResources().getConfiguration().getLocales().toLanguageTags();
         Prefs prefs = new Prefs(this);
         Catalog catalog = new Catalog(this, prefs);
         catalog.load();
@@ -55,6 +59,20 @@ public final class Home extends Activity {
 
     /** Settings changed outside the activity: read apps, inputs and choices again. */
     void configChanged() {
+        stage.refresh();
+    }
+
+    /**
+     * The manifest keeps the activity through configuration changes. A new language closes the
+     * panels, which hold text in the old language, and reads the app names and Home's text again.
+     */
+    @Override
+    public void onConfigurationChanged(Configuration config) {
+        super.onConfigurationChanged(config);
+        String locales = config.getLocales().toLanguageTags();
+        if (locales.equals(this.locales)) return;
+        this.locales = locales;
+        stage.goHome();
         stage.refresh();
     }
 

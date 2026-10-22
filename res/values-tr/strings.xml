@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="service_description">Ana ekran düğmesi QuietHome’u açar. Kumandanın düğmeleri, örneğin bir Netflix düğmesi, seçtiğiniz görevi alır. TV açıldığında seçtiğiniz girişi açar. Hizmet yalnızca bu düğmeler üzerinde çalışır. Diğer tüm tuşlar değişmeden geçer. Ayrıca öndeki uygulamanın adını görür, böylece TV’nin kendi ana ekranı geri geldiğinde onun yerine geçebilir. Hiçbir şey kaydetmez ve göndermez, ekranı okuyamaz.</string>
+
+    <!-- Home -->
+    <string name="all_apps">Tüm uygulamalar</string>
+    <string name="settings">Ayarlar</string>
+    <string name="tv_settings">TV ayarları</string>
+    <string name="move">Taşı</string>
+    <string name="remove_from_home">Ana ekrandan kaldır</string>
+    <string name="close_app">Uygulamayı kapat</string>
+    <string name="order_saved">Yeni sıra kaydedildi.</string>
+    <string name="home_needs_one">Ana ekranda en az bir uygulama olmalı.</string>
+    <string name="home_full">Ana ekranda en fazla dokuz uygulama olabilir.</string>
+    <string name="removed_from_home">%1$s artık ana ekranda değil.</string>
+    <string name="closed">Kapatıldı: %1$s.</string>
+    <string name="opening">Açılıyor: %1$s</string>
+    <string name="no_apps_on_home">Ana ekranda uygulama yok</string>
+    <string name="move_hint_list">Yukarı ve Aşağı uygulamayı taşır. OK yerleştirir, Geri iptal eder.</string>
+    <string name="move_hint_dock">Sol ve Sağ uygulamayı taşır. OK yerleştirir, Geri iptal eder.</string>
+
+    <!-- All apps and the pickers -->
+    <string name="edit_home">Ana ekranı düzenle</string>
+    <string name="on_home">Ana ekranda</string>
+    <string name="current">Geçerli</string>
+    <string name="its_own_job">Kendi görevi</string>
+    <string name="nothing">Hiçbir şey</string>
+    <string name="default_job">Varsayılan</string>
+    <string name="show_home">Ana ekranı göster</string>
+
+    <!-- Apps on Home -->
+    <string name="apps_on_home">Ana ekrandaki uygulamalar</string>
+    <string name="editor_hint">Bir uygulamada OK, onu taşımak için kaldırır. Ana ekranda en fazla dokuz uygulama olabilir.</string>
+    <string name="editor_hint_lifted">Yukarı ve Aşağı uygulamayı taşır. OK yerleştirir, Geri eski yerine koyar.</string>
+    <string name="undo">Geri al</string>
+    <string name="done">Bitti</string>
+    <string name="on_home_count">Ana ekranda · %1$d / %2$d</string>
+    <string name="not_on_home">Ana ekranda değil</string>
+    <string name="remove">Kaldır</string>
+    <string name="removed">Kaldırıldı</string>
+    <string name="input">Giriş</string>
+
+    <!-- Messages from the TV -->
+    <string name="input_gone">Bu giriş şu anda TV’de yok.</string>
+    <string name="app_gone">Bu uygulama artık TV’de yok.</string>
+    <string name="only_apps_close">Yalnızca uygulamalar kapatılabilir.</string>
+    <string name="close_refused">TV, QuietHome’un bu uygulamayı kapatmasına izin vermedi.</string>
+    <string name="cannot_open">TV bunu açamıyor.</string>
+    <string name="open_app_info_by_hand">TV’de Ayarlar → Uygulamalar → QuietHome’u açın.</string>
+    <string name="open_accessibility_by_hand">TV’de Ayarlar → Sistem → Erişilebilirlik’i açın.</string>
+
+    <!-- The QuietHome service -->
+    <string name="service_title">QuietHome hizmetini açın</string>
+    <string name="service_needed">QuietHome bu özellikler için kendi hizmetine ihtiyaç duyar:</string>
+    <string name="service_home">ana ekran düğmesi, kendi başlatıcısını tutan TV’lerde</string>
+    <string name="service_buttons">düğme atama, örneğin bir Netflix düğmesi için</string>
+    <string name="service_start">TV açıldığında bir HDMI girişini açma</string>
+    <string name="service_how">Erişilebilirlik’te QuietHome’u seçin ve açın.</string>
+    <string name="service_restricted">Gri ise veya “Kısıtlanmış ayar” yazıyorsa Uygulama bilgileri’ni açın, kısıtlanmış ayarlara izin verin ve tekrar deneyin.</string>
+    <string name="service_privacy">Hizmet tuş basışlarını ve öndeki uygulamanın adını görür. Ekranı okuyamaz ve hiçbir şey göndermez.</string>
+    <string name="open_accessibility">Erişilebilirlik’i aç</string>
+    <string name="app_info">Uygulama bilgileri</string>
+    <string name="later">Sonra</string>
+    <string name="service_is_on">QuietHome hizmeti açık.</string>
+
+    <!-- Button mapping -->
+    <string name="press_a_button">Kumandada bir düğmeye basın</string>
+    <string name="press_example">Örneğin TV üreticisinin kendi uygulamasını açan bir düğme.</string>
+    <string name="press_keep">Oklar, OK, Geri, Ana ekran, ses ve güç görevlerini korur. Geri iptal eder.</string>
+    <string name="no_button_pressed">Hiçbir düğmeye basılmadı.</string>
+    <string name="key_number">Tuş %1$d</string>
+    <string name="button_mapping">Düğme atama</string>
+    <plurals name="buttons_assigned">
+        <item quantity="one">%1$d atandı</item>
+        <item quantity="other">%1$d atandı</item>
+    </plurals>
+    <string name="needs_service">QuietHome hizmeti gerekli</string>
+    <string name="needs_service_note">QuietHome hizmeti gerekli.</string>
+    <string name="button_mapping_needs_it">Düğme atama için gerekli</string>
+    <string name="does_nothing">Hiçbir şey yapmaz</string>
+    <string name="opens">Açar: %1$s</string>
+    <string name="add_a_button">Düğme ekle</string>
+    <string name="add_a_button_note">Düğmeye basın, sonra ne yapacağını seçin</string>
+    <string name="service_first">Önce QuietHome hizmetini açın.</string>
+    <string name="choose_what_button_does">%1$s ne yapsın</string>
+    <string name="button_default_again">%1$s yine kendi görevini yapıyor.</string>
+    <string name="button_does_nothing">%1$s artık hiçbir şey yapmıyor.</string>
+    <string name="button_opens">%1$s şunu açar: %2$s.</string>
+
+    <!-- Settings -->
+    <string name="background">Arka plan</string>
+    <string name="layout">Düzen</string>
+    <string name="typography">Yazı tipi</string>
+    <string name="focus">Seçim</string>
+    <string name="apps_on_home_count">%1$d / %2$d uygulama</string>
+    <string name="android_tv_note">Hizmet, ana ekran düğmesi ve TV açılışı</string>
+    <string name="photo">Fotoğraf</string>
+    <string name="light">Açık</string>
+    <string name="dark">Koyu</string>
+    <string name="wallpaper">Duvar kâğıdı</string>
+    <string name="wallpaper_needs_photo">Duvar kâğıdı seçmek için Fotoğraf’ı seçin.</string>
+    <string name="rotation">Değişim</string>
+    <string name="rotation_needs_photo">Duvar kâğıtlarını değiştirmek için Fotoğraf’ı seçin.</string>
+    <string name="rotation_fixed">Sabit</string>
+    <string name="rotation_open">Ana ekran her açıldığında</string>
+    <string name="rotation_5">5 dakikada bir</string>
+    <string name="rotation_15">15 dakikada bir</string>
+    <string name="rotation_60">Saatte bir</string>
+    <string name="list">Liste</string>
+    <string name="dock">Dock</string>
+    <string name="apps">Uygulamalar</string>
+    <string name="controls">Denetimler</string>
+    <string name="both">İkisi de</string>
+    <string name="names">Adlar</string>
+    <string name="icons">Simgeler</string>
+    <string name="names_and_icons">Adlar ve simgeler</string>
+    <string name="clock">Saat</string>
+    <string name="hour_24">24 saat</string>
+    <string name="hour_12">12 saat</string>
+    <string name="clock_24">24 saatlik saat</string>
+    <string name="clock_12">12 saatlik saat</string>
+    <string name="type">Yazı</string>
+    <string name="glass">Cam</string>
+    <string name="material">Malzeme</string>
+    <string name="soft">Yumuşak</string>
+    <string name="frost">Buzlu</string>
+    <string name="clear">Şeffaf</string>
+    <string name="material_when">Fotoğrafta, Dock’ta veya Cam seçiminde kullanılır.</string>
+    <string name="quiethome_service">QuietHome hizmeti</string>
+    <string name="service_on_note">Açık: ana ekran, düğmeler ve açılış girişi çalışır</string>
+    <string name="service_off_note">Kapalı · açmak için seçin</string>
+    <string name="tv_settings_note">Android’in kendi ayarları</string>
+    <string name="home_button">Ana ekran düğmesi</string>
+    <string name="home_opens_quiethome">Ana ekran düğmesi her zaman QuietHome’u açar.</string>
+    <string name="home_opens_android">Ana ekran düğmesi Android’in seçtiğini açar.</string>
+    <string name="when_tv_turns_on">TV açıldığında</string>
+    <string name="open_target">Aç: %1$s</string>
+    <string name="open_target_needs_service">Aç: %1$s · hizmet gerekli</string>
+    <string name="open_when_tv_turns_on">TV açıldığında aç</string>
+    <string name="tv_shows_home">TV açıldığında ana ekranı gösterir.</string>
+    <string name="tv_opens">TV açıldığında şunu açar: %1$s.</string>
+    <string name="previous_launcher">Önceki başlatıcı</string>
+    <string name="previous_launcher_note">TV’nin diğer ana ekranını açar</string>
+    <string name="home">Ana ekran</string>
+    <string name="photo_credit">%1$s · Fotoğraf: %2$s, Unsplash</string>
+    <string name="not_applied">%1$s · Uygulanmadı</string>
+
+    <!-- Updates -->
+    <string name="update">QuietHome’u güncelle</string>
+    <string name="update_note">Downloader’ı açar · kod %1$s</string>
+    <string name="update_no_store">AFTVnews’in Downloader uygulamasını Play Store’dan yükleyin.</string>
+
+    <!-- Wallpapers -->
+    <string name="wallpaper_misty">Sisli kıyı</string>
+    <string name="wallpaper_cove">Sakin koy</string>
+    <string name="wallpaper_forest">Sisli orman</string>
+    <string name="wallpaper_valley">Dağ vadisi</string>
+    <string name="wallpaper_night">Çöl yıldızları</string>
+    <string name="wallpaper_peaks">Mavi zirveler</string>
+    <string name="wallpaper_bridge">Alacakaranlıkta köprü</string>
+    <string name="wallpaper_ridge">Güneşli sırtlar</string>
+    <string name="wallpaper_golden">Altın saat</string>
+    <string name="wallpaper_summit">Güneşli doruklar</string>
+    <string name="wallpaper_goldcoast">Alacakaranlıkta Gold Coast</string>
+    <string name="wallpaper_sydney">Sidney Limanı</string>
+    <string name="wallpaper_amber">Kehribar tepeler</string>
+    <string name="wallpaper_mint">Nane dalgası</string>
+    <string name="wallpaper_alpine">Alp ışıltısı</string>
+</resources>

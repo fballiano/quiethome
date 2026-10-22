@@ -105,7 +105,7 @@ public final class RemoteButtons extends AccessibilityService {
         taken.put(code, true);
         if (Catalog.isHdmi(target) && catalog.get(target) == null) catalog.load();
         String problem = catalog.launch(target);
-        if (problem != null) Log.w(Home.TAG, name(code) + " → " + target + ": " + problem);
+        if (problem != null) Log.w(Home.TAG, name(this, code) + " → " + target + ": " + problem);
         return true;
     }
 
@@ -183,10 +183,10 @@ public final class RemoteButtons extends AccessibilityService {
     }
 
     /** The key's name in title case ("Prog Red", "F5"); keys without a name become "Key 192". */
-    static String name(int code) {
+    static String name(Context context, int code) {
         String symbol = KeyEvent.keyCodeToString(code);
         String bare = symbol.startsWith("KEYCODE_") ? symbol.substring("KEYCODE_".length()) : symbol;
-        if (bare.isEmpty() || Character.isDigit(bare.charAt(0))) return "Key " + code;
+        if (bare.isEmpty() || Character.isDigit(bare.charAt(0))) return context.getString(R.string.key_number, code);
         StringBuilder out = new StringBuilder();
         for (String word : bare.split("_")) {
             if (word.isEmpty()) continue;

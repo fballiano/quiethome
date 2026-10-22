@@ -8,6 +8,7 @@ Keep the README and its screenshots current in the same commit as the change. Wh
 
 ## Conventions
 
+- All text that the user sees is in `res/values/strings.xml`. Add each new or changed string to every `res/values-*/strings.xml` in the same commit, and keep each translation as short as the English.
 - New source files start with the two SPDX lines: `SPDX-FileCopyrightText: 2026 Fabrizio Balliano` and `SPDX-License-Identifier: GPL-3.0-or-later`.
 - Write the README, `SECURITY.md` and other docs in ASD-STE100 Simplified Technical English.
 - Smoothness comes first: `Stage` draws only while something animates. Keep per-frame work small (no blurred shadows on text that scales) and do slow work, such as the icon filter, off the main thread. Animation speeds are `Ui.FOCUS_MS` and `Ui.SCROLL_MS`.

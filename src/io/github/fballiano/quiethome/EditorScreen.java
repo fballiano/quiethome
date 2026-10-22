@@ -150,7 +150,7 @@ final class EditorScreen extends Screen {
                 break;
             case REMOVE:
                 if (home.size() <= 1) {
-                    stage.toast("Home needs at least one app.");
+                    stage.toast(text(R.string.home_needs_one));
                     break;
                 }
                 List<String> before = new ArrayList<>(home);
@@ -164,7 +164,7 @@ final class EditorScreen extends Screen {
                 break;
             case OTHER:
                 if (home.size() >= Home.MAX_HOME) {
-                    stage.toast("Home holds up to nine apps.");
+                    stage.toast(text(R.string.home_full));
                     break;
                 }
                 before = new ArrayList<>(home);
@@ -202,12 +202,11 @@ final class EditorScreen extends Screen {
         Typeface regular = ui.font("manrope", 500);
 
         ui.text(regular, 56, -1.6f, ink, 1);
-        ui.line(c, "Apps on Home", 140, ui.baseline(104), 0, -1);
+        ui.line(c, text(R.string.apps_on_home), 140, ui.baseline(104), 0, -1);
         ui.text(regular, 28, -0.2f, ink, 0.66f);
-        ui.line(c, lifted ? "Up and Down move the app. OK places it, Back puts it back."
-            : "OK on an app picks it up to move it. Home holds up to nine apps.", 140, ui.baseline(176), 1200, -1);
+        ui.line(c, text(lifted ? R.string.editor_hint_lifted : R.string.editor_hint), 140, ui.baseline(176), 1200, -1);
 
-        String[] buttons = {"Undo", "Done"};
+        String[] buttons = {text(R.string.undo), text(R.string.done)};
         float x = 1780;
         for (int i = 1; i >= 0; i--) {
             ui.text(regular, 30, -0.3f, ink, 1);
@@ -221,16 +220,22 @@ final class EditorScreen extends Screen {
         }
 
         ui.text(regular, 26, 0, ink, 0.55f);
-        ui.line(c, "On Home · " + home.size() + " of " + Home.MAX_HOME, 140, ui.baseline(TOP - 30), 0, -1);
-        ui.line(c, "Not on Home", RIGHT_LEFT, ui.baseline(TOP - 30), 0, -1);
+        ui.line(c, text(R.string.on_home_count, home.size(), Home.MAX_HOME), 140, ui.baseline(TOP - 30), 0, -1);
+        ui.line(c, text(R.string.not_on_home), RIGHT_LEFT, ui.baseline(TOP - 30), 0, -1);
 
+        String remove = text(R.string.remove);
+        ui.text(regular, 28, -0.2f, ink, 1);
+        float removeWidth = ui.width(remove) + 48;
+        // Remove starts at 816. A longer word moves it left, so it never reaches the list on the right.
+        float removeLeft = Math.min(816, RIGHT_LEFT - 30 - removeWidth);
+        float nameRight = Math.min(800, removeLeft - 16);
         for (int i = 0; i < home.size(); i++) {
             Catalog.Entry e = stage.catalog.get(home.get(i));
             if (e == null) continue;
             float y = TOP + i * ROW;
             boolean focused = zone == NAME && index == i;
             if (focused) {
-                r.set(116, y + 4, 800, y + ROW - 4);
+                r.set(116, y + 4, nameRight, y + ROW - 4);
                 ui.plate(c, r, 28, bg, 1);
                 if (lifted) {
                     ui.fill.setShader(null);
@@ -240,15 +245,14 @@ final class EditorScreen extends Screen {
                 }
             }
             ui.text(regular, 36, -0.6f, ink, focused || zone != NAME ? 1 : 0.8f);
-            ui.line(c, Catalog.title(e), lifted && focused ? 180 : 148, ui.baseline(y + ROW / 2), 600, -1);
+            float nameLeft = lifted && focused ? 180 : 148;
+            ui.line(c, Catalog.title(e), nameLeft, ui.baseline(y + ROW / 2), Math.min(600, nameRight - 52 - nameLeft), -1);
 
-            ui.text(regular, 28, -0.2f, ink, 1);
-            float w = ui.width("Remove") + 48;
-            r.set(816, y + 8, 816 + w, y + ROW - 8);
+            r.set(removeLeft, y + 8, removeLeft + removeWidth, y + ROW - 8);
             boolean removeFocused = zone == REMOVE && index == i;
             if (removeFocused) ui.plate(c, r, 30, bg, 1);
             ui.text(regular, 28, -0.2f, ink, removeFocused ? 1 : 0.45f);
-            ui.line(c, "Remove", r.centerX(), ui.baseline(r.centerY()), 0, 0);
+            ui.line(c, remove, r.centerX(), ui.baseline(r.centerY()), 0, 0);
         }
 
         c.save();
@@ -266,10 +270,10 @@ final class EditorScreen extends Screen {
             }
             ui.text(regular, 36, -0.6f, ink, focused ? 1 : 0.7f);
             ui.line(c, Catalog.title(e), RIGHT_LEFT + 8, ui.baseline(y + ROW / 2), 560, -1);
-            String state = removed.contains(e.id) ? "Removed" : e.isInput() ? "Input" : null;
-            if (state != null) {
+            int state = removed.contains(e.id) ? R.string.removed : e.isInput() ? R.string.input : 0;
+            if (state != 0) {
                 ui.text(regular, 24, 0, ink, 0.5f);
-                ui.line(c, state, 1780, ui.baseline(y + ROW / 2), 0, 1);
+                ui.line(c, text(state), 1780, ui.baseline(y + ROW / 2), 0, 1);
             }
         }
         c.restore();

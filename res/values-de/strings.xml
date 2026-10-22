@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="service_description">Die Home-Taste öffnet QuietHome. Tasten der Fernbedienung, zum Beispiel eine Netflix-Taste, bekommen die Aufgabe, die Sie wählen. Beim Einschalten öffnet der Fernseher den Eingang, den Sie wählen. Der Dienst wirkt nur auf diese Tasten. Alle anderen Tasten gehen unverändert weiter. Er sieht auch den Namen der App im Vordergrund. So kann er den Startbildschirm des Fernsehers ersetzen, wenn dieser zurückkommt. Er speichert und sendet nichts und kann den Bildschirm nicht lesen.</string>
+
+    <!-- Home -->
+    <string name="all_apps">Alle Apps</string>
+    <string name="settings">Einstellungen</string>
+    <string name="tv_settings">TV-Einstellungen</string>
+    <string name="move">Verschieben</string>
+    <string name="remove_from_home">Vom Startbildschirm entfernen</string>
+    <string name="close_app">App schließen</string>
+    <string name="order_saved">Die neue Reihenfolge ist gespeichert.</string>
+    <string name="home_needs_one">Der Startbildschirm braucht mindestens eine App.</string>
+    <string name="home_full">Der Startbildschirm hat Platz für höchstens neun Apps.</string>
+    <string name="removed_from_home">%1$s ist nicht mehr auf dem Startbildschirm.</string>
+    <string name="closed">%1$s ist geschlossen.</string>
+    <string name="opening">%1$s wird geöffnet</string>
+    <string name="no_apps_on_home">Keine Apps auf dem Startbildschirm</string>
+    <string name="move_hint_list">Oben und Unten verschieben die App. OK setzt sie ab, Zurück bricht ab.</string>
+    <string name="move_hint_dock">Links und Rechts verschieben die App. OK setzt sie ab, Zurück bricht ab.</string>
+
+    <!-- All apps and the pickers -->
+    <string name="edit_home">Start bearbeiten</string>
+    <string name="on_home">Auf dem Startbildschirm</string>
+    <string name="current">Aktuell</string>
+    <string name="its_own_job">Eigene Aufgabe</string>
+    <string name="nothing">Nichts</string>
+    <string name="default_job">Standard</string>
+    <string name="show_home">Startbildschirm</string>
+
+    <!-- Apps on Home -->
+    <string name="apps_on_home">Apps auf dem Startbildschirm</string>
+    <string name="editor_hint">OK auf einer App nimmt sie zum Verschieben auf. Höchstens neun Apps haben Platz.</string>
+    <string name="editor_hint_lifted">Oben und Unten verschieben die App. OK setzt sie ab, Zurück setzt sie zurück.</string>
+    <string name="undo">Rückgängig</string>
+    <string name="done">Fertig</string>
+    <string name="on_home_count">Auf dem Startbildschirm · %1$d von %2$d</string>
+    <string name="not_on_home">Nicht auf dem Startbildschirm</string>
+    <string name="remove">Entfernen</string>
+    <string name="removed">Entfernt</string>
+    <string name="input">Eingang</string>
+
+    <!-- Messages from the TV -->
+    <string name="input_gone">Dieser Eingang ist jetzt nicht auf dem Fernseher.</string>
+    <string name="app_gone">Diese App ist nicht mehr auf dem Fernseher.</string>
+    <string name="only_apps_close">Nur Apps können schließen.</string>
+    <string name="close_refused">Der Fernseher lässt QuietHome diese App nicht schließen.</string>
+    <string name="cannot_open">Der Fernseher kann das nicht öffnen.</string>
+    <string name="open_app_info_by_hand">Öffnen Sie auf dem Fernseher Einstellungen → Apps → QuietHome.</string>
+    <string name="open_accessibility_by_hand">Öffnen Sie auf dem Fernseher Einstellungen → System → Bedienungshilfen.</string>
+
+    <!-- The QuietHome service -->
+    <string name="service_title">Den QuietHome-Dienst einschalten</string>
+    <string name="service_needed">QuietHome braucht seinen Dienst für diese Funktionen:</string>
+    <string name="service_home">die Home-Taste, auf Fernsehern, die ihren eigenen Launcher behalten</string>
+    <string name="service_buttons">die Tastenbelegung, zum Beispiel für eine Netflix-Taste</string>
+    <string name="service_start">einen HDMI-Eingang öffnen, wenn der Fernseher einschaltet</string>
+    <string name="service_how">Wählen Sie in den Bedienungshilfen QuietHome und schalten Sie es ein.</string>
+    <string name="service_restricted">Ist es grau („Eingeschränkte Einstellung“)? Dann in App-Info diese Einstellungen erlauben und neu versuchen.</string>
+    <string name="service_privacy">Der Dienst sieht Tasten und den Namen der App im Vordergrund. Er kann den Bildschirm nicht lesen und sendet nichts.</string>
+    <string name="open_accessibility">Bedienungshilfen öffnen</string>
+    <string name="app_info">App-Info</string>
+    <string name="later">Später</string>
+    <string name="service_is_on">Der QuietHome-Dienst ist eingeschaltet.</string>
+
+    <!-- Button mapping -->
+    <string name="press_a_button">Drücken Sie eine Taste der Fernbedienung</string>
+    <string name="press_example">Zum Beispiel eine Taste, die die App des Herstellers öffnet.</string>
+    <string name="press_keep">Pfeile, OK, Zurück, Home, Lautstärke und Ein/Aus behalten ihre Aufgabe. Zurück bricht ab.</string>
+    <string name="no_button_pressed">Es wurde keine Taste gedrückt.</string>
+    <string name="key_number">Taste %1$d</string>
+    <string name="button_mapping">Tastenbelegung</string>
+    <plurals name="buttons_assigned">
+        <item quantity="one">%1$d belegt</item>
+        <item quantity="other">%1$d belegt</item>
+    </plurals>
+    <string name="needs_service">Braucht den QuietHome-Dienst</string>
+    <string name="needs_service_note">Braucht den QuietHome-Dienst.</string>
+    <string name="button_mapping_needs_it">Die Tastenbelegung braucht ihn</string>
+    <string name="does_nothing">Tut nichts</string>
+    <string name="opens">Öffnet %1$s</string>
+    <string name="add_a_button">Taste hinzufügen</string>
+    <string name="add_a_button_note">Drücken Sie sie und wählen Sie dann ihre Aufgabe</string>
+    <string name="service_first">Schalten Sie zuerst den QuietHome-Dienst ein.</string>
+    <string name="choose_what_button_does">Aufgabe für %1$s wählen</string>
+    <string name="button_default_again">%1$s hat wieder die eigene Aufgabe.</string>
+    <string name="button_does_nothing">%1$s tut jetzt nichts.</string>
+    <string name="button_opens">%1$s öffnet %2$s.</string>
+
+    <!-- Settings -->
+    <string name="background">Hintergrund</string>
+    <string name="layout">Anordnung</string>
+    <string name="typography">Schrift</string>
+    <string name="focus">Auswahl</string>
+    <string name="apps_on_home_count">%1$d von %2$d Apps</string>
+    <string name="android_tv_note">Der Dienst, die Home-Taste und das Einschalten</string>
+    <string name="photo">Foto</string>
+    <string name="light">Hell</string>
+    <string name="dark">Dunkel</string>
+    <string name="wallpaper">Bild</string>
+    <string name="wallpaper_needs_photo">Wählen Sie Foto, um ein Bild zu wählen.</string>
+    <string name="rotation">Wechsel</string>
+    <string name="rotation_needs_photo">Wählen Sie Foto, um die Bilder zu wechseln.</string>
+    <string name="rotation_fixed">Fest</string>
+    <string name="rotation_open">Bei jedem Öffnen</string>
+    <string name="rotation_5">Alle 5 Minuten</string>
+    <string name="rotation_15">Alle 15 Minuten</string>
+    <string name="rotation_60">Jede Stunde</string>
+    <string name="list">Liste</string>
+    <string name="dock">Dock</string>
+    <string name="apps">Apps</string>
+    <string name="controls">Bedienelemente</string>
+    <string name="both">Beides</string>
+    <string name="names">Namen</string>
+    <string name="icons">Symbole</string>
+    <string name="names_and_icons">Namen und Symbole</string>
+    <string name="clock">Uhr</string>
+    <string name="hour_24">24 Stunden</string>
+    <string name="hour_12">12 Stunden</string>
+    <string name="clock_24">24-Stunden-Uhr</string>
+    <string name="clock_12">12-Stunden-Uhr</string>
+    <string name="type">Schrift</string>
+    <string name="glass">Glas</string>
+    <string name="material">Material</string>
+    <string name="soft">Weich</string>
+    <string name="frost">Matt</string>
+    <string name="clear">Klar</string>
+    <string name="material_when">Für ein Foto, das Dock oder die Glas-Auswahl.</string>
+    <string name="quiethome_service">QuietHome-Dienst</string>
+    <string name="service_on_note">Ein: Home-Taste, Tastenbelegung und Start gehen</string>
+    <string name="service_off_note">Aus · wählen zum Einschalten</string>
+    <string name="tv_settings_note">Die Einstellungen von Android</string>
+    <string name="home_button">Home-Taste</string>
+    <string name="home_opens_quiethome">Home öffnet immer QuietHome.</string>
+    <string name="home_opens_android">Home öffnet, was Android wählt.</string>
+    <string name="when_tv_turns_on">Beim Einschalten</string>
+    <string name="open_target">%1$s öffnen</string>
+    <string name="open_target_needs_service">%1$s öffnen · braucht den QuietHome-Dienst</string>
+    <string name="open_when_tv_turns_on">Beim Einschalten öffnen</string>
+    <string name="tv_shows_home">Beim Einschalten zeigt der Fernseher den Startbildschirm.</string>
+    <string name="tv_opens">Beim Einschalten öffnet der Fernseher %1$s.</string>
+    <string name="previous_launcher">Vorheriger Launcher</string>
+    <string name="previous_launcher_note">Öffnet den anderen Startbildschirm des Fernsehers</string>
+    <string name="home">Startbildschirm</string>
+    <string name="photo_credit">%1$s · Foto von %2$s auf Unsplash</string>
+    <string name="not_applied">%1$s · Nicht übernommen</string>
+
+    <!-- Updates -->
+    <string name="update">QuietHome aktualisieren</string>
+    <string name="update_note">Öffnet Downloader · Code %1$s</string>
+    <string name="update_no_store">Installieren Sie Downloader von AFTVnews aus dem Play Store.</string>
+
+    <!-- Wallpapers -->
+    <string name="wallpaper_misty">Küste im Nebel</string>
+    <string name="wallpaper_cove">Stille Bucht</string>
+    <string name="wallpaper_forest">Wald im Nebel</string>
+    <string name="wallpaper_valley">Bergtal</string>
+    <string name="wallpaper_night">Wüstensterne</string>
+    <string name="wallpaper_peaks">Blaue Gipfel</string>
+    <string name="wallpaper_bridge">Brücke in der Dämmerung</string>
+    <string name="wallpaper_ridge">Sonnige Grate</string>
+    <string name="wallpaper_golden">Goldene Stunde</string>
+    <string name="wallpaper_summit">Sonnige Gipfel</string>
+    <string name="wallpaper_goldcoast">Gold Coast am Abend</string>
+    <string name="wallpaper_sydney">Hafen von Sydney</string>
+    <string name="wallpaper_amber">Bernsteinhügel</string>
+    <string name="wallpaper_mint">Mintwelle</string>
+    <string name="wallpaper_alpine">Alpenglühen</string>
+</resources>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="service_description">Hjem-knappen åpner QuietHome. Knapper på fjernkontrollen, for eksempel en Netflix-knapp, får oppgaven du velger. Når TV-en slås på, åpner den inngangen du velger. Tjenesten virker bare på de knappene. Alle andre taster går gjennom uten endring. Den ser også navnet på appen i forgrunnen, så den kan erstatte TV-ens egen startskjerm når den kommer tilbake. Den lagrer og sender ingenting og kan ikke lese skjermen.</string>
+
+    <!-- Home -->
+    <string name="all_apps">Alle apper</string>
+    <string name="settings">Innstillinger</string>
+    <string name="tv_settings">TV-innstillinger</string>
+    <string name="move">Flytt</string>
+    <string name="remove_from_home">Fjern fra startskjermen</string>
+    <string name="close_app">Lukk appen</string>
+    <string name="order_saved">Den nye rekkefølgen er lagret.</string>
+    <string name="home_needs_one">Startskjermen må ha minst én app.</string>
+    <string name="home_full">Startskjermen har plass til maks ni apper.</string>
+    <string name="removed_from_home">%1$s er ikke lenger på startskjermen.</string>
+    <string name="closed">%1$s er lukket.</string>
+    <string name="opening">Åpner %1$s</string>
+    <string name="no_apps_on_home">Ingen apper på startskjermen</string>
+    <string name="move_hint_list">Opp og Ned flytter appen. OK plasserer den, Tilbake avbryter.</string>
+    <string name="move_hint_dock">Venstre og Høyre flytter appen. OK plasserer den, Tilbake avbryter.</string>
+
+    <!-- All apps and the pickers -->
+    <string name="edit_home">Rediger start</string>
+    <string name="on_home">På startskjermen</string>
+    <string name="current">Nåværende</string>
+    <string name="its_own_job">Egen oppgave</string>
+    <string name="nothing">Ingenting</string>
+    <string name="default_job">Standard</string>
+    <string name="show_home">Vis startskjermen</string>
+
+    <!-- Apps on Home -->
+    <string name="apps_on_home">Apper på startskjermen</string>
+    <string name="editor_hint">OK på en app løfter den, så du kan flytte den. Startskjermen har plass til maks ni apper.</string>
+    <string name="editor_hint_lifted">Opp og Ned flytter appen. OK plasserer den, Tilbake legger den tilbake.</string>
+    <string name="undo">Angre</string>
+    <string name="done">Ferdig</string>
+    <string name="on_home_count">På startskjermen · %1$d av %2$d</string>
+    <string name="not_on_home">Ikke på startskjermen</string>
+    <string name="remove">Fjern</string>
+    <string name="removed">Fjernet</string>
+    <string name="input">Inngang</string>
+
+    <!-- Messages from the TV -->
+    <string name="input_gone">Denne inngangen er ikke på TV-en nå.</string>
+    <string name="app_gone">Denne appen er ikke lenger på TV-en.</string>
+    <string name="only_apps_close">Bare apper kan lukkes.</string>
+    <string name="close_refused">TV-en lar ikke QuietHome lukke denne appen.</string>
+    <string name="cannot_open">TV-en kan ikke åpne dette.</string>
+    <string name="open_app_info_by_hand">Åpne Innstillinger → Apper → QuietHome på TV-en.</string>
+    <string name="open_accessibility_by_hand">Åpne Innstillinger → System → Tilgjengelighet på TV-en.</string>
+
+    <!-- The QuietHome service -->
+    <string name="service_title">Slå på QuietHome-tjenesten</string>
+    <string name="service_needed">QuietHome trenger tjenesten sin for disse funksjonene:</string>
+    <string name="service_home">Hjem-knappen, på TV-er som beholder sin egen startskjerm</string>
+    <string name="service_buttons">knappetildeling, for eksempel for en Netflix-knapp</string>
+    <string name="service_start">å åpne en HDMI-inngang når TV-en slås på</string>
+    <string name="service_how">Velg QuietHome i Tilgjengelighet, og slå den på.</string>
+    <string name="service_restricted">Hvis den er grå eller viser «Begrenset innstilling», åpne Appinfo, tillat begrensede innstillinger og prøv igjen.</string>
+    <string name="service_privacy">Tjenesten ser tastetrykk og navnet på appen i forgrunnen. Den kan ikke lese skjermen og sender ingenting.</string>
+    <string name="open_accessibility">Åpne Tilgjengelighet</string>
+    <string name="app_info">Appinfo</string>
+    <string name="later">Senere</string>
+    <string name="service_is_on">QuietHome-tjenesten er på.</string>
+
+    <!-- Button mapping -->
+    <string name="press_a_button">Trykk på en knapp på fjernkontrollen</string>
+    <string name="press_example">For eksempel en knapp som åpner TV-produsentens egen app.</string>
+    <string name="press_keep">Piler, OK, Tilbake, Hjem, volum og av/på beholder oppgavene sine. Tilbake avbryter.</string>
+    <string name="no_button_pressed">Ingen knapp ble trykket.</string>
+    <string name="key_number">Tast %1$d</string>
+    <string name="button_mapping">Knappetildeling</string>
+    <plurals name="buttons_assigned">
+        <item quantity="one">%1$d tildelt</item>
+        <item quantity="other">%1$d tildelt</item>
+    </plurals>
+    <string name="needs_service">Krever QuietHome-tjenesten</string>
+    <string name="needs_service_note">Krever QuietHome-tjenesten.</string>
+    <string name="button_mapping_needs_it">Knappetildeling trenger den</string>
+    <string name="does_nothing">Gjør ingenting</string>
+    <string name="opens">Åpner %1$s</string>
+    <string name="add_a_button">Legg til en knapp</string>
+    <string name="add_a_button_note">Trykk på den, og velg så hva den gjør</string>
+    <string name="service_first">Slå på QuietHome-tjenesten først.</string>
+    <string name="choose_what_button_does">Velg hva %1$s gjør</string>
+    <string name="button_default_again">%1$s gjør sin egen oppgave igjen.</string>
+    <string name="button_does_nothing">%1$s gjør ingenting nå.</string>
+    <string name="button_opens">%1$s åpner %2$s.</string>
+
+    <!-- Settings -->
+    <string name="background">Bakgrunn</string>
+    <string name="layout">Oppsett</string>
+    <string name="typography">Skrifttype</string>
+    <string name="focus">Markering</string>
+    <string name="apps_on_home_count">%1$d av %2$d apper</string>
+    <string name="android_tv_note">Tjenesten, Hjem-knappen og når TV-en slås på</string>
+    <string name="photo">Foto</string>
+    <string name="light">Lys</string>
+    <string name="dark">Mørk</string>
+    <string name="wallpaper">Bilde</string>
+    <string name="wallpaper_needs_photo">Velg Foto for å velge et bilde.</string>
+    <string name="rotation">Bytte</string>
+    <string name="rotation_needs_photo">Velg Foto for å bytte bilder.</string>
+    <string name="rotation_fixed">Fast</string>
+    <string name="rotation_open">Hver gang startskjermen åpnes</string>
+    <string name="rotation_5">Hvert 5. minutt</string>
+    <string name="rotation_15">Hvert 15. minutt</string>
+    <string name="rotation_60">Hver time</string>
+    <string name="list">Liste</string>
+    <string name="dock">Dokk</string>
+    <string name="apps">Apper</string>
+    <string name="controls">Knapper</string>
+    <string name="both">Begge</string>
+    <string name="names">Navn</string>
+    <string name="icons">Ikoner</string>
+    <string name="names_and_icons">Navn og ikoner</string>
+    <string name="clock">Klokke</string>
+    <string name="hour_24">24 timer</string>
+    <string name="hour_12">12 timer</string>
+    <string name="clock_24">24-timersklokke</string>
+    <string name="clock_12">12-timersklokke</string>
+    <string name="type">Tekst</string>
+    <string name="glass">Glass</string>
+    <string name="material">Materiale</string>
+    <string name="soft">Myk</string>
+    <string name="frost">Frostet</string>
+    <string name="clear">Klar</string>
+    <string name="material_when">For et foto, dokken eller Glass-markering.</string>
+    <string name="quiethome_service">QuietHome-tjenesten</string>
+    <string name="service_on_note">På: Hjem-knapp, knapper og oppstart virker</string>
+    <string name="service_off_note">Av · velg for å slå den på</string>
+    <string name="tv_settings_note">Androids egne innstillinger</string>
+    <string name="home_button">Hjem-knapp</string>
+    <string name="home_opens_quiethome">Hjem åpner alltid QuietHome.</string>
+    <string name="home_opens_android">Hjem åpner det Android velger.</string>
+    <string name="when_tv_turns_on">Når TV-en slås på</string>
+    <string name="open_target">Åpne %1$s</string>
+    <string name="open_target_needs_service">Åpne %1$s · krever tjenesten</string>
+    <string name="open_when_tv_turns_on">Åpne når TV-en slås på</string>
+    <string name="tv_shows_home">TV-en viser startskjermen når den slås på.</string>
+    <string name="tv_opens">TV-en åpner %1$s når den slås på.</string>
+    <string name="previous_launcher">Forrige startskjerm</string>
+    <string name="previous_launcher_note">Åpner TV-ens andre startskjerm</string>
+    <string name="home">Startskjerm</string>
+    <string name="photo_credit">%1$s · Foto av %2$s på Unsplash</string>
+    <string name="not_applied">%1$s · Ikke brukt</string>
+
+    <!-- Updates -->
+    <string name="update">Oppdater QuietHome</string>
+    <string name="update_note">Åpner Downloader · kode %1$s</string>
+    <string name="update_no_store">Installer Downloader fra AFTVnews via Play-butikken.</string>
+
+    <!-- Wallpapers -->
+    <string name="wallpaper_misty">Tåkete kyst</string>
+    <string name="wallpaper_cove">Stille vik</string>
+    <string name="wallpaper_forest">Skog i tåke</string>
+    <string name="wallpaper_valley">Fjelldal</string>
+    <string name="wallpaper_night">Ørkenstjerner</string>
+    <string name="wallpaper_peaks">Blå tinder</string>
+    <string name="wallpaper_bridge">Bro i skumringen</string>
+    <string name="wallpaper_ridge">Solfylte rygger</string>
+    <string name="wallpaper_golden">Gyllen time</string>
+    <string name="wallpaper_summit">Solfylte topper</string>
+    <string name="wallpaper_goldcoast">Gold Coast i skumringen</string>
+    <string name="wallpaper_sydney">Sydney havn</string>
+    <string name="wallpaper_amber">Ravfargede åser</string>
+    <string name="wallpaper_mint">Mintbølge</string>
+    <string name="wallpaper_alpine">Alpeglød</string>
+</resources>

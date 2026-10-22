@@ -15,6 +15,11 @@ abstract class Screen {
         this.ui = stage.ui;
     }
 
+    /** A string from res/values, in the TV's language. */
+    String text(int id, Object... args) {
+        return stage.text(id, args);
+    }
+
     /** Draws on the 1920 x 1080 design canvas. Returns true while something still animates. */
     abstract boolean draw(Canvas c, float dt);
 

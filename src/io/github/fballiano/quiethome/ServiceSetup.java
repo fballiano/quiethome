@@ -65,7 +65,7 @@ final class ServiceSetup {
                 Uri.fromParts("package", context.getPackageName(), null)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             return null;
         } catch (ActivityNotFoundException | SecurityException e) {
-            return "Open Settings → Apps → QuietHome on the TV.";
+            return context.getString(R.string.open_app_info_by_hand);
         }
     }
 
@@ -84,7 +84,7 @@ final class ServiceSetup {
             context.startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             return null;
         } catch (ActivityNotFoundException | SecurityException e) {
-            return "Open Settings → System → Accessibility on the TV.";
+            return context.getString(R.string.open_accessibility_by_hand);
         }
     }
 }

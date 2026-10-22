@@ -38,7 +38,8 @@ final class AllAppsScreen extends Screen {
 
     /** All apps: Edit Home, then the apps. The focus starts on the first app. */
     AllAppsScreen(Stage stage) {
-        this(stage, null, "All apps", Collections.singletonList(new Catalog.Entry(Catalog.ACTION_EDIT, "Edit Home", null, null)), null);
+        this(stage, null, stage.text(R.string.all_apps),
+            Collections.singletonList(new Catalog.Entry(Catalog.ACTION_EDIT, stage.text(R.string.edit_home), null, null)), null);
         if (list.size() > 1) focus = 1;
         targets();
     }
@@ -123,7 +124,7 @@ final class AllAppsScreen extends Screen {
         if (!holdable()) return;
         Catalog.Entry e = list.get(focus);
         String error = stage.catalog.close(e.id);
-        stage.toast(error != null ? error : "Closed " + Catalog.title(e) + ".");
+        stage.toast(error != null ? error : text(R.string.closed, Catalog.title(e)));
     }
 
     @Override
@@ -167,11 +168,11 @@ final class AllAppsScreen extends Screen {
             stage.drawMark(c, e, cx - 60, y + 30, 120, 72, ink, a);
             ui.text(regular, 32, -0.6f, ink, a);
             ui.line(c, Catalog.title(e), cx, ui.baseline(y + 140), TILE_W - 24, 0);
-            String state = picker == null ? (home.contains(e.id) ? "On Home" : null)
-                : e.id.equals(current) ? "Current" : Catalog.ACTION_DEFAULT.equals(e.id) ? "Its own job" : null;
-            if (state != null) {
+            int state = picker == null ? (home.contains(e.id) ? R.string.on_home : 0)
+                : e.id.equals(current) ? R.string.current : Catalog.ACTION_DEFAULT.equals(e.id) ? R.string.its_own_job : 0;
+            if (state != 0) {
                 ui.text(regular, 24, 0, ink, 0.6f * a);
-                ui.line(c, state, cx, ui.baseline(y + 182), 0, 0);
+                ui.line(c, text(state), cx, ui.baseline(y + 182), 0, 0);
             }
         }
         c.restore();
