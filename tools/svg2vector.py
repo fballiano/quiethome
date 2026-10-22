@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2026 Fabrizio Balliano
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """Converts the monochrome icons in tools/icons/*.svg to Android vector drawables in res/drawable/.
 
 Run it again after you add or change an icon: python3 -I tools/svg2vector.py
@@ -17,7 +20,9 @@ NS = "{http://www.w3.org/2000/svg}"
 
 # Brand marks and interface outlines that the app uses. Other files in tools/icons are ignored.
 ICONS = ["primevideo", "youtube", "netflix", "disneyplus", "jellyfin", "twitch", "appletv", "stremio",
-         "spotify", "hbomax", "tubi", "plex", "nuvio", "smarttube", "console", "photo", "apps", "settings", "home"]
+         "spotify", "hbomax", "tubi", "plex", "nuvio", "smarttube", "kodi", "vlc", "emby", "crunchyroll",
+         "paramountplus", "dazn", "mubi", "steamlink", "youtubemusic", "youtubekids", "tidal", "deezer",
+         "console", "photo", "apps", "settings", "home"]
 
 
 def num(value):

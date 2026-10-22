@@ -209,7 +209,7 @@ The workflow then builds the APK with that version, signs it with the release ke
 gh attestation verify quiethome.apk --repo fballiano/quiethome
 ```
 
-To report a security problem, see [SECURITY.md](SECURITY.md).
+[SECURITY.md](SECURITY.md) tells how to report a security problem, what rights the app has, and how releases are made and protected.
 
 | Location | Contents |
 | --- | --- |

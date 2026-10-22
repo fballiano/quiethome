@@ -1,4 +1,7 @@
 #!/bin/sh
+# SPDX-FileCopyrightText: 2026 Fabrizio Balliano
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 # Builds out/quiethome.apk with the Android SDK alone: no Gradle, no libraries.
 # Needs a JDK (17 or newer) and the Android SDK with a platform (34+) and build-tools.
 #   macOS: brew install openjdk && brew install --cask android-commandlinetools

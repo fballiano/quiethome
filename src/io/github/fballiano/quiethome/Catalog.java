@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2026 Fabrizio Balliano
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 package io.github.fballiano.quiethome;
 
 import android.app.ActivityManager;

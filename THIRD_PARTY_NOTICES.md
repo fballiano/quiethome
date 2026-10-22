@@ -40,7 +40,7 @@ The SVG sources are in `tools/icons/`. `tools/icons/SOURCES.md` lists the source
 
 | Material | Terms |
 | --- | --- |
-| [Simple Icons](https://simpleicons.org) marks (Prime Video, YouTube, Netflix, Jellyfin, Twitch, Apple TV, Stremio, Spotify, HBO Max, Tubi) | CC0. See `tools/icons/SIMPLE-ICONS-LICENSE.txt`. |
+| [Simple Icons](https://simpleicons.org) marks (Prime Video, YouTube, Netflix, Jellyfin, Twitch, Apple TV, Stremio, Spotify, HBO Max, Tubi, Kodi, VLC, Emby, Crunchyroll, Paramount+, DAZN, MUBI, Steam, YouTube Music, YouTube Kids, Tidal, Deezer) | CC0. See `tools/icons/SIMPLE-ICONS-LICENSE.txt`. |
 | Disney+ mark from [Custom Brand Icons](https://github.com/elax46/custom-brand-icons) | MIT. See `tools/icons/CUSTOM-BRAND-ICONS-LICENSE.txt`. |
 | Photo, apps, settings, home, game console and "nothing" icons, the app icon and the banner | Drawn for QuietHome, under the project's licence. |
 | Nuvio, SmartTube and Plex marks | Monochrome marks drawn for QuietHome after the apps' logos. The names and logos belong to their owners. |
