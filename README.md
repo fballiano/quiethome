@@ -49,6 +49,15 @@ It has not been tested on a real TV yet. Reports are welcome.
 
 QuietHome draws everything in one custom view. It decodes one photo at screen size and keeps a 120 × 68 blurred copy for the glass effect. It does not blur live. It draws frames only while something moves. Text that scales with focus has no blurred shadow, because a shadow must be drawn again at each step of the scale.
 
+| Xiaomi MiTV-AFMU0, Google TV 14, 1080p interface | Result |
+| --- | --- |
+| An empty app: only a window, no code | about 20 MB PSS |
+| QuietHome, photo background, in front | about 40 MB PSS |
+| The Google TV launcher, in the background | about 46 MB PSS, and 28 MB more in swap |
+| Projectivy Launcher, in the background | about 54 MB PSS, and 33 MB more in swap |
+
+On a real TV, the graphics driver runs inside each app that draws, and the graphics chip uses the normal RAM. That is why an empty app already uses about 20 MB. The emulator does not count this memory, so it shows lower numbers:
+
 | Android TV 12 emulator, host GPU, 1080p | Result |
 | --- | --- |
 | QuietHome, photo background | about 29 MB PSS |
