@@ -24,6 +24,8 @@ import java.util.List;
 final class Stage extends View {
     static final long HOLD_MS = 650;
     private static final long STATUS_MS = 2600, OPENING_MS = 10000;
+    /** Android takes a refused service out of the setting at once; this is a safe margin. */
+    private static final long RECHECK_MS = 1500;
 
     final Home home;
     final Prefs prefs;
@@ -60,6 +62,7 @@ final class Stage extends View {
     };
 
     private final Runnable rotate = this::rotateNow;
+    private final Runnable recheckService = this::recheckServiceNow;
 
     Stage(Home home, Prefs prefs, Catalog catalog) {
         super(home);
@@ -107,14 +110,33 @@ final class Stage extends View {
     void checkService() {
         Screen setup = null;
         for (Screen s : screens) if (s instanceof SetupScreen) setup = s;
-        if (ServiceSetup.isOn(getContext()) || ServiceSetup.turnOnItself(getContext())) {
+        if (ServiceSetup.isOn(getContext())) {
             if (setup != null) {
                 close(setup);
                 toast(text(R.string.service_is_on));
             }
             return;
         }
+        // Android can refuse the service and take it out of the setting again, for example when an
+        // installer screen such as Downloader's gave QuietHome restricted settings. So look once more.
+        if (ServiceSetup.turnOnItself(getContext())) {
+            removeCallbacks(recheckService);
+            postDelayed(recheckService, RECHECK_MS);
+            return;
+        }
         if (setup == null && !SetupScreen.later && top() == homeScreen) open(new SetupScreen(this));
+    }
+
+    /** After QuietHome turned its service on: the service, or the setup screen when Android refused it. */
+    private void recheckServiceNow() {
+        if (ServiceSetup.isOn(getContext())) {
+            checkService();
+            return;
+        }
+        Log.w(Home.TAG, "Android refused the QuietHome service");
+        boolean shown = false;
+        for (Screen s : screens) shown |= s instanceof SetupScreen;
+        if (!shown && !SetupScreen.later && top() == homeScreen) open(new SetupScreen(this));
     }
 
     /** The Home button while QuietHome is in front: close panels. */

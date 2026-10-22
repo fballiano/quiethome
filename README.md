@@ -148,6 +148,8 @@ The `pm grant` command above lets QuietHome turn its service on by itself. Then 
 
 Without that command, QuietHome shows a setup screen when its service is off. Select **Open Accessibility settings**, select **QuietHome** and turn it on. On some TVs, the path is Settings → System → Accessibility → QuietHome.
 
+On Android 13 and newer, an update through an installer screen, for example with Downloader, gives QuietHome restricted settings. Android then turns the service off and does not let QuietHome turn it on again, also with the `pm grant` command. QuietHome then shows its setup screen: select **App info**, allow restricted settings, and come back. Settings → Update QuietHome installs updates in a different way and does not cause this.
+
 On most Android TV and Google TV devices, the stock launcher is a system app with a higher priority, so it keeps the Home button. The QuietHome service takes the Home button back, without disabling system apps. Long presses of Home do not reach the TV while it does this. To give Home back to Android, choose Settings → Android TV → Home button → **Android**.
 
 ### Going back
