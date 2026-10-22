@@ -66,7 +66,7 @@ You need no computer for this. It works on Android TV and Google TV.
 
 1. Install **Downloader** by AFTVnews from the Play Store on the TV.
 2. Open Downloader. Allow it to install apps when the TV asks. If the TV does not ask, go to Settings → Apps → Security & restrictions → Unknown sources (the path changes a little between TVs) and turn on Downloader.
-3. In Downloader's address field, type this address, then select **Go**:
+3. In Downloader's address field, type the code **9591315**, then select **Go**. The code always gives the latest release. If the code does not work, type this address instead:
 
    ```text
    github.com/fballiano/quiethome/releases/latest/download/quiethome.apk
