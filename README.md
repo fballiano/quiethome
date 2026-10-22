@@ -1,12 +1,15 @@
-<img src="docs/images/logo.svg" width="96" height="96" alt="The QuietHome logo: a sun over a horizon">
-
-# QuietHome
-
-A quiet home screen for Android TV and Google TV. It shows your apps, your HDMI inputs, a photograph and the time. It is made for the TV remote.
-
-QuietHome is inspired by [CleanFrame](https://github.com/nthnclrk/CleanFrame), a quiet home screen for Samsung The Frame. It uses only native Android views. It has no WebView and no libraries, so it uses little memory and stays smooth on slow TVs. It uses the network only when you ask for an update.
-
-![QuietHome: the List layout over a photograph, with the clock and the Home controls](docs/images/list.jpg)
+<div align="center">
+<img src="docs/images/logo.svg" width="128" alt="QuietHome" />
+<h1>QuietHome</h1>
+<p><strong>A quiet home screen for Android TV and Google TV.</strong></p>
+<p>
+<a href="https://github.com/fballiano/quiethome/releases/latest"><img src="https://img.shields.io/github/v/release/fballiano/quiethome?style=for-the-badge&color=3D5A66&labelColor=1B1F23" alt="Latest release" /></a>
+<a href="https://github.com/fballiano/quiethome/releases"><img src="https://img.shields.io/github/downloads/fballiano/quiethome/total?style=for-the-badge&color=3D5A66&labelColor=1B1F23" alt="Downloads" /></a>
+<img src="https://img.shields.io/badge/Android%20TV-8.0%2B-3D5A66?style=for-the-badge&labelColor=1B1F23&logo=android&logoColor=white" alt="Android TV 8.0 or later" />
+<a href="LICENSE"><img src="https://img.shields.io/badge/licence-GPL--3.0-3D5A66?style=for-the-badge&labelColor=1B1F23" alt="GPL-3.0 licence" /></a>
+</p>
+<p><a href="https://github.com/fballiano/quiethome/releases/latest"><img src="https://img.shields.io/badge/Download%20for%20Android%20TV-3D5A66?style=for-the-badge&labelColor=3D5A66&logo=data:image/svg%2Bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTQgMTd2MmEyIDIgMCAwIDAgMiAyaDEyYTIgMiAwIDAgMCAyIC0ydi0yIi8+PHBhdGggZD0iTTcgMTFsNSA1bDUgLTUiLz48cGF0aCBkPSJNMTIgNGwwIDEyIi8+PC9zdmc+" alt="Download for Android TV" height="36" /></a></p>
+</div>
 
 <table align=center><tr><td align=center>
 <strong>If you find my work valuable, please consider sponsoring</strong><br />
@@ -14,6 +17,14 @@ QuietHome is inspired by [CleanFrame](https://github.com/nthnclrk/CleanFrame), a
 <a href="https://www.buymeacoffee.com/fballiano" target=_blank title="Buy me a coffee"><img src="https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" alt="Buy me a coffee" /></a>
 <a href="https://www.paypal.com/paypalme/fabrizioballiano" target=_blank title="Donate via PayPal"><img src="https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white" alt="Donate via PayPal" /></a>
 </td></tr></table>
+
+---
+
+QuietHome shows your apps, your HDMI inputs, a photograph and the time. It is made for the TV remote.
+
+QuietHome is inspired by [CleanFrame](https://github.com/nthnclrk/CleanFrame), a quiet home screen for Samsung The Frame. It uses only native Android views. It has no WebView and no libraries, so it uses little memory and stays smooth on slow TVs. It uses the network only when you ask for an update.
+
+![QuietHome: the List layout over a photograph, with the clock and the Home controls](docs/images/list.jpg)
 
 ## What it does
 
