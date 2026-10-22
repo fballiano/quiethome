@@ -147,8 +147,17 @@
 
     <!-- Updates -->
     <string name="update">Päivitä QuietHome</string>
-    <string name="update_note">Avaa Downloaderin · koodi %1$s</string>
-    <string name="update_no_store">Asenna AFTVnewsin Downloader Play Kaupasta.</string>
+    <string name="update_note">Lataa ja asentaa uusimman version</string>
+    <string name="update_checking">Etsitään uutta versiota…</string>
+    <string name="update_latest">QuietHome %1$s on uusin versio.</string>
+    <string name="update_downloading">Ladataan QuietHome %1$s · %2$d %%</string>
+    <string name="update_installing">Asennetaan QuietHome %1$s…</string>
+    <string name="update_allow">Salli QuietHomen asentaa tuntemattomia sovelluksia. Valitse sitten Päivitä QuietHome uudelleen.</string>
+    <string name="update_no_network">QuietHome ei saa yhteyttä GitHubiin. Tarkista verkko ja yritä uudelleen.</string>
+    <string name="update_bad_file">Ladattu tiedosto ei ole kelvollinen päivitys. Yritä myöhemmin uudelleen.</string>
+    <string name="update_other_key">Tällä QuietHomella on eri allekirjoitus. Poista sen asennus ja asenna sitten virallinen versio.</string>
+    <string name="update_failed">Päivitys epäonnistui. Yritä myöhemmin uudelleen.</string>
+    <string name="update_cancelled">Päivitys peruttiin.</string>
 
     <!-- Wallpapers -->
     <string name="wallpaper_misty">Sumuinen rannikko</string>

@@ -2,7 +2,7 @@
 
 A quiet home screen for Android TV and Google TV. It shows your apps, your HDMI inputs, a photograph and the time. It is made for the TV remote.
 
-QuietHome is inspired by [CleanFrame](https://github.com/nthnclrk/CleanFrame), a quiet home screen for Samsung The Frame. It uses only native Android views. It has no WebView, no libraries and no network access, so it uses little memory and stays smooth on slow TVs.
+QuietHome is inspired by [CleanFrame](https://github.com/nthnclrk/CleanFrame), a quiet home screen for Samsung The Frame. It uses only native Android views. It has no WebView and no libraries, so it uses little memory and stays smooth on slow TVs. It uses the network only when you ask for an update.
 
 ![QuietHome: the List layout over a photograph, with the clock and the Home controls](docs/images/list.jpg)
 
@@ -23,12 +23,12 @@ QuietHome is inspired by [CleanFrame](https://github.com/nthnclrk/CleanFrame), a
 - **Your own order.** Hold OK on an app on Home for a short menu: **Move**, **Remove from Home** or **Close app**. In move mode the arrows move the app, OK places it and Back cancels. Settings → Apps on Home adds apps, with up to nine on Home.
 - **Typography and focus.** Choose Manrope, Geist or Newsreader. Choose Type focus or Glass focus, with a Soft, Frost or Clear material.
 - **Your language.** QuietHome uses the language of the TV, in 14 languages (see [Languages](#languages)).
-- **Updates.** Settings shows the installed version under its title. Settings → Update QuietHome opens Downloader, where the code 9591315 gets the latest release. If Downloader is not on the TV, it opens Downloader in the Play Store. QuietHome does not check for updates itself, because it has no network access.
+- **Updates.** Settings shows the installed version under its title. Settings → Update QuietHome looks for a newer release on GitHub. If there is one, it downloads it, checks it, and starts the installation. Android asks you to confirm. The first time, Android asks you to let QuietHome install apps. After the update, QuietHome opens again.
 - **The QuietHome service.** An accessibility service that gives QuietHome the features below. If it is off, QuietHome shows how to turn it on.
   - **Home button.** Home always opens QuietHome, also on TVs that keep their own launcher (for example Google TV). When the stock launcher comes back by itself, for example after the TV wakes from standby, QuietHome replaces it at once. Settings → Android TV → Previous launcher still lets you visit it.
   - **Button mapping.** Press a remote button, for example the Netflix key, and choose what it does: open an app or an HDMI input, open QuietHome or TV settings, or nothing. You do not need a separate button mapper app.
   - **When the TV turns on.** For a TV that only shows a box (for example an Nvidia Shield) on one HDMI port: QuietHome opens that input at boot and each time the TV wakes. It can also open an app. Home still shows QuietHome.
-- **No network.** QuietHome has no INTERNET permission. It has no accounts, no analytics and no ads.
+- **Network only for updates.** QuietHome connects to the network only when you select Settings → Update QuietHome, and only to GitHub. It never checks in the background. It has no accounts, no analytics and no ads.
 
 ![The Dock layout with Glass focus](docs/images/dock.jpg)
 
@@ -104,7 +104,7 @@ You need no computer for this. It works on Android TV and Google TV.
 4. Select **Install** when Downloader has the file, then **Open**.
 5. QuietHome shows how to turn on its service. Select **Open Accessibility settings**, then **QuietHome**, and turn it on. If it is grey or says "Restricted setting", go back, select **App info**, allow restricted settings, and try again.
 
-Press Home: QuietHome opens. To install a new version later, select Settings → Update QuietHome. It opens Downloader, where you type the same code. Your settings stay. Settings shows the installed version under its title.
+Press Home: QuietHome opens. To install a new version later, select Settings → Update QuietHome. Your settings stay. Settings shows the installed version under its title.
 
 ## Install with a coding agent
 

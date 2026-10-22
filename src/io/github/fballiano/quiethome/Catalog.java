@@ -253,11 +253,6 @@ final class Catalog {
         }
     }
 
-    /** Opens the app's page in the store (the Play Store on most TVs). */
-    String openStorePage(String id) {
-        return start(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + id)));
-    }
-
     String openSettings() {
         return start(new Intent(Settings.ACTION_SETTINGS));
     }

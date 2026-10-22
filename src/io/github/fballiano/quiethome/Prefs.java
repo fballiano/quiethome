@@ -33,6 +33,8 @@ final class Prefs {
     static final String BUTTONS = "buttons";       // keycode=target;keycode=target
     static final String INPUT_NAME = "inputName."; // + input id
     static final String START_ON = "startOn";      // an app or input id, or "" for Home
+    static final String IN_FRONT = "inFront";      // boolean: Home is on screen
+    static final String UPDATING = "updating";     // boolean: Settings gave an update to the installer
 
     /** The keys that Settings and the ADB configuration may change, with their allowed values (first is the default). */
     static final Map<String, String[]> CHOICES = new LinkedHashMap<>();

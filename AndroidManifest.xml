@@ -6,6 +6,10 @@
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
     <!-- Only when granted over ADB (pm grant): QuietHome then turns its own service back on. -->
     <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+    <!-- Only for Settings → Update QuietHome: read the latest release on GitHub and download it. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Give the downloaded update to Android's installer, which asks the user to confirm. -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <uses-feature android:name="android.software.leanback" android:required="false" />
     <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
@@ -56,6 +60,11 @@
             android:name=".Config"
             android:exported="true"
             android:permission="android.permission.DUMP" />
+
+        <!-- The result of an update from Settings: the installer's confirmation, or a failure. -->
+        <receiver
+            android:name=".UpdateStatus"
+            android:exported="false" />
 
         <!-- Optional remote buttons and Home button; off until turned on in Accessibility. -->
         <service

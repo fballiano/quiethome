@@ -147,8 +147,17 @@
 
     <!-- Updates -->
     <string name="update">QuietHome aktualisieren</string>
-    <string name="update_note">Öffnet Downloader · Code %1$s</string>
-    <string name="update_no_store">Installieren Sie Downloader von AFTVnews aus dem Play Store.</string>
+    <string name="update_note">Lädt und installiert die neueste Version</string>
+    <string name="update_checking">Suche nach einer neuen Version…</string>
+    <string name="update_latest">QuietHome %1$s ist die neueste Version.</string>
+    <string name="update_downloading">QuietHome %1$s wird geladen · %2$d%%</string>
+    <string name="update_installing">QuietHome %1$s wird installiert…</string>
+    <string name="update_allow">Erlauben Sie QuietHome, unbekannte Apps zu installieren. Wählen Sie dann wieder QuietHome aktualisieren.</string>
+    <string name="update_no_network">QuietHome erreicht GitHub nicht. Prüfen Sie das Netzwerk und versuchen Sie es erneut.</string>
+    <string name="update_bad_file">Die geladene Datei ist kein gültiges Update. Versuchen Sie es später erneut.</string>
+    <string name="update_other_key">Dieses QuietHome ist anders signiert. Deinstallieren Sie es und installieren Sie die offizielle Version.</string>
+    <string name="update_failed">Das Update ist fehlgeschlagen. Versuchen Sie es später erneut.</string>
+    <string name="update_cancelled">Das Update wurde abgebrochen.</string>
 
     <!-- Wallpapers -->
     <string name="wallpaper_misty">Küste im Nebel</string>

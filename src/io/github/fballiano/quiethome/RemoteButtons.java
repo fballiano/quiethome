@@ -7,6 +7,7 @@ import android.accessibilityservice.AccessibilityService;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.SystemClock;
 import android.util.Log;
@@ -38,6 +39,8 @@ public final class RemoteButtons extends AccessibilityService {
 
     /** A stock launcher can report its window more than once as it appears; one replacement is enough. */
     private static final long REPLACE_GAP_MS = 1500;
+    /** The service starts again within seconds of an update; later starts are not about the update. */
+    private static final long UPDATE_WINDOW_MS = 2 * 60_000;
 
     // A capture gives the next mappable key to Settings instead of its usual job. Key events and
     // Settings both run on the main thread, so these fields need no lock.
@@ -70,6 +73,26 @@ public final class RemoteButtons extends AccessibilityService {
         running = true;
         StartOn.register(this);
         Log.i(Home.TAG, "Button mapping on, " + mapping.size() + " assigned");
+        returnAfterUpdate();
+    }
+
+    /**
+     * An update ends the process with the service, and Android then shows the stock launcher, which
+     * has a higher priority. The service starts again a moment later and too late to see it come.
+     * If Home was on screen, or the update came from Settings, it opens Home again.
+     */
+    private void returnAfterUpdate() {
+        boolean wanted = store.getBoolean(Prefs.IN_FRONT, false) || store.getBoolean(Prefs.UPDATING, false);
+        store.edit().putBoolean(Prefs.UPDATING, false).apply();
+        if (!wanted || !ownHomeKey || Home.shown() != null) return;
+        try {
+            long updated = getPackageManager().getPackageInfo(getPackageName(), 0).lastUpdateTime;
+            if (System.currentTimeMillis() - updated > UPDATE_WINDOW_MS) return;
+        } catch (PackageManager.NameNotFoundException e) {
+            return;
+        }
+        Log.i(Home.TAG, "Updated: back to QuietHome");
+        catalog.launch(Catalog.ACTION_HOME);
     }
 
     private void reload() {

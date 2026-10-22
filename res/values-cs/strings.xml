@@ -149,8 +149,17 @@
 
     <!-- Updates -->
     <string name="update">Aktualizovat QuietHome</string>
-    <string name="update_note">Otevře Downloader · kód %1$s</string>
-    <string name="update_no_store">Nainstalujte Downloader od AFTVnews z Obchodu Play.</string>
+    <string name="update_note">Stáhne a nainstaluje nejnovější verzi</string>
+    <string name="update_checking">Hledání nové verze…</string>
+    <string name="update_latest">QuietHome %1$s je nejnovější verze.</string>
+    <string name="update_downloading">Stahování: QuietHome %1$s · %2$d %%</string>
+    <string name="update_installing">Instalace: QuietHome %1$s…</string>
+    <string name="update_allow">Povolte QuietHome instalovat neznámé aplikace a pak znovu vyberte „Aktualizovat QuietHome“.</string>
+    <string name="update_no_network">QuietHome se nemůže připojit ke GitHubu. Zkontrolujte síť a zkuste to znovu.</string>
+    <string name="update_bad_file">Stažený soubor není správná aktualizace. Zkuste to později znovu.</string>
+    <string name="update_other_key">Tato kopie QuietHome má jiný podpis. Odinstalujte ji a pak nainstalujte oficiální vydání.</string>
+    <string name="update_failed">Aktualizace se nezdařila. Zkuste to později znovu.</string>
+    <string name="update_cancelled">Aktualizace byla zrušena.</string>
 
     <!-- Wallpapers -->
     <string name="wallpaper_misty">Pobřeží v mlze</string>

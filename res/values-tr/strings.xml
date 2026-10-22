@@ -147,8 +147,17 @@
 
     <!-- Updates -->
     <string name="update">QuietHome’u güncelle</string>
-    <string name="update_note">Downloader’ı açar · kod %1$s</string>
-    <string name="update_no_store">AFTVnews’in Downloader uygulamasını Play Store’dan yükleyin.</string>
+    <string name="update_note">En yeni sürümü indirir ve yükler</string>
+    <string name="update_checking">Yeni sürüm aranıyor…</string>
+    <string name="update_latest">QuietHome %1$s en yeni sürüm.</string>
+    <string name="update_downloading">İndiriliyor: QuietHome %1$s · %%%2$d</string>
+    <string name="update_installing">Yükleniyor: QuietHome %1$s…</string>
+    <string name="update_allow">QuietHome’a bilinmeyen uygulama yükleme izni verin, sonra “QuietHome’u güncelle” öğesini yine seçin.</string>
+    <string name="update_no_network">QuietHome, GitHub’a bağlanamıyor. Ağı kontrol edin ve tekrar deneyin.</string>
+    <string name="update_bad_file">İndirilen dosya geçerli bir güncelleme değil. Daha sonra tekrar deneyin.</string>
+    <string name="update_other_key">Bu QuietHome kopyasının imzası farklı. Onu kaldırın, sonra resmi sürümü yükleyin.</string>
+    <string name="update_failed">Güncelleme başarısız oldu. Daha sonra tekrar deneyin.</string>
+    <string name="update_cancelled">Güncelleme iptal edildi.</string>
 
     <!-- Wallpapers -->
     <string name="wallpaper_misty">Sisli kıyı</string>

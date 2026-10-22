@@ -114,7 +114,7 @@ final class SettingsScreen extends Screen {
             () -> stage.open(new EditorScreen(stage))));
         p.rows.add(buttonMapping());
         p.rows.add(link(text(R.string.android_tv), () -> text(R.string.android_tv_note), () -> push(android())));
-        p.rows.add(action(text(R.string.update), () -> text(R.string.update_note, DOWNLOADER_CODE), this::update));
+        p.rows.add(action(text(R.string.update), () -> text(R.string.update_note), () -> Updater.start(stage)));
         return p;
     }
 
@@ -270,18 +270,6 @@ final class SettingsScreen extends Screen {
                 : text(R.string.button_opens, name, e == null ? id : Catalog.title(e)));
         }, text(R.string.choose_what_button_does, name), lead, current == null ? Catalog.ACTION_DEFAULT : current);
         stage.open(picker[0]);
-    }
-
-    /** QuietHome has no network access. Downloader (AFTVnews) gets each release with this code. */
-    static final String DOWNLOADER = "com.esaba.downloader", DOWNLOADER_CODE = "9591315";
-
-    /** Opens Downloader, where the code gets the latest release; without Downloader, its Play Store page. */
-    private void update() {
-        if (stage.catalog.get(DOWNLOADER) != null) {
-            stage.toast(stage.catalog.launch(DOWNLOADER));
-            return;
-        }
-        if (stage.catalog.openStorePage(DOWNLOADER) != null) stage.toast(text(R.string.update_no_store));
     }
 
     private static final int[] ROTATION_TEXTS = {

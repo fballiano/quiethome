@@ -147,8 +147,17 @@
 
     <!-- Updates -->
     <string name="update">QuietHome bijwerken</string>
-    <string name="update_note">Opent Downloader · code %1$s</string>
-    <string name="update_no_store">Installeer Downloader van AFTVnews uit de Play Store.</string>
+    <string name="update_note">Downloadt en installeert de nieuwste versie</string>
+    <string name="update_checking">Zoeken naar een nieuwe versie…</string>
+    <string name="update_latest">QuietHome %1$s is de nieuwste versie.</string>
+    <string name="update_downloading">QuietHome %1$s downloaden · %2$d%%</string>
+    <string name="update_installing">QuietHome %1$s installeren…</string>
+    <string name="update_allow">Sta QuietHome toe om onbekende apps te installeren en kies dan opnieuw QuietHome bijwerken.</string>
+    <string name="update_no_network">QuietHome kan geen verbinding maken met GitHub. Controleer het netwerk en probeer het opnieuw.</string>
+    <string name="update_bad_file">Het gedownloade bestand is geen geldige update. Probeer het later opnieuw.</string>
+    <string name="update_other_key">Deze QuietHome heeft een andere handtekening. Verwijder hem en installeer de officiële versie.</string>
+    <string name="update_failed">De update is mislukt. Probeer het later opnieuw.</string>
+    <string name="update_cancelled">De update is geannuleerd.</string>
 
     <!-- Wallpapers -->
     <string name="wallpaper_misty">Mistige kust</string>

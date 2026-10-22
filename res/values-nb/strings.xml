@@ -147,8 +147,17 @@
 
     <!-- Updates -->
     <string name="update">Oppdater QuietHome</string>
-    <string name="update_note">Åpner Downloader · kode %1$s</string>
-    <string name="update_no_store">Installer Downloader fra AFTVnews via Play-butikken.</string>
+    <string name="update_note">Laster ned og installerer nyeste versjon</string>
+    <string name="update_checking">Ser etter en ny versjon…</string>
+    <string name="update_latest">QuietHome %1$s er den nyeste versjonen.</string>
+    <string name="update_downloading">Laster ned QuietHome %1$s · %2$d %%</string>
+    <string name="update_installing">Installerer QuietHome %1$s…</string>
+    <string name="update_allow">Tillat QuietHome å installere ukjente apper, og velg så Oppdater QuietHome igjen.</string>
+    <string name="update_no_network">QuietHome får ikke kontakt med GitHub. Sjekk nettverket, og prøv igjen.</string>
+    <string name="update_bad_file">Den nedlastede filen er ikke en riktig oppdatering. Prøv igjen senere.</string>
+    <string name="update_other_key">Denne QuietHome har en annen signatur. Avinstaller den, og installer så den offisielle versjonen.</string>
+    <string name="update_failed">Oppdateringen mislyktes. Prøv igjen senere.</string>
+    <string name="update_cancelled">Oppdateringen ble avbrutt.</string>
 
     <!-- Wallpapers -->
     <string name="wallpaper_misty">Tåkete kyst</string>

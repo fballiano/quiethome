@@ -12,7 +12,8 @@ QuietHome asks for few rights. Each right has one job.
 
 | Right | Job |
 | --- | --- |
-| No `INTERNET` permission | QuietHome cannot send or receive data. It has no analytics and no ads. |
+| `INTERNET` | Only for Settings → Update QuietHome, and only when you select it. QuietHome reads the latest release from the GitHub API (`api.github.com`) and downloads `quiethome.apk` from that release. It sends nothing about you or your TV. It has no analytics and no ads. |
+| `REQUEST_INSTALL_PACKAGES` | Gives the downloaded update to Android's installer. Before that, QuietHome checks the SHA-256 digest of the file against the digest that GitHub publishes, and checks that the signature is the same as the installed app. Android asks you to confirm each update, and installs it only with the same signature. |
 | `KILL_BACKGROUND_PROCESSES` | Hold OK on an app to close it. |
 | `WRITE_SECURE_SETTINGS` | Only when you grant it with ADB. QuietHome then uses it to turn its own service on again, for example after a force stop. It changes no other setting. |
 | Accessibility service | It receives key presses and one event type, `typeWindowStateChanged`, which gives the package and activity name of the app in front. It cannot read the screen (`canRetrieveWindowContent="false"`). It acts on Home, on the buttons that you map, and on the stock launcher's home screen, which it replaces with QuietHome. It acts on nothing else. |

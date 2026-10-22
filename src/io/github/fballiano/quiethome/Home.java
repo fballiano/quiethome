@@ -57,6 +57,11 @@ public final class Home extends Activity {
         registerReceiver(packages, filter);
     }
 
+    /** A message at the bottom of the screen, for example the result of an update. */
+    void toast(String message) {
+        stage.toast(message);
+    }
+
     /** Settings changed outside the activity: read apps, inputs and choices again. */
     void configChanged() {
         stage.refresh();
@@ -86,7 +91,13 @@ public final class Home extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
+        inFront(true);
         stage.start();
+    }
+
+    /** Saved, so that the service can bring Home back when an update ends the process (see RemoteButtons). */
+    private void inFront(boolean on) {
+        getSharedPreferences(Prefs.FILE, MODE_PRIVATE).edit().putBoolean(Prefs.IN_FRONT, on).apply();
     }
 
     @Override
@@ -111,6 +122,7 @@ public final class Home extends Activity {
 
     @Override
     protected void onStop() {
+        inFront(false);
         stage.stop();
         super.onStop();
     }

@@ -149,8 +149,17 @@
 
     <!-- Updates -->
     <string name="update">Zaktualizuj QuietHome</string>
-    <string name="update_note">Otwiera Downloader · kod %1$s</string>
-    <string name="update_no_store">Zainstaluj Downloader od AFTVnews ze Sklepu Play.</string>
+    <string name="update_note">Pobiera i instaluje najnowszą wersję</string>
+    <string name="update_checking">Szukanie nowej wersji…</string>
+    <string name="update_latest">QuietHome %1$s to najnowsza wersja.</string>
+    <string name="update_downloading">Pobieranie: QuietHome %1$s · %2$d%%</string>
+    <string name="update_installing">Instalowanie: QuietHome %1$s…</string>
+    <string name="update_allow">Zezwól QuietHome na instalowanie nieznanych aplikacji, potem znowu wybierz „Zaktualizuj QuietHome”.</string>
+    <string name="update_no_network">QuietHome nie może połączyć się z GitHubem. Sprawdź sieć i spróbuj znowu.</string>
+    <string name="update_bad_file">Pobrany plik nie jest poprawną aktualizacją. Spróbuj znowu później.</string>
+    <string name="update_other_key">Ta kopia QuietHome ma inny podpis. Odinstaluj ją, potem zainstaluj oficjalne wydanie.</string>
+    <string name="update_failed">Aktualizacja nie powiodła się. Spróbuj znowu później.</string>
+    <string name="update_cancelled">Aktualizacja została anulowana.</string>
 
     <!-- Wallpapers -->
     <string name="wallpaper_misty">Wybrzeże we mgle</string>

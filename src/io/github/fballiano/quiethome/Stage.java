@@ -170,7 +170,7 @@ final class Stage extends View {
         toast(message, STATUS_MS);
     }
 
-    private void toast(String message, long ms) {
+    void toast(String message, long ms) {
         if (message == null) return;
         status = message;
         statusUntil = SystemClock.uptimeMillis() + ms;
