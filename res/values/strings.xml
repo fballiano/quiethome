@@ -23,6 +23,15 @@
     <string name="move_hint_list">Up and Down move the app. OK places it, Back cancels.</string>
     <string name="move_hint_dock">Left and Right move the app. OK places it, Back cancels.</string>
 
+    <!-- Rename an HDMI input -->
+    <string name="rename">Rename</string>
+    <string name="rename_input">Rename %1$s</string>
+    <string name="rename_note">Type the new name, then select ✓ or Done on the keyboard. Back cancels.</string>
+    <string name="save">Save</string>
+    <string name="use_tv_name">Use the TV\'s name</string>
+    <string name="renamed">Renamed the input to %1$s.</string>
+    <string name="input_tv_name_again">The input has the TV\'s name again.</string>
+
     <!-- All apps and the pickers -->
     <string name="edit_home">Edit Home</string>
     <string name="on_home">On Home</string>
@@ -124,6 +133,9 @@
     <string name="hour_12">12-hour</string>
     <string name="clock_24">24-hour clock</string>
     <string name="clock_12">12-hour clock</string>
+    <string name="date">Date</string>
+    <string name="off">Off</string>
+    <string name="on">On</string>
     <string name="type">Type</string>
     <string name="glass">Glass</string>
     <string name="material">Material</string>

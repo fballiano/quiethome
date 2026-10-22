@@ -18,6 +18,13 @@
     <string name="no_apps_on_home">Ingen apps på startskærmen</string>
     <string name="move_hint_list">Op og Ned flytter appen. OK placerer den, Tilbage annullerer.</string>
     <string name="move_hint_dock">Venstre og Højre flytter appen. OK placerer den, Tilbage annullerer.</string>
+    <string name="rename">Omdøb</string>
+    <string name="rename_input">Omdøb %1$s</string>
+    <string name="rename_note">Skriv det nye navn, og vælg ✓ eller Færdig på tastaturet. Tilbage annullerer.</string>
+    <string name="save">Gem</string>
+    <string name="use_tv_name">Brug tv’ets navn</string>
+    <string name="renamed">Indgangen hedder nu %1$s.</string>
+    <string name="input_tv_name_again">Indgangen har tv’ets navn igen.</string>
 
     <!-- All apps and the pickers -->
     <string name="edit_home">Rediger start</string>
@@ -119,6 +126,9 @@
     <string name="hour_12">12 timer</string>
     <string name="clock_24">24-timers ur</string>
     <string name="clock_12">12-timers ur</string>
+    <string name="date">Dato</string>
+    <string name="off">Fra</string>
+    <string name="on">Til</string>
     <string name="type">Tekst</string>
     <string name="glass">Glas</string>
     <string name="material">Materiale</string>

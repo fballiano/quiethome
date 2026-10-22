@@ -18,6 +18,13 @@
     <string name="no_apps_on_home">Inga appar på startskärmen</string>
     <string name="move_hint_list">Upp och Ned flyttar appen. OK placerar den, Tillbaka avbryter.</string>
     <string name="move_hint_dock">Vänster och Höger flyttar appen. OK placerar den, Tillbaka avbryter.</string>
+    <string name="rename">Byt namn</string>
+    <string name="rename_input">Byt namn på %1$s</string>
+    <string name="rename_note">Skriv det nya namnet och välj ✓ eller Klar på tangentbordet. Tillbaka avbryter.</string>
+    <string name="save">Spara</string>
+    <string name="use_tv_name">Använd tv:ns namn</string>
+    <string name="renamed">Ingången heter nu %1$s.</string>
+    <string name="input_tv_name_again">Ingången har tv:ns namn igen.</string>
 
     <!-- All apps and the pickers -->
     <string name="edit_home">Redigera start</string>
@@ -119,6 +126,9 @@
     <string name="hour_12">12 timmar</string>
     <string name="clock_24">24-timmarsklocka</string>
     <string name="clock_12">12-timmarsklocka</string>
+    <string name="date">Datum</string>
+    <string name="off">Av</string>
+    <string name="on">På</string>
     <string name="type">Text</string>
     <string name="glass">Glas</string>
     <string name="material">Material</string>

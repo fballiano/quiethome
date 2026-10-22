@@ -18,6 +18,13 @@
     <string name="no_apps_on_home">Geen apps op het startscherm</string>
     <string name="move_hint_list">Omhoog en Omlaag verplaatsen de app. OK zet hem neer, Terug annuleert.</string>
     <string name="move_hint_dock">Links en Rechts verplaatsen de app. OK zet hem neer, Terug annuleert.</string>
+    <string name="rename">Naam wijzigen</string>
+    <string name="rename_input">Naam van %1$s wijzigen</string>
+    <string name="rename_note">Typ de nieuwe naam en kies ✓ of Klaar op het toetsenbord. Terug annuleert.</string>
+    <string name="save">Opslaan</string>
+    <string name="use_tv_name">Naam van de tv</string>
+    <string name="renamed">De ingang heet nu %1$s.</string>
+    <string name="input_tv_name_again">De ingang heeft weer de naam van de tv.</string>
 
     <!-- All apps and the pickers -->
     <string name="edit_home">Bewerken</string>
@@ -119,6 +126,9 @@
     <string name="hour_12">12 uur</string>
     <string name="clock_24">24-uursklok</string>
     <string name="clock_12">12-uursklok</string>
+    <string name="date">Datum</string>
+    <string name="off">Uit</string>
+    <string name="on">Aan</string>
     <string name="type">Tekst</string>
     <string name="glass">Glas</string>
     <string name="material">Materiaal</string>

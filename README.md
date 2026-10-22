@@ -28,12 +28,13 @@ QuietHome is inspired by [CleanFrame](https://github.com/nthnclrk/CleanFrame), a
 
 ## What it does
 
-- **List or Dock layout.** Show names, icons or both. Show a 24-hour or 12-hour clock.
+- **List or Dock layout.** Show names, icons or both. Show a 24-hour or 12-hour clock. You can also show the date under the clock.
 - **One-colour icons.** Known services use a built-in mark. For every other app, QuietHome turns the app's own icon into a mark in the same colour.
 - **Backgrounds.** Choose one of 15 photographs, a light colour or a dark colour. Photos can rotate each time Home opens, or every 5, 15 or 60 minutes.
 - **Two settings buttons.** Settings (the sliders) opens QuietHome's settings. TV settings (the gear) opens Android's own settings.
-- **All apps.** It shows every TV app and every HDMI input. OK opens the item. Hold OK to close an app and free its memory. The first tile, **Edit Home**, opens the Apps on Home editor.
-- **Your own order.** Hold OK on an app on Home for a short menu: **Move**, **Remove from Home** or **Close app**. In move mode the arrows move the app, OK places it and Back cancels. Settings → Apps on Home adds apps, with up to nine on Home.
+- **All apps.** It shows every TV app and every HDMI input. OK opens the item. Hold OK on an app to close it and free its memory. Hold OK on an HDMI input to rename it. The first tile, **Edit Home**, opens the Apps on Home editor.
+- **Your own order.** Hold OK on an app on Home for a short menu: **Move**, **Remove from Home** and **Close app**. For an HDMI input, the last item is **Rename**. In move mode the arrows move the app, OK places it and Back cancels. Settings → Apps on Home adds apps, with up to nine on Home.
+- **Input names.** Give an HDMI input a name that you know, for example "Nintendo Switch". Hold OK on the input, select **Rename**, and type the name with the TV keyboard. **Use the TV's name** removes your name. When the name has Switch, Xbox or PlayStation in it, Home shows a game controller mark.
 - **Typography and focus.** Choose Manrope, Geist or Newsreader. Choose Type focus or Glass focus, with a Soft, Frost or Clear material.
 - **Your language.** QuietHome uses the language of the TV, in 14 languages (see [Languages](#languages)).
 - **Updates.** Settings shows the installed version under its title. Settings → Update QuietHome looks for a newer release on GitHub. If there is one, it downloads it, checks it, and starts the installation. Android asks you to confirm. The first time, Android asks you to let QuietHome install apps. After the update, QuietHome opens again.
@@ -64,12 +65,13 @@ To add a language, see [Translate QuietHome](#translate-quiethome).
 
 QuietHome runs on Android TV and Google TV 8.0 (API 26) and newer, which includes Android TV 12 and newer. It has no code for one TV brand.
 
-| Tested on (emulators, 1080p) | Result |
+| Tested on | Result |
 | --- | --- |
-| Android TV 12 (API 31) | All screens, button mapping, Home button, hold to close, move mode, opening an app at boot and on wake, the service setup screen and its self-repair |
-| Google TV 14 (API 34) | All screens, button mapping, Home button, hold to close |
+| Xiaomi Google TV box (MiTV-AFMU0), Google TV 14, a real device | Memory and speed (see [Memory and speed](#memory-and-speed)) |
+| Android TV 12 emulator (API 31), 1080p | All screens, button mapping, Home button, hold to close, move mode, opening an app at boot and on wake, the service setup screen and its self-repair |
+| Google TV 14 emulator (API 34), 1080p | All screens, button mapping, Home button, hold to close, the date, renaming an input with the TV keyboard, reading the configuration |
 
-It has not been tested on a real TV yet. Reports are welcome.
+Reports from other TVs are welcome.
 
 ## Memory and speed
 
@@ -216,6 +218,7 @@ adb shell "am broadcast -n io.github.fballiano.quiethome/.Config --es config '{
 | `wallpaper` | `misty`, `cove`, `forest`, `valley`, `night`, `peaks`, `bridge`, `ridge`, `golden`, `summit`, `goldcoast`, `sydney`, `amber`, `mint`, `alpine` |
 | `rotation` | `fixed`, `open`, `5`, `15`, `60` |
 | `clock` | `24`, `12` |
+| `date` | `off`, `on` |
 | `font` | `manrope`, `geist`, `newsreader` |
 | `focus` | `type`, `glass` |
 | `material` | `soft`, `frost`, `clear` |
@@ -227,6 +230,30 @@ adb shell "am broadcast -n io.github.fballiano.quiethome/.Config --es config '{
 | `buttons` | Android keycode to a package name, an input id, `action.none`, `action.home` or `action.settings`. An empty value removes the mapping. |
 
 HDMI input ids look like `hdmi:HW5`. To see them, send an empty configuration (`--es config '{}'`), then run `adb logcat -d -s QuietHome | grep 'HDMI input'`.
+
+### Read the configuration
+
+Add `--ez dump true` to see the current configuration. QuietHome gives it as the result of the broadcast, on one line, with the same keys:
+
+```sh
+adb shell am broadcast -n io.github.fballiano.quiethome/.Config --ez dump true
+```
+
+```text
+Broadcast completed: result=0, data="{"layout":"dock","bg":"photo", … ,"buttons":{"191":"com.netflix.ninja"}}"
+```
+
+`home` is in the result only after you change the apps on Home. Without it, each TV chooses its own apps.
+
+To copy the configuration to a second TV, save it to a file, then send the file to the second TV (`-s` chooses the TV):
+
+```sh
+adb -s <first-tv> shell am broadcast -n io.github.fballiano.quiethome/.Config --ez dump true \
+  | sed -n 's/^Broadcast completed: result=0, data="\(.*\)"$/\1/p' > quiethome.json
+adb -s <second-tv> shell am broadcast -n io.github.fballiano.quiethome/.Config --es config "'$(cat quiethome.json)'"
+```
+
+A configuration adds and changes values. It does not remove input names or button mappings that are not in it. If a name has an apostrophe ('), the second command fails: change the name on the TV instead.
 
 To map a remote button, the easiest way is on the TV: Settings → Button mapping → Add a button. The `buttons` key needs the Android keycode, which the TV's key layout decides.
 

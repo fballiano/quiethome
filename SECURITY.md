@@ -17,7 +17,7 @@ QuietHome asks for few rights. Each right has one job.
 | `KILL_BACKGROUND_PROCESSES` | Hold OK on an app to close it. |
 | `WRITE_SECURE_SETTINGS` | Only when you grant it with ADB. QuietHome then uses it to turn its own service on again, for example after a force stop. It changes no other setting. |
 | Accessibility service | It receives key presses and one event type, `typeWindowStateChanged`, which gives the package and activity name of the app in front. It cannot read the screen (`canRetrieveWindowContent="false"`). It acts on Home, on the buttons that you map, and on the stock launcher's home screen, which it replaces with QuietHome. It acts on nothing else. |
-| Configuration receiver | It needs the `DUMP` permission. Only ADB and system apps have that permission, so other apps cannot change the configuration. |
+| Configuration receiver | It needs the `DUMP` permission. Only ADB and system apps have that permission, so other apps cannot read or change the configuration. |
 
 QuietHome keeps its settings in its private app storage. Backups are off (`allowBackup="false"`).
 

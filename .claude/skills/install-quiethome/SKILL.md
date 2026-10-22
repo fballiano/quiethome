@@ -93,6 +93,7 @@ Done when the setting lists `io.github.fballiano.quiethome/io.github.fballiano.q
 
 Ask the user what they want. Offer the defaults and change only what they choose. Read the current state first:
 
+- Configuration: `adb shell am broadcast -n io.github.fballiano.quiethome/.Config --ez dump true`. The JSON after `data=` uses the keys in **Configuration**. If QuietHome was already installed, add it to the recovery record.
 - Apps: `adb shell cmd package query-activities --brief -a android.intent.action.MAIN -c android.intent.category.LEANBACK_LAUNCHER`
 - HDMI inputs: QuietHome logs them each time it reads the app list. Open QuietHome once, run `adb shell "am broadcast -n io.github.fballiano.quiethome/.Config --es config '{}'"`, then `adb logcat -d -s QuietHome | grep 'HDMI input'`. Each line gives the id to use (for example `hdmi:HW5`) and the TV's name for it. No lines means the TV reports no HDMI inputs.
 
@@ -130,6 +131,7 @@ Wrap the whole remote command in double quotes. Without them the TV's shell expa
 | `wallpaper` | `misty`, `cove`, `forest`, `valley`, `night`, `peaks`, `bridge`, `ridge`, `golden`, `summit`, `goldcoast`, `sydney`, `amber`, `mint`, `alpine` |
 | `rotation` | `fixed`, `open`, `5`, `15`, `60` |
 | `clock` | `24`, `12` |
+| `date` | `off`, `on` |
 | `font` | `manrope`, `geist`, `newsreader` |
 | `focus` | `type`, `glass` |
 | `material` | `soft`, `frost`, `clear` |
@@ -151,6 +153,8 @@ Wrap the whole remote command in double quotes. Without them the TV's shell expa
 Use the values from the recovery record.
 
 ```sh
+# QuietHome's configuration back to the recorded JSON (only when QuietHome was installed before)
+adb shell am broadcast -n io.github.fballiano.quiethome/.Config --es config "'<recorded JSON>'"
 # Home button back to Android
 adb shell "am broadcast -n io.github.fballiano.quiethome/.Config --es config '{\"homeKey\":\"system\"}'"
 # Stop the service self-repair, then set accessibility services back to the recorded value ("null" means: delete the setting)

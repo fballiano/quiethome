@@ -15,18 +15,23 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeSet;
 
 /**
  * Configuration from a computer. The manifest guards this receiver with the DUMP permission,
  * which ADB's shell holds and ordinary apps do not:
  * adb shell "am broadcast -n io.github.fballiano.quiethome/.Config --es config '{\"layout\":\"dock\"}'"
+ * With --ez dump true, the result of the broadcast is the current configuration, in the same format.
  */
 public final class Config extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         String json = intent.getStringExtra("config");
+        boolean dump = intent.getBooleanExtra("dump", false);
         if (json == null) {
-            Log.w(Home.TAG, "Ignoring a configuration without the config extra");
+            if (dump) dump(context);
+            else Log.w(Home.TAG, "Ignoring a configuration without the config extra");
             return;
         }
         try {
@@ -39,6 +44,35 @@ public final class Config extends BroadcastReceiver {
         // A running Home reads everything again (this also logs the HDMI inputs); otherwise it reads it at start.
         Home home = Home.shown();
         if (home != null) home.configChanged();
+        if (dump) dump(context);
+    }
+
+    /** am broadcast prints the result data, so the computer gets the configuration on one line. */
+    private void dump(Context context) {
+        try {
+            setResultData(read(new Prefs(context)).toString());
+        } catch (JSONException e) {
+            Log.w(Home.TAG, "Cannot write the configuration: " + e.getMessage());
+        }
+    }
+
+    /** Every key that apply() accepts. Home is left out while it was never saved: each TV then picks its own defaults. */
+    static JSONObject read(Prefs prefs) throws JSONException {
+        JSONObject config = new JSONObject();
+        for (String key : Prefs.CHOICES.keySet()) config.put(key, prefs.get(key));
+        config.put(Prefs.WALLPAPER, prefs.get(Prefs.WALLPAPER));
+        config.put(Prefs.START_ON, prefs.get(Prefs.START_ON));
+        List<String> home = prefs.home();
+        if (home != null) config.put("home", new JSONArray(home));
+        JSONObject names = new JSONObject();
+        for (String key : new TreeSet<>(prefs.sp.getAll().keySet())) {
+            if (key.startsWith(Prefs.INPUT_NAME)) names.put(key.substring(Prefs.INPUT_NAME.length()), prefs.sp.getString(key, ""));
+        }
+        config.put("inputNames", names);
+        JSONObject buttons = new JSONObject();
+        for (Map.Entry<Integer, String> b : prefs.buttons().entrySet()) buttons.put(String.valueOf(b.getKey()), b.getValue());
+        config.put("buttons", buttons);
+        return config;
     }
 
     /** Saves each known key. A choice outside its allowed values is skipped with a warning. */

@@ -157,6 +157,7 @@ final class SettingsScreen extends Screen {
         p.rows.add(choice(text(R.string.apps), Prefs.APPS, text(R.string.both), text(R.string.names), text(R.string.icons)));
         p.rows.add(choice(text(R.string.controls), Prefs.CONTROLS, text(R.string.both), text(R.string.names), text(R.string.icons)));
         p.rows.add(choice(text(R.string.clock), Prefs.CLOCK, text(R.string.hour_24), text(R.string.hour_12)));
+        p.rows.add(choice(text(R.string.date), Prefs.DATE, text(R.string.off), text(R.string.on)));
         return p;
     }
 

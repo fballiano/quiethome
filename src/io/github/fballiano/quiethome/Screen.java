@@ -4,6 +4,9 @@
 package io.github.fballiano.quiethome;
 
 import android.graphics.Canvas;
+import android.view.KeyEvent;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
 
 /** One layer of the interface: Home at the bottom, panels such as All apps and Settings above it. */
 abstract class Screen {
@@ -56,5 +59,20 @@ abstract class Screen {
 
     /** Apps were installed, removed or updated, or the configuration changed. */
     void refresh() {
+    }
+
+    /** Whether the screen has a text field, so the TV's keyboard can type into it. */
+    boolean editsText() {
+        return false;
+    }
+
+    /** The keyboard's connection to the text field, or null. */
+    InputConnection input(EditorInfo info) {
+        return null;
+    }
+
+    /** A key that Stage does not use, for example Delete. Returns true when the screen used it. */
+    boolean key(KeyEvent e) {
+        return false;
     }
 }

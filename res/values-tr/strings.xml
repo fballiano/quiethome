@@ -18,6 +18,13 @@
     <string name="no_apps_on_home">Ana ekranda uygulama yok</string>
     <string name="move_hint_list">Yukarı ve Aşağı uygulamayı taşır. OK yerleştirir, Geri iptal eder.</string>
     <string name="move_hint_dock">Sol ve Sağ uygulamayı taşır. OK yerleştirir, Geri iptal eder.</string>
+    <string name="rename">Yeniden adlandır</string>
+    <string name="rename_input">%1$s adını değiştir</string>
+    <string name="rename_note">Yeni adı yazın, sonra klavyede ✓ veya Bitti’yi seçin. Geri iptal eder.</string>
+    <string name="save">Kaydet</string>
+    <string name="use_tv_name">TV’nin adını kullan</string>
+    <string name="renamed">Girişin yeni adı %1$s.</string>
+    <string name="input_tv_name_again">Giriş yeniden TV’nin adını kullanıyor.</string>
 
     <!-- All apps and the pickers -->
     <string name="edit_home">Ana ekranı düzenle</string>
@@ -119,6 +126,9 @@
     <string name="hour_12">12 saat</string>
     <string name="clock_24">24 saatlik saat</string>
     <string name="clock_12">12 saatlik saat</string>
+    <string name="date">Tarih</string>
+    <string name="off">Kapalı</string>
+    <string name="on">Açık</string>
     <string name="type">Yazı</string>
     <string name="glass">Cam</string>
     <string name="material">Malzeme</string>

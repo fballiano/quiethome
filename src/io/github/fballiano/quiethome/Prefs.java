@@ -22,6 +22,7 @@ final class Prefs {
     static final String WALLPAPER = "wallpaper";   // a Wallpapers id
     static final String ROTATION = "rotation";     // fixed | open | 5 | 15 | 60
     static final String CLOCK = "clock";           // 24 | 12
+    static final String DATE = "date";             // off | on
     static final String FONT = "font";             // manrope | geist | newsreader
     static final String FOCUS = "focus";           // type | glass
     static final String MATERIAL = "material";     // soft | frost | clear
@@ -44,6 +45,7 @@ final class Prefs {
         CHOICES.put(BG, new String[]{"photo", "light", "dark"});
         CHOICES.put(ROTATION, new String[]{"fixed", "open", "5", "15", "60"});
         CHOICES.put(CLOCK, new String[]{"24", "12"});
+        CHOICES.put(DATE, new String[]{"off", "on"});
         CHOICES.put(FONT, new String[]{"manrope", "geist", "newsreader"});
         CHOICES.put(FOCUS, new String[]{"type", "glass"});
         CHOICES.put(MATERIAL, new String[]{"soft", "frost", "clear"});

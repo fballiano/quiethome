@@ -12,9 +12,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Every installed app and HDMI input in a five-column grid. OK opens and holding OK closes. As a
- * picker it chooses one item, for example what a mapped button does. Actions are tiles at the
- * start of the grid, never buttons outside it, so the arrows reach everything the same way.
+ * Every installed app and HDMI input in a five-column grid. OK opens. Holding OK closes an app and
+ * renames an input. As a picker it chooses one item, for example what a mapped button does.
+ * Actions are tiles at the start of the grid, never buttons outside it, so the arrows reach
+ * everything the same way.
  */
 final class AllAppsScreen extends Screen {
     interface Picker {
@@ -123,6 +124,10 @@ final class AllAppsScreen extends Screen {
     void okLong() {
         if (!holdable()) return;
         Catalog.Entry e = list.get(focus);
+        if (e.isInput()) {
+            stage.open(new RenameScreen(stage, e));
+            return;
+        }
         String error = stage.catalog.close(e.id);
         stage.toast(error != null ? error : text(R.string.closed, Catalog.title(e)));
     }

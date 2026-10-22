@@ -10,11 +10,14 @@ import android.graphics.LinearGradient;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.Typeface;
+import android.text.format.DateFormat;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Home: the chosen apps as a List (large names down the left) or a Dock (tiles on a glass band),
@@ -46,6 +49,8 @@ final class HomeScreen extends Screen {
     private final Ui.Anim plateAlpha = new Ui.Anim(Ui.FOCUS_MS);
     private final RectF r = new RectF();
     private final Calendar calendar = Calendar.getInstance();
+    private String dateText;
+    private int dateDay;
     /** The control names in the TV's language, read again by refresh() when the language changes. */
     private final String[] controlNames = new String[CONTROL_TEXTS.length];
     private Shader[] scrims;
@@ -66,6 +71,8 @@ final class HomeScreen extends Screen {
     @Override
     void refresh() {
         for (int k = 0; k < controlNames.length; k++) controlNames[k] = text(CONTROL_TEXTS[k]);
+        // The language can be new.
+        dateText = null;
         menu = null;
         moving = false;
         String focused = focus < items.size() ? items.get(focus).id : stage.prefs.sp.getString(Prefs.LAST, null);
@@ -178,7 +185,7 @@ final class HomeScreen extends Screen {
         menu = new ArrayList<>();
         menu.add(R.string.move);
         menu.add(R.string.remove_from_home);
-        if (!items.get(focus).isInput()) menu.add(R.string.close_app);
+        menu.add(items.get(focus).isInput() ? R.string.rename : R.string.close_app);
         menuIndex = 0;
     }
 
@@ -187,6 +194,8 @@ final class HomeScreen extends Screen {
         if (choice == R.string.move) {
             moving = true;
             targets();
+        } else if (choice == R.string.rename) {
+            stage.open(new RenameScreen(stage, e));
         } else if (choice == R.string.remove_from_home) {
             if (items.size() <= 1) {
                 stage.toast(text(R.string.home_needs_one));
@@ -544,10 +553,30 @@ final class HomeScreen extends Screen {
         String time;
         if (stage.prefs.is(Prefs.CLOCK, "12")) time = (hour % 12 == 0 ? 12 : hour % 12) + ":" + two(minute);
         else time = two(hour) + ":" + two(minute);
-        ui.text(ui.font(stage.prefs.get(Prefs.FONT), 500), 48, -1.5f, ink, 1);
+        Typeface face = ui.font(stage.prefs.get(Prefs.FONT), 500);
+        ui.text(face, 48, -1.5f, ink, 1);
         ui.shadow(photo);
-        if (dock) ui.line(c, time, LEFT, ui.baseline(104), 0, -1);
-        else ui.line(c, time, RIGHT, ui.baseline(145), 0, 1);
+        float cy = dock ? 104 : 145;
+        if (dock) ui.line(c, time, LEFT, ui.baseline(cy), 0, -1);
+        else ui.line(c, time, RIGHT, ui.baseline(cy), 0, 1);
+        if (!stage.prefs.is(Prefs.DATE, "on")) return;
+        ui.text(face, 28, -0.2f, ink, 0.8f);
+        ui.shadow(photo);
+        if (dock) ui.line(c, date(), LEFT, ui.baseline(cy + 50), 0, -1);
+        else ui.line(c, date(), RIGHT, ui.baseline(cy + 50), 0, 1);
+    }
+
+    /** The day in the TV's language, for example "Thursday 22 October". Made again only when the day changes. */
+    private String date() {
+        int day = calendar.get(Calendar.YEAR) * 1000 + calendar.get(Calendar.DAY_OF_YEAR);
+        if (day != dateDay || dateText == null) {
+            Locale locale = stage.getResources().getConfiguration().getLocales().get(0);
+            String pattern = DateFormat.getBestDateTimePattern(locale, "EEEEdMMMM");
+            String s = new SimpleDateFormat(pattern, locale).format(calendar.getTime());
+            dateText = s.isEmpty() ? s : s.substring(0, 1).toUpperCase(locale) + s.substring(1);
+            dateDay = day;
+        }
+        return dateText;
     }
 
     private static String two(int v) {

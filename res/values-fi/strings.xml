@@ -18,6 +18,13 @@
     <string name="no_apps_on_home">Aloitusnäytöllä ei ole sovelluksia</string>
     <string name="move_hint_list">Ylös ja Alas siirtävät sovellusta. OK asettaa sen, Takaisin peruu.</string>
     <string name="move_hint_dock">Vasen ja Oikea siirtävät sovellusta. OK asettaa sen, Takaisin peruu.</string>
+    <string name="rename">Nimeä uudelleen</string>
+    <string name="rename_input">Nimeä %1$s uudelleen</string>
+    <string name="rename_note">Kirjoita uusi nimi ja valitse näppäimistöstä ✓ tai Valmis. Takaisin peruu.</string>
+    <string name="save">Tallenna</string>
+    <string name="use_tv_name">Käytä TV:n nimeä</string>
+    <string name="renamed">Tulon nimi on nyt %1$s.</string>
+    <string name="input_tv_name_again">Tulolla on taas TV:n nimi.</string>
 
     <!-- All apps and the pickers -->
     <string name="edit_home">Muokkaa</string>
@@ -119,6 +126,9 @@
     <string name="hour_12">12 h</string>
     <string name="clock_24">24 tunnin kello</string>
     <string name="clock_12">12 tunnin kello</string>
+    <string name="date">Päivämäärä</string>
+    <string name="off">Pois</string>
+    <string name="on">Päällä</string>
     <string name="type">Teksti</string>
     <string name="glass">Lasi</string>
     <string name="material">Materiaali</string>

@@ -18,6 +18,13 @@
     <string name="no_apps_on_home">Keine Apps auf dem Startbildschirm</string>
     <string name="move_hint_list">Oben und Unten verschieben die App. OK setzt sie ab, Zurück bricht ab.</string>
     <string name="move_hint_dock">Links und Rechts verschieben die App. OK setzt sie ab, Zurück bricht ab.</string>
+    <string name="rename">Umbenennen</string>
+    <string name="rename_input">%1$s umbenennen</string>
+    <string name="rename_note">Geben Sie den neuen Namen ein und wählen Sie ✓ oder Fertig auf der Tastatur. Zurück bricht ab.</string>
+    <string name="save">Speichern</string>
+    <string name="use_tv_name">Name vom Fernseher</string>
+    <string name="renamed">Der Eingang heißt jetzt %1$s.</string>
+    <string name="input_tv_name_again">Der Eingang hat wieder den Namen vom Fernseher.</string>
 
     <!-- All apps and the pickers -->
     <string name="edit_home">Start bearbeiten</string>
@@ -119,6 +126,9 @@
     <string name="hour_12">12 Stunden</string>
     <string name="clock_24">24-Stunden-Uhr</string>
     <string name="clock_12">12-Stunden-Uhr</string>
+    <string name="date">Datum</string>
+    <string name="off">Aus</string>
+    <string name="on">Ein</string>
     <string name="type">Schrift</string>
     <string name="glass">Glas</string>
     <string name="material">Material</string>

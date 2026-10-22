@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -398,8 +400,22 @@ final class Stage extends View {
             case KeyEvent.KEYCODE_DPAD_RIGHT:
                 return move(down, 1, 0);
             default:
-                return false;
+                if (!top().key(e)) return false;
+                invalidate();
+                return true;
         }
+    }
+
+    // ---- Keyboard: only a screen with a text field (Rename) connects to it ----
+
+    @Override
+    public boolean onCheckIsTextEditor() {
+        return top().editsText();
+    }
+
+    @Override
+    public InputConnection onCreateInputConnection(EditorInfo info) {
+        return top().input(info);
     }
 
     private boolean move(boolean down, int dx, int dy) {

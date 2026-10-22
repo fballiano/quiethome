@@ -18,6 +18,13 @@
     <string name="no_apps_on_home">No hay apps en Inicio</string>
     <string name="move_hint_list">Arriba y Abajo mueven la app. OK la coloca, Atrás cancela.</string>
     <string name="move_hint_dock">Izquierda y Derecha mueven la app. OK la coloca, Atrás cancela.</string>
+    <string name="rename">Cambiar nombre</string>
+    <string name="rename_input">Cambiar nombre de %1$s</string>
+    <string name="rename_note">Escribe el nuevo nombre y selecciona ✓ o Listo en el teclado. Atrás cancela.</string>
+    <string name="save">Guardar</string>
+    <string name="use_tv_name">Usar el nombre de la TV</string>
+    <string name="renamed">La entrada ahora se llama %1$s.</string>
+    <string name="input_tv_name_again">La entrada tiene otra vez el nombre de la TV.</string>
 
     <!-- All apps and the pickers -->
     <string name="edit_home">Editar Inicio</string>
@@ -119,6 +126,9 @@
     <string name="hour_12">12 horas</string>
     <string name="clock_24">Reloj de 24 horas</string>
     <string name="clock_12">Reloj de 12 horas</string>
+    <string name="date">Fecha</string>
+    <string name="off">No</string>
+    <string name="on">Sí</string>
     <string name="type">Texto</string>
     <string name="glass">Cristal</string>
     <string name="material">Material</string>

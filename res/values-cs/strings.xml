@@ -18,6 +18,13 @@
     <string name="no_apps_on_home">Na ploše nejsou žádné aplikace</string>
     <string name="move_hint_list">Nahoru a Dolů přesouvají aplikaci. OK ji položí, Zpět zruší.</string>
     <string name="move_hint_dock">Vlevo a Vpravo přesouvají aplikaci. OK ji položí, Zpět zruší.</string>
+    <string name="rename">Přejmenovat</string>
+    <string name="rename_input">Přejmenovat %1$s</string>
+    <string name="rename_note">Napište nový název a na klávesnici vyberte ✓ nebo Hotovo. Zpět zruší.</string>
+    <string name="save">Uložit</string>
+    <string name="use_tv_name">Použít název z TV</string>
+    <string name="renamed">Vstup se teď jmenuje %1$s.</string>
+    <string name="input_tv_name_again">Vstup má opět název z TV.</string>
 
     <!-- All apps and the pickers -->
     <string name="edit_home">Upravit plochu</string>
@@ -121,6 +128,9 @@
     <string name="hour_12">12 hodin</string>
     <string name="clock_24">24hodinové hodiny</string>
     <string name="clock_12">12hodinové hodiny</string>
+    <string name="date">Datum</string>
+    <string name="off">Vypnuto</string>
+    <string name="on">Zapnuto</string>
     <string name="type">Text</string>
     <string name="glass">Sklo</string>
     <string name="material">Materiál</string>
