@@ -20,7 +20,7 @@ final class SetupScreen extends Screen {
         "",
         "In Accessibility, select QuietHome and turn it on.",
         "If it is grey or says \"Restricted setting\", open App info, allow restricted settings, and try again.",
-        "The service sees only key presses. It cannot read the screen and sends nothing.",
+        "The service sees key presses and the name of the app in front. It cannot read the screen and sends nothing.",
     };
     private static final String[] BUTTONS = {"Open Accessibility settings", "App info", "Later"};
 

@@ -80,6 +80,7 @@ public final class Home extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        RemoteButtons.visitingOtherLauncher = false;
         stage.checkService();
     }
 

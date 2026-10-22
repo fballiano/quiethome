@@ -257,15 +257,27 @@ final class Catalog {
         return start(new Intent(Settings.ACTION_SETTINGS));
     }
 
-    /** Opens the best other home screen: the one with the highest priority that is not a system tool. */
-    String openPreviousLauncher() {
-        ResolveInfo best = null;
+    /** The other home screens, such as the stock launcher, best first. Setup and system tools stay out. */
+    List<ResolveInfo> otherLaunchers() {
+        List<ResolveInfo> out = new ArrayList<>();
         for (ResolveInfo r : pm.queryIntentActivities(new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME), 0)) {
             String pkg = r.activityInfo.packageName;
             if (pkg.equals(context.getPackageName()) || r.priority < 0 || TOOL_HOMES.matcher(pkg).find()) continue;
-            if (best == null || r.priority > best.priority) best = r;
+            out.add(r);
         }
-        if (best == null) return start(new Intent(Settings.ACTION_HOME_SETTINGS));
+        Collections.sort(out, (a, b) -> b.priority - a.priority);
+        return out;
+    }
+
+    /**
+     * Opens the best other home screen. The QuietHome service then leaves it in front until
+     * QuietHome shows again (see {@link RemoteButtons#visitingOtherLauncher}).
+     */
+    String openPreviousLauncher() {
+        List<ResolveInfo> launchers = otherLaunchers();
+        if (launchers.isEmpty()) return start(new Intent(Settings.ACTION_HOME_SETTINGS));
+        ResolveInfo best = launchers.get(0);
+        RemoteButtons.visitingOtherLauncher = true;
         return start(new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME)
             .setClassName(best.activityInfo.packageName, best.activityInfo.name));
     }

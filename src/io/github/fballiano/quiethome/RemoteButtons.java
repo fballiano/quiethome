@@ -7,19 +7,24 @@ import android.accessibilityservice.AccessibilityService;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ResolveInfo;
 import android.os.SystemClock;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.KeyEvent;
 import android.view.accessibility.AccessibilityEvent;
 
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
- * Button mapping, optional. An accessibility service that filters key events receives each key
+ * The QuietHome service. An accessibility service that filters key events receives each key
  * before the system and the app in front, so it can give a remote button (for example a Netflix
  * key) a new job, turn it off, or make Home open QuietHome. Keys without a mapping pass through.
- * The service asks for no accessibility events and cannot read the screen.
+ * It also receives the window-changed event, only to see when a stock launcher's home screen
+ * comes back (after a wake from standby, for example) and to show QuietHome instead. It cannot
+ * read the screen.
  */
 public final class RemoteButtons extends AccessibilityService {
     interface Capture {
@@ -28,6 +33,11 @@ public final class RemoteButtons extends AccessibilityService {
 
     /** Whether the service is connected now. Settings reads it. */
     static volatile boolean running;
+    /** Set by Previous launcher: the stock launcher may stay in front until QuietHome shows again. */
+    static volatile boolean visitingOtherLauncher;
+
+    /** A stock launcher can report its window more than once as it appears; one replacement is enough. */
+    private static final long REPLACE_GAP_MS = 1500;
 
     // A capture gives the next mappable key to Settings instead of its usual job. Key events and
     // Settings both run on the main thread, so these fields need no lock.
@@ -40,6 +50,9 @@ public final class RemoteButtons extends AccessibilityService {
     private Catalog catalog;
     private Map<Integer, String> mapping;
     private boolean ownHomeKey;
+    /** The home activities of the other launchers, as "package/class". */
+    private final Set<String> otherHomes = new HashSet<>();
+    private long lastReplaced;
 
     private final SharedPreferences.OnSharedPreferenceChangeListener onChange = (sp, key) -> reload();
 
@@ -48,6 +61,11 @@ public final class RemoteButtons extends AccessibilityService {
         store = getSharedPreferences(Prefs.FILE, Context.MODE_PRIVATE);
         catalog = new Catalog(this, new Prefs(this));
         reload();
+        for (ResolveInfo r : catalog.otherLaunchers()) {
+            // The window event names the real activity; the HOME entry can be an alias of it.
+            String target = r.activityInfo.targetActivity;
+            otherHomes.add(r.activityInfo.packageName + "/" + (target != null ? target : r.activityInfo.name));
+        }
         store.registerOnSharedPreferenceChangeListener(onChange);
         running = true;
         StartOn.register(this);
@@ -91,8 +109,17 @@ public final class RemoteButtons extends AccessibilityService {
         return true;
     }
 
+    /** A stock launcher's home screen came to the front, for example after a wake: show QuietHome instead. */
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
+        if (event.getEventType() != AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED || !ownHomeKey || visitingOtherLauncher) return;
+        CharSequence pkg = event.getPackageName(), cls = event.getClassName();
+        if (pkg == null || cls == null || !otherHomes.contains(pkg + "/" + cls)) return;
+        long now = SystemClock.uptimeMillis();
+        if (now - lastReplaced < REPLACE_GAP_MS) return;
+        lastReplaced = now;
+        Log.i(Home.TAG, "Replacing " + pkg + " with QuietHome");
+        catalog.launch(Catalog.ACTION_HOME);
     }
 
     @Override

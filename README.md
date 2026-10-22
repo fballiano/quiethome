@@ -23,7 +23,7 @@ QuietHome is inspired by [CleanFrame](https://github.com/nthnclrk/CleanFrame), a
 - **Your own order.** Hold OK on an app on Home for a short menu: **Move**, **Remove from Home** or **Close app**. In move mode the arrows move the app, OK places it and Back cancels. Settings → Apps on Home adds apps, with up to nine on Home.
 - **Typography and focus.** Choose Manrope, Geist or Newsreader. Choose Type focus or Glass focus, with a Soft, Frost or Clear material.
 - **The QuietHome service.** An accessibility service that gives QuietHome the features below. If it is off, QuietHome shows how to turn it on.
-  - **Home button.** Home always opens QuietHome, also on TVs that keep their own launcher (for example Google TV).
+  - **Home button.** Home always opens QuietHome, also on TVs that keep their own launcher (for example Google TV). When the stock launcher comes back by itself, for example after the TV wakes from standby, QuietHome replaces it at once. Settings → Android TV → Previous launcher still lets you visit it.
   - **Button mapping.** Press a remote button, for example the Netflix key, and choose what it does: open an app or an HDMI input, open QuietHome or TV settings, or nothing. You do not need a separate button mapper app.
   - **When the TV turns on.** For a TV that only shows a box (for example an Nvidia Shield) on one HDMI port: QuietHome opens that input at boot and each time the TV wakes. It can also open an app. Home still shows QuietHome.
 - **No network.** QuietHome has no INTERNET permission. It has no accounts, no analytics and no ads.
@@ -160,7 +160,7 @@ On most Android TV and Google TV devices, the stock launcher is a system app wit
 
 You cannot map these keys: arrows, OK, Back, Home, volume, mute and power. They always keep their usual job.
 
-Android lets an accessibility service see key presses. QuietHome acts only on Home and on the buttons that you map. All other keys pass through. The service cannot read the screen, and it stores and sends nothing.
+Android lets an accessibility service see key presses. QuietHome acts only on Home and on the buttons that you map. All other keys pass through. The service also gets one event, "window changed", which gives the package name of the app in front. QuietHome uses it only to see when the stock launcher's home screen comes back. The service cannot read the screen, and it stores and sends nothing.
 
 ## When the TV turns on
 
