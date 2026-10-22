@@ -49,7 +49,7 @@ It has not been tested on a real TV yet. Reports are welcome.
 
 QuietHome draws everything in one custom view. It decodes one photo at screen size and keeps a 120 × 68 blurred copy for the glass effect. It does not blur live. It draws frames only while something moves. Text that scales with focus has no blurred shadow, because a shadow must be drawn again at each step of the scale.
 
-Measured on a Xiaomi MiTV-AFMU0 (Google TV 14, 1080p interface). Each memory figure is the PSS about 15 seconds after the app restarts, from five samples.
+Measured on a Xiaomi Google TV box (MiTV-AFMU0, Google TV 14, 1080p interface on a 4K output). Each memory figure is the PSS about 15 seconds after the app restarts, from five samples.
 
 | Measurement | Result |
 | --- | --- |
@@ -61,7 +61,7 @@ Measured on a Xiaomi MiTV-AFMU0 (Google TV 14, 1080p interface). Each memory fig
 | QuietHome cold start | 420 to 445 ms |
 | QuietHome frame time while focus moves | median 13 ms, 90th percentile 16 ms |
 
-On a real TV, the graphics driver runs inside each app that draws, and the graphics chip uses the normal RAM. That is why an empty app already uses about 20 MB. The photo adds about 10 MB: the photo itself in graphics memory, and the driver's work to draw it. A new app is a few MB larger until Android compiles it in the background.
+On a real device, the graphics driver runs inside each app that draws, and the graphics chip uses the normal RAM. That is why an empty app already uses about 20 MB. The photo adds about 10 MB: the photo itself in graphics memory, and the driver's work to draw it. A new app is a few MB larger until Android compiles it in the background.
 
 The emulator does not count graphics memory, so it shows lower numbers:
 
