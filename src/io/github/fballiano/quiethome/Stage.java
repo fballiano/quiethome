@@ -256,7 +256,9 @@ final class Stage extends View {
         }
         if (Catalog.isAction(e.id)) {
             int mark = Catalog.ACTION_HOME.equals(e.id) ? R.drawable.icon_home
-                : Catalog.ACTION_SETTINGS.equals(e.id) ? R.drawable.icon_tvsettings : R.drawable.icon_none;
+                : Catalog.ACTION_SETTINGS.equals(e.id) ? R.drawable.icon_tvsettings
+                : Catalog.ACTION_DEFAULT.equals(e.id) ? R.drawable.icon_default
+                : Catalog.ACTION_EDIT.equals(e.id) ? R.drawable.icon_edit : R.drawable.icon_none;
             float size = Math.min(w, h) * 0.8f;
             ui.mark(c, mark, left + (w - size) / 2, top + (h - size) / 2, size, size, ink, alpha);
             return;

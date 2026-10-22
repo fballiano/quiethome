@@ -19,7 +19,7 @@ QuietHome is inspired by [CleanFrame](https://github.com/nthnclrk/CleanFrame), a
 - **One-colour icons.** Known services use a built-in mark. For every other app, QuietHome turns the app's own icon into a mark in the same colour.
 - **Backgrounds.** Choose one of 15 photographs, a light colour or a dark colour. Photos can rotate each time Home opens, or every 5, 15 or 60 minutes.
 - **Two settings buttons.** Settings (the sliders) opens QuietHome's settings. TV settings (the gear) opens Android's own settings.
-- **All apps.** It shows every TV app and every HDMI input. OK opens the item. Hold OK to close an app and free its memory.
+- **All apps.** It shows every TV app and every HDMI input. OK opens the item. Hold OK to close an app and free its memory. The first tile, **Edit Home**, opens the Apps on Home editor.
 - **Your own order.** Hold OK on an app on Home for a short menu: **Move**, **Remove from Home** or **Close app**. In move mode the arrows move the app, OK places it and Back cancels. Settings → Apps on Home adds apps, with up to nine on Home.
 - **Typography and focus.** Choose Manrope, Geist or Newsreader. Choose Type focus or Glass focus, with a Soft, Frost or Clear material.
 - **The QuietHome service.** An accessibility service that gives QuietHome the features below. If it is off, QuietHome shows how to turn it on.
@@ -154,9 +154,9 @@ On most Android TV and Google TV devices, the stock launcher is a system app wit
 
 1. Go to Settings → Button mapping. The QuietHome service must be on.
 2. Select **Add a button**. Press the remote button, then choose what it does.
-3. To change or remove a mapping, select the button in the list.
+3. To change a mapping, select the button in the list. To remove it, choose **Default**: the button then does its own job again.
 
-![Choosing what a button does: Nothing, QuietHome, TV settings, or an app](docs/images/picker.jpg)
+![Choosing what a button does: Default, Nothing, QuietHome, TV settings, or an app](docs/images/picker.jpg)
 
 You cannot map these keys: arrows, OK, Back, Home, volume, mute and power. They always keep their usual job.
 
@@ -164,7 +164,7 @@ Android lets an accessibility service see key presses. QuietHome acts only on Ho
 
 ## When the TV turns on
 
-Go to Settings → Android TV → When the TV turns on, and choose the HDMI input of your box (or an app). QuietHome opens it at boot and each time the TV wakes from standby. At boot the TV can list its inputs a few seconds late, so QuietHome tries again for about 30 seconds. To show Home again at start, select **Remove** in the same screen. Press Home on the remote to reach QuietHome at any time.
+Go to Settings → Android TV → When the TV turns on, and choose the HDMI input of your box (or an app). QuietHome opens it at boot and each time the TV wakes from standby. At boot the TV can list its inputs a few seconds late, so QuietHome tries again for about 30 seconds. To show Home again at start, choose **Show Home**, the first tile in the same screen. Press Home on the remote to reach QuietHome at any time.
 
 This needs the QuietHome service: Android lets an app open another screen from the background only with a service like this.
 

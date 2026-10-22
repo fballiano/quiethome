@@ -165,7 +165,7 @@ final class HomeScreen extends Screen {
             press.to(0);
             return;
         }
-        if (control == 0) stage.open(new AllAppsScreen(stage, null));
+        if (control == 0) stage.open(new AllAppsScreen(stage));
         else if (control == 1) stage.open(new SettingsScreen(stage));
         else stage.toast(stage.catalog.openSettings());
     }

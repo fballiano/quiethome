@@ -63,6 +63,8 @@ final class Catalog {
 
     /** Things a mapped button can do besides opening an app or an input. */
     static final String ACTION_NONE = "action.none", ACTION_HOME = "action.home", ACTION_SETTINGS = "action.settings";
+    /** Picker tiles only, never saved: a button's own job, and the Apps on Home editor. */
+    static final String ACTION_DEFAULT = "action.default", ACTION_EDIT = "action.edit";
 
     /** HOME activities with these words in their package are system tools, not home screens to switch to. */
     private static final Pattern TOOL_HOMES = Pattern.compile("setup|provision|settings|factory|wraith");

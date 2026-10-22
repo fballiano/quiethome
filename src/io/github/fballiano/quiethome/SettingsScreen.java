@@ -9,6 +9,7 @@ import android.graphics.RectF;
 import android.graphics.Typeface;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BooleanSupplier;
@@ -223,47 +224,36 @@ final class SettingsScreen extends Screen {
     /** For a TV that only shows a box on HDMI: open that input (or an app) at boot and on wake. */
     private void pickStartOn() {
         String current = stage.prefs.get(Prefs.START_ON);
+        List<Catalog.Entry> lead = Collections.singletonList(new Catalog.Entry(Catalog.ACTION_HOME, "Show Home", null, null));
         AllAppsScreen[] picker = new AllAppsScreen[1];
-        picker[0] = new AllAppsScreen(stage, new AllAppsScreen.Picker() {
-            @Override
-            public void pick(String id) {
-                stage.prefs.set(Prefs.START_ON, id);
-                stage.close(picker[0]);
-                Catalog.Entry e = stage.catalog.get(id);
-                stage.toast("The TV opens " + (e == null ? id : Catalog.title(e)) + " when it turns on.");
-            }
-
-            @Override
-            public void remove() {
-                stage.prefs.set(Prefs.START_ON, "");
-                stage.close(picker[0]);
-                stage.toast("The TV shows Home when it turns on.");
-            }
-        }, "Open when the TV turns on", current.isEmpty() ? null : current, false);
+        picker[0] = new AllAppsScreen(stage, id -> {
+            boolean home = Catalog.ACTION_HOME.equals(id);
+            stage.prefs.set(Prefs.START_ON, home ? "" : id);
+            stage.close(picker[0]);
+            Catalog.Entry e = stage.catalog.get(id);
+            stage.toast(home ? "The TV shows Home when it turns on."
+                : "The TV opens " + (e == null ? id : Catalog.title(e)) + " when it turns on.");
+        }, "Open when the TV turns on", lead, current.isEmpty() ? Catalog.ACTION_HOME : current);
         stage.open(picker[0]);
     }
 
     /** Chooses, changes or removes what a mapped button does. */
     private void pick(int code) {
         String name = RemoteButtons.name(code);
+        String current = stage.prefs.buttons().get(code);
+        List<Catalog.Entry> lead = new ArrayList<>();
+        lead.add(new Catalog.Entry(Catalog.ACTION_DEFAULT, "Default", null, null));
+        lead.addAll(Catalog.actions());
         AllAppsScreen[] picker = new AllAppsScreen[1];
-        picker[0] = new AllAppsScreen(stage, new AllAppsScreen.Picker() {
-            @Override
-            public void pick(String id) {
-                stage.prefs.setButton(code, id);
-                stage.close(picker[0]);
-                Catalog.Entry e = stage.catalog.get(id);
-                stage.toast(Catalog.ACTION_NONE.equals(id) ? name + " now does nothing."
-                    : name + " opens " + (e == null ? id : Catalog.title(e)) + ".");
-            }
-
-            @Override
-            public void remove() {
-                stage.prefs.setButton(code, null);
-                stage.close(picker[0]);
-                stage.toast(name + " is free again.");
-            }
-        }, "Choose what " + name + " does", stage.prefs.buttons().get(code));
+        picker[0] = new AllAppsScreen(stage, id -> {
+            boolean free = Catalog.ACTION_DEFAULT.equals(id);
+            stage.prefs.setButton(code, free ? null : id);
+            stage.close(picker[0]);
+            Catalog.Entry e = stage.catalog.get(id);
+            stage.toast(free ? name + " does its own job again."
+                : Catalog.ACTION_NONE.equals(id) ? name + " now does nothing."
+                : name + " opens " + (e == null ? id : Catalog.title(e)) + ".");
+        }, "Choose what " + name + " does", lead, current == null ? Catalog.ACTION_DEFAULT : current);
         stage.open(picker[0]);
     }
 
