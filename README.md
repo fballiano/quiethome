@@ -16,6 +16,7 @@ QuietHome is inspired by [CleanFrame](https://github.com/nthnclrk/CleanFrame), a
 ## What it does
 
 - **List or Dock layout.** Show names, icons or both. Show a 24-hour or 12-hour clock.
+- **One-colour icons.** Known services use a built-in mark. For every other app, QuietHome turns the app's own icon into a mark in the same colour.
 - **Backgrounds.** Choose one of 15 photographs, a light colour or a dark colour. Photos can rotate each time Home opens, or every 5, 15 or 60 minutes.
 - **Photo mode.** It shows only the photo and the clock. Any key brings Home back.
 - **All apps.** It shows every TV app and every HDMI input. OK opens the item. Hold OK to close an app and free its memory.

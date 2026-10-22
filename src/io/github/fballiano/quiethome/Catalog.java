@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
@@ -16,17 +17,24 @@ import android.media.tv.TvContract;
 import android.media.tv.TvInputInfo;
 import android.media.tv.TvInputManager;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.Settings;
+import android.util.DisplayMetrics;
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.regex.Pattern;
 
 /** What Home can open (installed apps, HDMI inputs and button actions), and how to open and close it. */
@@ -100,8 +108,9 @@ final class Catalog {
         Collections.sort(found, (a, b) -> a.name.compareToIgnoreCase(b.name));
         byId.clear();
         for (Entry e : found) byId.put(e.id, e);
-        // Updated apps can have new icons; they are drawn again when Home needs them.
+        // Updated apps can have new icons; they are made again when Home needs them.
         icons.clear();
+        generation++;
     }
 
     /**
@@ -271,30 +280,83 @@ final class Catalog {
 
     // ---- Icons ----
 
-    /** The app's own icon at size x size pixels, drawn once and kept until {@link #trimIcons}. */
-    Bitmap icon(Entry e, int size) {
+    /** The size in pixels at which {@link #glyph} reads the app icon: sharp marks up to about 300 pixels. */
+    private static final int GLYPH_SOURCE = 320;
+
+    /** What {@link #glyph} returns while it still makes the mask. */
+    static final Bitmap PENDING = Bitmap.createBitmap(1, 1, Bitmap.Config.ALPHA_8);
+
+    /** Makes the masks one after the other, away from the main thread, so no frame waits for them. */
+    private static final ExecutorService WORKER = Executors.newSingleThreadExecutor(r -> {
+        Thread t = new Thread(r, "QuietHome icons");
+        t.setPriority(Thread.MIN_PRIORITY);
+        return t;
+    });
+
+    private final Handler main = new Handler(Looper.getMainLooper());
+    private final Set<String> pending = new HashSet<>();
+    /** Changes when the app list is read again, so masks of old icons are dropped. */
+    private int generation;
+
+    /**
+     * The app's own icon as a one-colour mask (see {@link Ui#silhouette}), kept until
+     * {@link #trimIcons}. Null when the app has no icon or nothing in it stands out. The first
+     * call returns {@link #PENDING} and runs whenReady on the main thread when the mask is made.
+     */
+    Bitmap glyph(Entry e, Runnable whenReady) {
         if (e.isInput() || isAction(e.id)) return null;
-        String key = e.id + "@" + size;
-        if (icons.containsKey(key)) return icons.get(key);
-        Bitmap bitmap = null;
-        try {
-            Drawable d = pm.getApplicationIcon(e.id);
-            bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
-            d.setBounds(0, 0, size, size);
-            d.draw(new Canvas(bitmap));
-        } catch (PackageManager.NameNotFoundException | RuntimeException ex) {
-            Log.w(Home.TAG, "No icon for " + e.id);
+        if (icons.containsKey(e.id)) return icons.get(e.id);
+        if (pending.add(e.id)) {
+            String id = e.id;
+            int made = generation;
+            WORKER.execute(() -> {
+                Bitmap glyph = makeGlyph(id);
+                main.post(() -> {
+                    pending.remove(id);
+                    if (made != generation) return;
+                    icons.put(id, glyph);
+                    whenReady.run();
+                });
+            });
         }
-        icons.put(key, bitmap);
-        return bitmap;
+        return PENDING;
+    }
+
+    /** Runs on the worker thread. */
+    private Bitmap makeGlyph(String id) {
+        try {
+            Drawable d = largestIcon(id);
+            Bitmap icon = Bitmap.createBitmap(GLYPH_SOURCE, GLYPH_SOURCE, Bitmap.Config.ARGB_8888);
+            d.setBounds(0, 0, GLYPH_SOURCE, GLYPH_SOURCE);
+            d.draw(new Canvas(icon));
+            Bitmap glyph = Ui.silhouette(icon);
+            icon.recycle();
+            return glyph;
+        } catch (PackageManager.NameNotFoundException | RuntimeException ex) {
+            Log.w(Home.TAG, "No icon for " + id);
+            return null;
+        }
+    }
+
+    /**
+     * The app icon at the highest density the app has. The usual icon matches the screen
+     * density, which on most TVs gives a bitmap icon of only 64 to 96 pixels.
+     */
+    private Drawable largestIcon(String id) throws PackageManager.NameNotFoundException {
+        ApplicationInfo info = pm.getApplicationInfo(id, 0);
+        if (info.icon != 0) {
+            try {
+                Drawable d = pm.getResourcesForApplication(info)
+                    .getDrawableForDensity(info.icon, DisplayMetrics.DENSITY_XXXHIGH, null);
+                if (d != null) return d;
+            } catch (Resources.NotFoundException ignored) {
+            }
+        }
+        return pm.getApplicationIcon(info);
     }
 
     /** Keeps only the icons of the given ids (Home's), so a closed All apps grid frees its icons. */
     void trimIcons(Collection<String> keep) {
-        Iterator<Map.Entry<String, Bitmap>> it = icons.entrySet().iterator();
-        while (it.hasNext()) {
-            String key = it.next().getKey();
-            if (!keep.contains(key.substring(0, key.lastIndexOf('@')))) it.remove();
-        }
+        icons.keySet().retainAll(keep);
     }
 }

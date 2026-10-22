@@ -232,7 +232,7 @@ final class Stage extends View {
         else c.drawColor("light".equals(bg) ? Ui.LIGHT_BG : Ui.DARK_BG);
     }
 
-    /** A brand mark, else the app's own icon, else initials; fitted into the box. */
+    /** A brand mark, else the app's own icon as a one-colour mark, else initials; fitted into the box. */
     void drawMark(Canvas c, Catalog.Entry e, float left, float top, float w, float h, int ink, float alpha) {
         if (e.brand != null && e.brand.mark != 0) {
             ui.mark(c, e.brand.mark, left, top, w, h, ink, alpha);
@@ -245,10 +245,10 @@ final class Stage extends View {
             ui.mark(c, mark, left + (w - size) / 2, top + (h - size) / 2, size, size, ink, alpha);
             return;
         }
-        float size = Math.min(w, h);
-        Bitmap icon = catalog.icon(e, Math.round(size));
-        if (icon != null) ui.bitmap(c, icon, left + (w - size) / 2, top + (h - size) / 2, size, size, alpha);
-        else ui.monogram(c, Catalog.title(e), left + w / 2, top + h / 2, size * 0.86f, ink, alpha);
+        Bitmap glyph = catalog.glyph(e, this::invalidate);
+        if (glyph == Catalog.PENDING) return;
+        if (glyph != null) ui.silhouette(c, glyph, left, top, w, h, ink, alpha);
+        else ui.monogram(c, Catalog.title(e), left + w / 2, top + h / 2, Math.min(w, h) * 0.86f, ink, alpha);
     }
 
     // ---- Drawing ----

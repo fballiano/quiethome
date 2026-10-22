@@ -20,6 +20,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseArray;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,6 +47,7 @@ final class Ui {
     final Paint fill = new Paint(Paint.ANTI_ALIAS_FLAG);
     final Paint stroke = new Paint(Paint.ANTI_ALIAS_FLAG);
     final Paint image = new Paint(Paint.FILTER_BITMAP_FLAG | Paint.ANTI_ALIAS_FLAG);
+    private final Paint mask = new Paint(Paint.FILTER_BITMAP_FLAG | Paint.ANTI_ALIAS_FLAG);
     final Paint glass = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Map<String, Typeface> fonts = new HashMap<>();
     private final SparseArray<Drawable> marks = new SparseArray<>();
@@ -129,11 +131,155 @@ final class Ui {
         d.draw(c);
     }
 
-    void bitmap(Canvas c, Bitmap b, float left, float top, float width, float height, float alpha) {
-        if (b == null) return;
-        tmp.set(left, top, left + width, top + height);
-        image.setAlpha(Math.round(255 * clamp(alpha)));
-        c.drawBitmap(b, null, tmp, image);
+    /** Draws an alpha mask (see {@link #silhouette}) in one colour, fitted into the box like a mark. */
+    void silhouette(Canvas c, Bitmap b, float left, float top, float width, float height, int color, float alpha) {
+        float scale = Math.min(width / b.getWidth(), height / b.getHeight());
+        float w = b.getWidth() * scale, h = b.getHeight() * scale;
+        tmp.set(left + (width - w) / 2, top + (height - h) / 2, left + (width + w) / 2, top + (height + h) / 2);
+        mask.setColor(color);
+        mask.setAlpha(Math.round(255 * clamp(alpha)));
+        c.drawBitmap(b, null, tmp, mask);
+    }
+
+    /**
+     * An app icon as a one-colour mark, like the bundled brand marks: the parts of the icon that
+     * differ from its background, as an ALPHA_8 mask cropped to them. Null when the result would
+     * not read as a mark: almost nothing stands out, or one solid block fills it.
+     */
+    static Bitmap silhouette(Bitmap icon) {
+        int w = icon.getWidth(), h = icon.getHeight();
+        int[] px = new int[w * h];
+        icon.getPixels(px, 0, w, 0, 0, w, h);
+
+        // The background is read from a band along the edge. Mostly transparent: no background,
+        // so the icon's shape is the mark. Flat: the mark is what differs from its colour.
+        // A gradient: the mark is what is lighter (or darker) than all of it.
+        int band = Math.max(1, w / 8);
+        int[] lums = new int[px.length];
+        int[] count = new int[4096];
+        int edge = 0, solid = 0;
+        for (int y = 0; y < h; y++) {
+            for (int x = 0; x < w; x++) {
+                if (x >= band && x < w - band && y >= band && y < h - band) continue;
+                edge++;
+                int p = px[y * w + x];
+                if (p >>> 24 < 128) continue;
+                lums[solid++] = lum(p);
+                count[bin(p)]++;
+            }
+        }
+        int mode = SHAPE, lo = 0, hi = 0, bg = 0;
+        if (solid * 4 >= edge) {
+            Arrays.sort(lums, 0, solid);
+            lo = lums[solid / 20];
+            hi = lums[solid * 19 / 20];
+            if (hi - lo <= 32) {
+                mode = COLOUR;
+                int top = 0;
+                for (int i = 1; i < count.length; i++) if (count[i] > count[top]) top = i;
+                bg = meanOfBin(px, w, h, band, top);
+            } else {
+                int light = 0, dark = 0;
+                for (int p : px) {
+                    if (p >>> 24 < 128) continue;
+                    int l = lum(p);
+                    if (l > hi + 32) light++;
+                    else if (l < lo - 32) dark++;
+                }
+                mode = light >= dark ? LIGHTER : DARKER;
+            }
+        }
+
+        // How far each pixel is from the background, on the scale of the mode. A shape uses
+        // brightness: it keeps holes where it is much lighter than itself, such as a play button.
+        int[] dist = lums;
+        int t0 = mode == COLOUR ? 32 : 24;
+        for (int i = 0; i < px.length; i++) {
+            int p = px[i];
+            if (mode == COLOUR) {
+                dist[i] = Math.max(Math.abs((p >> 16 & 0xFF) - (bg >> 16 & 0xFF)),
+                    Math.max(Math.abs((p >> 8 & 0xFF) - (bg >> 8 & 0xFF)), Math.abs((p & 0xFF) - (bg & 0xFF))));
+            } else if (mode == LIGHTER) {
+                dist[i] = lum(p) - hi;
+            } else if (mode == DARKER) {
+                dist[i] = lo - lum(p);
+            } else {
+                dist[i] = lum(p);
+            }
+        }
+
+        // The median distance of the clear logo pixels (for a shape, its median brightness).
+        // Coverage is full at 3/5 of the way to it, so a pixel half on an edge stays partly
+        // covered and the edges stay smooth.
+        int[] histogram = new int[256];
+        int counted = 0;
+        for (int i = 0; i < px.length; i++) {
+            if (px[i] >>> 24 < 128) continue;
+            int d = mode == SHAPE ? dist[i] : dist[i] - t0;
+            if (d <= 0 && mode != SHAPE) continue;
+            histogram[Math.min(255, d)]++;
+            counted++;
+        }
+        int median = 0, seen = histogram[0];
+        while (median < 255 && seen * 2 < counted) seen += histogram[++median];
+        int span = Math.max(16, median * 3 / 5);
+        int cut = Math.max(median + 64, 180);
+
+        int left = w, top = h, right = -1, bottom = -1, strong = 0;
+        long sum = 0;
+        for (int i = 0; i < px.length; i++) {
+            int a = px[i] >>> 24;
+            if (mode == SHAPE) a = a * (255 - ramp((dist[i] - cut) * 10)) / 255;
+            else a = a * ramp((dist[i] - t0) * 255 / span) / 255;
+            px[i] = a << 24;
+            if (a > 64) {
+                strong++;
+                int x = i % w, y = i / w;
+                left = Math.min(left, x);
+                right = Math.max(right, x);
+                top = Math.min(top, y);
+                bottom = Math.max(bottom, y);
+            }
+        }
+        if (strong < px.length / 200) return null;
+        int cw = right - left + 1, ch = bottom - top + 1;
+        for (int y = top; y <= bottom; y++) for (int x = left; x <= right; x++) sum += px[y * w + x] >>> 24;
+        if (sum > cw * ch * 255L * 4 / 5) return null;
+        Bitmap out = Bitmap.createBitmap(cw, ch, Bitmap.Config.ALPHA_8);
+        out.setPixels(px, top * w + left, w, 0, 0, cw, ch);
+        return out;
+    }
+
+    private static final int SHAPE = 0, COLOUR = 1, LIGHTER = 2, DARKER = 3;
+
+    private static int lum(int p) {
+        return ((p >> 16 & 0xFF) * 299 + (p >> 8 & 0xFF) * 587 + (p & 0xFF) * 114) / 1000;
+    }
+
+    /** The colour in 4 bits per channel. */
+    private static int bin(int p) {
+        return (p >> 12 & 0xF00) | (p >> 8 & 0xF0) | (p >> 4 & 0xF);
+    }
+
+    private static int ramp(int v) {
+        return Math.max(0, Math.min(255, v));
+    }
+
+    /** The mean colour of the opaque edge pixels in one bin. */
+    private static int meanOfBin(int[] px, int w, int h, int band, int bin) {
+        long r = 0, g = 0, b = 0, n = 0;
+        for (int y = 0; y < h; y++) {
+            for (int x = 0; x < w; x++) {
+                if (x >= band && x < w - band && y >= band && y < h - band) continue;
+                int p = px[y * w + x];
+                if (p >>> 24 < 128 || bin(p) != bin) continue;
+                r += p >> 16 & 0xFF;
+                g += p >> 8 & 0xFF;
+                b += p & 0xFF;
+                n++;
+            }
+        }
+        return (int) (r / n) << 16 | (int) (g / n) << 8 | (int) (b / n);
     }
 
     /** Draws a 16:9 photo so it covers the rectangle. */
