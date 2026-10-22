@@ -5,11 +5,12 @@ package io.github.fballiano.quiethome;
 
 import java.util.regex.Pattern;
 
-/** Known services with a bundled monochrome mark. Their order is the default Home order. */
+/** Known services, most with a bundled monochrome mark. Their order is the default Home order. */
 final class Brands {
     static final class Brand {
         final String id;
         final String name;
+        /** 0 when the owner does not allow its mark here: Home then draws the app's own icon. */
         final int mark;
         /** Android packages that open the service, best first. */
         final String[] packages;
@@ -34,7 +35,7 @@ final class Brands {
         new Brand("smarttube", "SmartTube", R.drawable.icon_smarttube, null, "org.smarttube.stable", "org.smarttube.beta",
             "app.smarttube.fdroid", "com.teamsmart.videomanager.tv", "com.liskovsoft.smarttubetv.beta"),
         new Brand("netflix", "Netflix", R.drawable.icon_netflix, null, "com.netflix.ninja"),
-        new Brand("disneyplus", "Disney+", R.drawable.icon_disneyplus, null, "com.disney.disneyplus"),
+        new Brand("disneyplus", "Disney+", 0, null, "com.disney.disneyplus"),
         new Brand("jellyfin", "Jellyfin", R.drawable.icon_jellyfin, null,
             "org.jellyfin.androidtv", "com.github.damontecres.wholphin"),
         new Brand("plex", "Plex", R.drawable.icon_plex, null, "com.plexapp.android"),
@@ -43,6 +44,7 @@ final class Brands {
         new Brand("twitch", "Twitch", R.drawable.icon_twitch, null, "com.s0und.s0undtv", "tv.twitch.android.app"),
         new Brand("appletv", "Apple TV", R.drawable.icon_appletv, null, "com.apple.atve.androidtv.appletv"),
         new Brand("paramountplus", "Paramount+", R.drawable.icon_paramountplus, null, "com.cbs.ott", "com.cbs.app"),
+        new Brand("hulu", "Hulu", 0, null, "com.hulu.livingroomplus", "com.hulu.plus"),
         new Brand("crunchyroll", "Crunchyroll", R.drawable.icon_crunchyroll, null, "com.crunchyroll.crunchyroid"),
         new Brand("dazn", "DAZN", R.drawable.icon_dazn, null, "com.dazn"),
         new Brand("mubi", "MUBI", R.drawable.icon_mubi, null, "com.mubi"),

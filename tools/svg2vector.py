@@ -19,7 +19,7 @@ OUT = os.path.join(ROOT, "res", "drawable")
 NS = "{http://www.w3.org/2000/svg}"
 
 # Brand marks and interface outlines that the app uses. Other files in tools/icons are ignored.
-ICONS = ["primevideo", "youtube", "netflix", "disneyplus", "jellyfin", "twitch", "appletv", "stremio",
+ICONS = ["primevideo", "youtube", "netflix", "jellyfin", "twitch", "appletv", "stremio",
          "spotify", "hbomax", "tubi", "plex", "nuvio", "smarttube", "kodi", "vlc", "emby", "crunchyroll",
          "paramountplus", "dazn", "mubi", "steamlink", "youtubemusic", "youtubekids", "tidal", "deezer",
          "console", "photo", "apps", "settings", "home"]

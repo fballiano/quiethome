@@ -234,7 +234,7 @@ final class Stage extends View {
 
     /** A brand mark, else the app's own icon, else initials; fitted into the box. */
     void drawMark(Canvas c, Catalog.Entry e, float left, float top, float w, float h, int ink, float alpha) {
-        if (e.brand != null) {
+        if (e.brand != null && e.brand.mark != 0) {
             ui.mark(c, e.brand.mark, left, top, w, h, ink, alpha);
             return;
         }
