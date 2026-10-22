@@ -29,8 +29,10 @@ final class HomeScreen extends Screen {
     private static final float LEFT = 140, RIGHT = 1780;
     private static final float LIST_TOP = 236, ROW = 128;
     private static final int ROWS = 6;
+    /** The largest dock. A dock with fewer tiles is narrower and stays centred. */
     private static final RectF DOCK = new RectF(96, 676, 1824, 906);
-    private static final float TILE_LEFT = 112, TILE_TOP = 691, TILE_W = 288, TILE_H = 200, PITCH = 296;
+    /** Six tiles fit the largest dock; more tiles scroll. PAD is the space between the dock edge and its tiles. */
+    private static final float PAD = 16, TILE_TOP = 691, TILE_W = 272, TILE_H = 200, PITCH = 280;
 
     final List<Catalog.Entry> items = new ArrayList<>();
     private final List<Ui.Anim> emphasis = new ArrayList<>();
@@ -39,6 +41,7 @@ final class HomeScreen extends Screen {
     private final Ui.Anim press = new Ui.Anim(140);
     private int pressed = -1;
     private final Ui.Anim scroll = new Ui.Anim(120);
+    private final RectF dockArea = new RectF();
     private final Ui.Anim plate = new Ui.Anim(90);
     private final Ui.Anim plateWidth = new Ui.Anim(90);
     private final Ui.Anim plateAlpha = new Ui.Anim(90);
@@ -224,12 +227,12 @@ final class HomeScreen extends Screen {
         plateAlpha.to(n == 0 ? 0 : zone == APPS ? 1 : 0.5f);
         if (stage.prefs.is(Prefs.LAYOUT, "dock")) {
             float s = scroll.target;
-            float visible = DOCK.width() - 2 * (TILE_LEFT - DOCK.left);
+            float visible = dockArea(n).width() - 2 * PAD;
             float peek = PITCH * 0.4f;
-            float min = (focus + 1) * PITCH - 8 + (focus < n - 1 ? peek : 0) - visible;
+            float min = (focus + 1) * PITCH - (PITCH - TILE_W) + (focus < n - 1 ? peek : 0) - visible;
             float max = focus * PITCH - (focus > 0 ? peek : 0);
             s = Math.max(min, Math.min(max, s));
-            s = Math.max(0, Math.min(s, Math.max(0, n * PITCH - 8 - visible)));
+            s = Math.max(0, Math.min(s, Math.max(0, n * PITCH - (PITCH - TILE_W) - visible)));
             scroll.to(s);
             plate.to(focus * PITCH);
         } else {
@@ -397,11 +400,15 @@ final class HomeScreen extends Screen {
         float rest = photo || glass ? 0.84f : 0.62f;
         float selected = glass ? 1 : photo ? 0.92f : 0.78f;
 
-        ui.glass(c, DOCK, 40, blur, bg, prefs.get(Prefs.MATERIAL), 1, true);
+        RectF area = dockArea(items.size());
+        float tileLeft = area.left + PAD;
+        // When the tiles do not fit, the ones cut by an edge fade with the part that is hidden.
+        boolean scrolls = area.width() >= DOCK.width() && items.size() * PITCH - (PITCH - TILE_W) > area.width() - 2 * PAD;
+        ui.glass(c, area, 40, blur, bg, prefs.get(Prefs.MATERIAL), 1, true);
         c.save();
-        c.clipRect(DOCK.left + 8, DOCK.top, DOCK.right - 8, DOCK.bottom);
+        c.clipRect(area.left + 8, area.top, area.right - 8, area.bottom);
         if ((glass || moving) && !items.isEmpty()) {
-            float x = TILE_LEFT + v(plate, live) - sx;
+            float x = tileLeft + v(plate, live) - sx;
             r.set(x, TILE_TOP, x + TILE_W, TILE_TOP + TILE_H);
             int color = "light".equals(bg) ? 0x1A000000 : 0x38FFFFFF;
             ui.fill.setShader(null);
@@ -410,10 +417,11 @@ final class HomeScreen extends Screen {
             c.drawRoundRect(r, 32, 32, ui.fill);
         }
         for (int i = 0; i < items.size(); i++) {
-            float x = TILE_LEFT + i * PITCH - sx;
-            if (x > DOCK.right || x + TILE_W < DOCK.left) continue;
+            float x = tileLeft + i * PITCH - sx;
+            if (x > area.right || x + TILE_W < area.left) continue;
             float e = v(emphasis.get(i), live);
             float a = alpha(e, rest, selected);
+            if (scrolls) a *= Ui.clamp(Math.min(x + TILE_W - tileLeft, area.right - PAD - x) / TILE_W);
             float scale = (glass ? 1 : 1 + 0.05f * Math.max(0, e * 2 - 1)) * pressScale(i, live);
             float cx = x + TILE_W / 2, y = TILE_TOP;
             Catalog.Entry entry = items.get(i);
@@ -440,6 +448,13 @@ final class HomeScreen extends Screen {
             c.restore();
         }
         c.restore();
+    }
+
+    /** The dock for n tiles: as wide as its tiles, centred, and at most as wide as DOCK. */
+    private RectF dockArea(int n) {
+        float width = Math.min(DOCK.width(), Math.max(1, n) * PITCH - (PITCH - TILE_W) + 2 * PAD);
+        dockArea.set(Ui.W / 2 - width / 2, DOCK.top, Ui.W / 2 + width / 2, DOCK.bottom);
+        return dockArea;
     }
 
     private void controls(Canvas c, boolean live, Bitmap blur, String bg, int ink, boolean dock) {
@@ -491,7 +506,7 @@ final class HomeScreen extends Screen {
         float h = menu.size() * 68 + 24;
         float left, top;
         if (dock) {
-            float tile = TILE_LEFT + focus * PITCH - scroll.value + TILE_W / 2;
+            float tile = dockArea(items.size()).left + PAD + focus * PITCH - scroll.value + TILE_W / 2;
             left = tile - w / 2;
             top = TILE_TOP - 24 - h;
         } else {
