@@ -22,7 +22,7 @@
 
 QuietHome shows your apps, your HDMI inputs, a photograph and the time. It is made for the TV remote.
 
-QuietHome is inspired by [CleanFrame](https://github.com/nthnclrk/CleanFrame), a quiet home screen for Samsung The Frame. It uses only native Android views. It has no WebView and no libraries, so it uses little memory and stays smooth on slow TVs. It uses the network only when you ask for an update.
+QuietHome is inspired by [CleanFrame](https://github.com/nthnclrk/CleanFrame), a quiet home screen for Samsung The Frame. It is a native Android app, with no WebView and no libraries (see [Why a native app](#why-a-native-app)). It uses the network only when you ask for an update.
 
 ![QuietHome: the List layout over a photograph, with the clock and the Home controls](docs/images/list.jpg)
 
@@ -49,6 +49,30 @@ QuietHome is inspired by [CleanFrame](https://github.com/nthnclrk/CleanFrame), a
 | All apps | Settings, with a live preview |
 | --- | --- |
 | ![All apps: every app and HDMI input in a grid](docs/images/allapps.jpg) | ![Settings: the wallpaper list and a preview of Home](docs/images/settings.jpg) |
+
+## Why a native app
+
+QuietHome starts from the idea of CleanFrame: the List and Dock layouts, the fonts, the focus styles and the glass. CleanFrame is a web app for Tizen, and its author made it for one Samsung The Frame. Android TV needs a different app, so QuietHome is a new implementation. We made these decisions:
+
+- **Native views, no WebView.** QuietHome draws everything in one Android view. It has no HTML, no JavaScript and no libraries, so Android starts no browser engine for it. The result is low memory use and smooth focus on slow TVs (see [Memory and speed](#memory-and-speed)).
+- **A documented API for the Home button.** CleanFrame takes the Home button with undocumented native helpers for one model and one firmware. QuietHome uses an accessibility service, a standard Android API. It needs no root and no code for one TV brand.
+- **The remote is the only tool.** You can install, configure and update QuietHome with the remote. You do not need developer mode, a computer or your own signing certificate.
+
+| | CleanFrame | QuietHome |
+| --- | --- | --- |
+| System | Tizen (Samsung) | Android TV and Google TV 8.0 and newer |
+| Made with | HTML, CSS and JavaScript | Native Android views, no libraries |
+| Made for | The author's Samsung The Frame | Any Android TV (see [Compatibility](#compatibility)) |
+| Home button | Undocumented native helpers | The QuietHome service (accessibility API) |
+| Install | Developer mode, Samsung tools, your own certificate | Downloader and the remote, or ADB |
+| Updates | Sign and install again | Settings → Update QuietHome |
+| Button mapping | No | Yes |
+| HDMI inputs | No | Show, rename, open when the TV turns on |
+| App icons | Marks for a fixed list of services | A one-colour mark for every app |
+| Glass | 60 images, made before installation | One 120 × 68 blurred copy of the photo |
+| Languages | English | 14 |
+
+CleanFrame is a good base for a Samsung TV. Its README says that it is made for one TV, and it asks you to adapt it to yours. QuietHome is for any Android TV, with no changes.
 
 ## Languages
 
