@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- The TV launcher banner (320 x 180): the icon's sun and horizon, wide. -->
+<!-- The TV launcher banner (320 x 180): the icon's TV, sun and horizon, larger. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="320dp" android:height="180dp"
     android:viewportWidth="320" android:viewportHeight="180">
     <path android:fillColor="#FF1D2A30" android:pathData="M0,0h320v180h-320Z" />
-    <path android:fillColor="#FFF6F1E7" android:pathData="M160,52a18,18 0 1 0 0.01,0Z" />
-    <path android:fillColor="#99F6F1E7" android:pathData="M0,140 L80,104 L140,126 L200,110 L320,140 L320,180 L0,180Z" />
+    <group android:translateX="64" android:translateY="-8" android:scaleX="2" android:scaleY="2">
+        <group>
+            <clip-path android:pathData="M19,22.5h58a4.5,4.5 0 0 1 4.5,4.5v34a4.5,4.5 0 0 1 -4.5,4.5h-58a4.5,4.5 0 0 1 -4.5,-4.5v-34a4.5,4.5 0 0 1 4.5,-4.5Z" />
+            <path android:fillColor="#FFF6F1E7" android:pathData="M46,30.5a6.5,6.5 0 1 0 0.01,0Z" />
+            <path android:fillColor="#99F6F1E7" android:pathData="M10,62 L33,47 L47,55 L60,48 L88,63 V70 H10Z" />
+        </group>
+        <path android:strokeColor="#FFF6F1E7" android:strokeWidth="5" android:pathData="M19,20h58a7,7 0 0 1 7,7v34a7,7 0 0 1 -7,7h-58a7,7 0 0 1 -7,-7v-34a7,7 0 0 1 7,-7Z" />
+        <path android:strokeColor="#FFF6F1E7" android:strokeWidth="5" android:strokeLineCap="round" android:pathData="M36,78 H60" />
+    </group>
 </vector>

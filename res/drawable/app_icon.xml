@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- A sun over a horizon: a quiet photo. -->
+<!-- A TV that shows a sun over a horizon: a quiet photo. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="96dp" android:height="96dp"
     android:viewportWidth="96" android:viewportHeight="96">
     <path android:fillColor="#FF1D2A30" android:pathData="M20,0h56a20,20 0 0 1 20,20v56a20,20 0 0 1 -20,20h-56a20,20 0 0 1 -20,-20v-56a20,20 0 0 1 20,-20Z" />
-    <path android:fillColor="#FFF6F1E7" android:pathData="M48,30a10,10 0 1 0 0.01,0Z" />
-    <path android:fillColor="#99F6F1E7" android:pathData="M8,70 L34,52 L50,62 L64,54 L88,70 L88,76 a12,12 0 0 1 -12,12 h-56 a12,12 0 0 1 -12,-12Z" />
+    <group>
+        <clip-path android:pathData="M19,22.5h58a4.5,4.5 0 0 1 4.5,4.5v34a4.5,4.5 0 0 1 -4.5,4.5h-58a4.5,4.5 0 0 1 -4.5,-4.5v-34a4.5,4.5 0 0 1 4.5,-4.5Z" />
+        <path android:fillColor="#FFF6F1E7" android:pathData="M46,30.5a6.5,6.5 0 1 0 0.01,0Z" />
+        <path android:fillColor="#99F6F1E7" android:pathData="M10,62 L33,47 L47,55 L60,48 L88,63 V70 H10Z" />
+    </group>
+    <path android:strokeColor="#FFF6F1E7" android:strokeWidth="5" android:pathData="M19,20h58a7,7 0 0 1 7,7v34a7,7 0 0 1 -7,7h-58a7,7 0 0 1 -7,-7v-34a7,7 0 0 1 7,-7Z" />
+    <path android:strokeColor="#FFF6F1E7" android:strokeWidth="5" android:strokeLineCap="round" android:pathData="M36,78 H60" />
 </vector>
