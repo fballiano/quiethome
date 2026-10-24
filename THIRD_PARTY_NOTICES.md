@@ -34,6 +34,8 @@ The 15 photographs in `assets/wallpapers/` come from Unsplash. Each one is used 
 | Mint wave | MagicPattern | https://unsplash.com/photos/87PP9Zd7MNo |
 | Alpine glow | Cristina Gottardi | https://unsplash.com/photos/CSpjU6hYo_0 |
 
+The room in the README images, `docs/images/room.jpg`, is not a photograph. We made it for QuietHome with an image model (OpenAI GPT Image 2.5), then changed the TV to 16:9. The project licence covers it.
+
 ## Marks and icons
 
 The SVG sources are in `tools/icons/`. `tools/icons/SOURCES.md` lists the source and the terms of each one. `tools/svg2vector.py` converts them to the vector drawables in `res/drawable/`.

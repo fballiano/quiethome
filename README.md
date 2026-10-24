@@ -24,7 +24,7 @@ QuietHome shows your apps, your HDMI inputs, a photograph and the time. It is ma
 
 QuietHome is inspired by [CleanFrame](https://github.com/nthnclrk/CleanFrame), a quiet home screen for Samsung The Frame. It is a native Android app, with no WebView and no libraries (see [Why a native app](#why-a-native-app)). It uses the network only when you ask for an update.
 
-![QuietHome: the List layout over a photograph, with the clock and the Home controls](docs/images/list.jpg)
+![QuietHome on a TV in a living room: the List and Dock layouts over photographs, then the Light background](docs/images/home.webp)
 
 ## What it does
 
@@ -44,7 +44,24 @@ QuietHome is inspired by [CleanFrame](https://github.com/nthnclrk/CleanFrame), a
   - **When the TV turns on.** For a TV that only shows a box (for example an Nvidia Shield) on one HDMI port: QuietHome opens that input at boot and each time the TV wakes. It can also open an app. Home still shows QuietHome.
 - **Network only for updates.** QuietHome connects to the network only when you select Settings → Update QuietHome, and only to GitHub. It never checks in the background. It has no accounts, no analytics and no ads.
 
-![The Dock layout with Glass focus](docs/images/dock.jpg)
+## Make it yours
+
+Each image is one combination of settings. Settings shows a live preview of Home while you change them.
+
+<table>
+<tr>
+<td width="50%"><img src="docs/images/golden.jpg" alt="List layout with names and icons, Glass focus, over the Golden hour photo" /><br /><sub><b>List</b> · names and icons · Glass focus · Golden hour</sub></td>
+<td width="50%"><img src="docs/images/night.jpg" alt="List layout with names only, controls as icons and the date, over the Desert stars photo" /><br /><sub><b>List</b> · names only · controls as icons · date · Desert stars</sub></td>
+</tr>
+<tr>
+<td><img src="docs/images/night-dock.jpg" alt="Dock layout with Glass focus in the Frost material, over the Desert stars photo" /><br /><sub><b>Dock</b> · Glass focus · Frost material · Desert stars</sub></td>
+<td><img src="docs/images/light.jpg" alt="List layout on the Light background, in Newsreader, with a 12-hour clock and the date" /><br /><sub><b>Light</b> background · Newsreader · 12-hour clock · date</sub></td>
+</tr>
+<tr>
+<td><img src="docs/images/icons.jpg" alt="List layout with icons only, Clear material, over the Quiet cove photo" /><br /><sub><b>List</b> · icons only · Clear material · Quiet cove</sub></td>
+<td><img src="docs/images/dark-dock.jpg" alt="Dock layout on the Dark background, in Geist, with the date" /><br /><sub><b>Dark</b> background · Dock · Geist · date</sub></td>
+</tr>
+</table>
 
 | All apps | Settings, with a live preview |
 | --- | --- |
@@ -322,7 +339,7 @@ The App Bundle for Google Play is not in the release. Download it from the artif
 | `src-github/`, `src-play/` | The code for only one version: Settings → Update QuietHome is only in the GitHub version |
 | `res/` | Strings, the theme, the icon and the vector marks |
 | `assets/` | The photographs and the fonts |
-| `tools/` | The source SVG marks and `svg2vector.py`, which converts them to vector drawables |
+| `tools/` | The source SVG marks and `svg2vector.py`, which converts them to vector drawables, and `screenshots.sh`, which takes the Home images of this README |
 | `build.sh` | The build: aapt2, javac, d8, zipalign and apksigner, or bundletool for Google Play |
 | `bundle.json` | The App Bundle configuration: the fonts and photographs stay uncompressed |
 | `.github/workflows/` | The build on GitHub, and the releases |
