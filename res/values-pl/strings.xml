@@ -65,7 +65,7 @@
     <string name="service_how">W Ułatwieniach dostępu wybierz QuietHome i włącz.</string>
     <string name="service_restricted">Jeśli jest szare („Ustawienie ograniczone”), otwórz Informacje o aplikacji, zezwól na te ustawienia i spróbuj znowu.</string>
     <string name="service_privacy">Usługa widzi naciśnięcia klawiszy i nazwę aplikacji na pierwszym planie. Nie może czytać ekranu i nic nie wysyła.</string>
-    <string name="open_accessibility">Otwórz Ułatwienia dostępu</string>
+    <string name="open_accessibility">Zgadzam się, otwórz</string>
     <string name="app_info">Informacje o aplikacji</string>
     <string name="later">Później</string>
     <string name="service_is_on">Usługa QuietHome jest włączona.</string>

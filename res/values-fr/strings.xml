@@ -65,7 +65,7 @@
     <string name="service_how">Dans Accessibilité, sélectionnez QuietHome et activez-le.</string>
     <string name="service_restricted">S’il est gris ou indique « Paramètre restreint », ouvrez Infos sur l’appli, autorisez les paramètres restreints et réessayez.</string>
     <string name="service_privacy">Le service voit les touches et le nom de l’appli au premier plan. Il ne peut pas lire l’écran et n’envoie rien.</string>
-    <string name="open_accessibility">Ouvrir Accessibilité</string>
+    <string name="open_accessibility">Accepter et ouvrir</string>
     <string name="app_info">Infos sur l’appli</string>
     <string name="later">Plus tard</string>
     <string name="service_is_on">Le service QuietHome est activé.</string>

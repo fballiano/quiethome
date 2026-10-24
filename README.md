@@ -141,7 +141,7 @@ You need no computer for this. It works on Android TV and Google TV.
    ```
 
 4. Select **Install** when Downloader has the file, then **Open**.
-5. QuietHome shows how to turn on its service. Select **Open Accessibility settings**, then **QuietHome**, and turn it on. If it is grey or says "Restricted setting", go back, select **App info**, allow restricted settings, and try again.
+5. QuietHome shows how to turn on its service. Select **Agree and open settings**, then **QuietHome**, and turn it on. If it is grey or says "Restricted setting", go back, select **App info**, allow restricted settings, and try again.
 
 Press Home: QuietHome opens. To install a new version later, select Settings → Update QuietHome. Your settings stay. Settings shows the installed version under its title.
 
@@ -185,7 +185,7 @@ adb shell cmd package resolve-activity --brief -a android.intent.action.MAIN -c 
 
 The `pm grant` command above lets QuietHome turn its service on by itself. Then QuietHome keeps it on, also after a force stop, which makes Android turn accessibility services off.
 
-Without that command, QuietHome shows a setup screen when its service is off. Select **Open Accessibility settings**, select **QuietHome** and turn it on. On some TVs, the path is Settings → System → Accessibility → QuietHome.
+Without that command, QuietHome shows a setup screen when its service is off. Select **Agree and open settings**, select **QuietHome** and turn it on. On some TVs, the path is Settings → System → Accessibility → QuietHome.
 
 On Android 13 and newer, an update through an installer screen, for example with Downloader, gives QuietHome restricted settings. Android then turns the service off and does not let QuietHome turn it on again, also with the `pm grant` command. QuietHome then shows its setup screen: select **App info**, allow restricted settings, and come back. Settings → Update QuietHome installs updates in a different way and does not cause this.
 
@@ -291,7 +291,15 @@ sh build.sh
 
 The script writes `out/quiethome.apk`. The first build creates a local test key, `key.jks`. Keep this file: an update installs over an earlier build only with the same key. To use your own key, set `KEYSTORE` and `KEYSTORE_PASS`.
 
-GitHub Actions ([`.github/workflows/build.yml`](.github/workflows/build.yml)) runs the same script on every push and pull request, and keeps the APK as a build artifact. To publish a release, push an annotated version tag. Its message is the release notes:
+To build the Google Play version, install bundletool (`brew install bundletool`) and run:
+
+```sh
+STORE=play sh build.sh
+```
+
+The script then writes `out/quiethome.aab`, an Android App Bundle. This version does not have Settings → Update QuietHome, because Google Play updates the app. It also does not have the `INTERNET` and `REQUEST_INSTALL_PACKAGES` permissions. All other code is the same.
+
+GitHub Actions ([`.github/workflows/build.yml`](.github/workflows/build.yml)) runs the same script for the two versions on every push and pull request. It keeps the APK and the App Bundle as build artifacts. To publish a release, push an annotated version tag. Its message is the release notes:
 
 ```sh
 git tag -a v1.2.0 --cleanup=verbatim -F notes.md
@@ -304,15 +312,19 @@ The workflow then builds the APK with that version, signs it with the release ke
 gh attestation verify quiethome.apk --repo fballiano/quiethome
 ```
 
-[SECURITY.md](SECURITY.md) tells how to report a security problem, what rights the app has, and how releases are made and protected.
+The App Bundle for Google Play is not in the release. Download it from the artifacts of the same workflow run, and upload it in the Play Console.
+
+[PRIVACY.md](PRIVACY.md) tells what data QuietHome keeps and sends. [SECURITY.md](SECURITY.md) tells how to report a security problem, what rights the app has, and how releases are made and protected.
 
 | Location | Contents |
 | --- | --- |
 | `src/` | The Java source: one activity (`Home`), one view (`Stage`) and one class for each screen |
+| `src-github/`, `src-play/` | The code for only one version: Settings → Update QuietHome is only in the GitHub version |
 | `res/` | Strings, the theme, the icon and the vector marks |
 | `assets/` | The photographs and the fonts |
 | `tools/` | The source SVG marks and `svg2vector.py`, which converts them to vector drawables |
-| `build.sh` | The build: aapt2, javac, d8, zipalign and apksigner |
+| `build.sh` | The build: aapt2, javac, d8, zipalign and apksigner, or bundletool for Google Play |
+| `bundle.json` | The App Bundle configuration: the fonts and photographs stay uncompressed |
 | `.github/workflows/` | The build on GitHub, and the releases |
 
 ## Translate QuietHome

@@ -65,7 +65,7 @@
     <string name="service_how">Em Acessibilidade, selecione QuietHome e ative.</string>
     <string name="service_restricted">Se estiver cinza (“Configuração restrita”), abra Informações do app, permita essas configurações e tente de novo.</string>
     <string name="service_privacy">O serviço vê as teclas pressionadas e o nome do app em primeiro plano. Ele não pode ler a tela e não envia nada.</string>
-    <string name="open_accessibility">Abrir Acessibilidade</string>
+    <string name="open_accessibility">Aceitar e abrir</string>
     <string name="app_info">Informações do app</string>
     <string name="later">Mais tarde</string>
     <string name="service_is_on">O serviço do QuietHome está ativado.</string>

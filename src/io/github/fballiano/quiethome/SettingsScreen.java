@@ -114,7 +114,7 @@ final class SettingsScreen extends Screen {
             () -> stage.open(new EditorScreen(stage))));
         p.rows.add(buttonMapping());
         p.rows.add(link(text(R.string.android_tv), () -> text(R.string.android_tv_note), () -> push(android())));
-        p.rows.add(action(text(R.string.update), () -> text(R.string.update_note), () -> Updater.start(stage)));
+        if (Updater.AVAILABLE) p.rows.add(action(text(R.string.update), () -> text(R.string.update_note), () -> Updater.start(stage)));
         return p;
     }
 
@@ -186,8 +186,10 @@ final class SettingsScreen extends Screen {
         Page p = new Page(text(R.string.android_tv));
         p.rows.add(action(text(R.string.quiethome_service), () -> text(ServiceSetup.isOn(stage.getContext())
                 ? R.string.service_on_note : R.string.service_off_note),
-            () -> stage.toast(ServiceSetup.isOn(stage.getContext()) ? text(R.string.service_is_on)
-                : ServiceSetup.openSettings(stage.getContext()))));
+            () -> {
+                if (ServiceSetup.isOn(stage.getContext())) stage.toast(text(R.string.service_is_on));
+                else stage.open(new SetupScreen(stage));
+            }));
         p.rows.add(action(text(R.string.tv_settings), () -> text(R.string.tv_settings_note), () -> stage.toast(stage.catalog.openSettings())));
         Row homeKey = choice(text(R.string.home_button), Prefs.HOME_KEY, text(R.string.app_name), text(R.string.android_name));
         homeKey.note = () -> text(!RemoteButtons.running ? R.string.needs_service_note
@@ -211,7 +213,7 @@ final class SettingsScreen extends Screen {
             List<Row> rows = new ArrayList<>();
             if (!RemoteButtons.running) {
                 rows.add(action(text(R.string.service_title), () -> text(R.string.button_mapping_needs_it),
-                    () -> stage.toast(ServiceSetup.openSettings(stage.getContext()))));
+                    () -> stage.open(new SetupScreen(stage))));
             }
             for (Map.Entry<Integer, String> b : stage.prefs.buttons().entrySet()) {
                 int code = b.getKey();

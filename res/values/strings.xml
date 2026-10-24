@@ -71,7 +71,7 @@
     <string name="service_how">In Accessibility, select QuietHome and turn it on.</string>
     <string name="service_restricted">If it is grey or says \"Restricted setting\", open App info, allow restricted settings, and try again.</string>
     <string name="service_privacy">The service sees key presses and the name of the app in front. It cannot read the screen and sends nothing.</string>
-    <string name="open_accessibility">Open Accessibility settings</string>
+    <string name="open_accessibility">Agree and open settings</string>
     <string name="app_info">App info</string>
     <string name="later">Later</string>
     <string name="service_is_on">The QuietHome service is on.</string>

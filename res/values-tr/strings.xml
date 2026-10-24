@@ -65,7 +65,7 @@
     <string name="service_how">Erişilebilirlik’te QuietHome’u seçin ve açın.</string>
     <string name="service_restricted">Gri ise veya “Kısıtlanmış ayar” yazıyorsa Uygulama bilgileri’ni açın, kısıtlanmış ayarlara izin verin ve tekrar deneyin.</string>
     <string name="service_privacy">Hizmet tuş basışlarını ve öndeki uygulamanın adını görür. Ekranı okuyamaz ve hiçbir şey göndermez.</string>
-    <string name="open_accessibility">Erişilebilirlik’i aç</string>
+    <string name="open_accessibility">Kabul et ve aç</string>
     <string name="app_info">Uygulama bilgileri</string>
     <string name="later">Sonra</string>
     <string name="service_is_on">QuietHome hizmeti açık.</string>

@@ -65,7 +65,7 @@
     <string name="service_how">Wählen Sie in den Bedienungshilfen QuietHome und schalten Sie es ein.</string>
     <string name="service_restricted">Ist es grau („Eingeschränkte Einstellung“)? Dann in App-Info diese Einstellungen erlauben und neu versuchen.</string>
     <string name="service_privacy">Der Dienst sieht Tasten und den Namen der App im Vordergrund. Er kann den Bildschirm nicht lesen und sendet nichts.</string>
-    <string name="open_accessibility">Bedienungshilfen öffnen</string>
+    <string name="open_accessibility">Zustimmen und öffnen</string>
     <string name="app_info">App-Info</string>
     <string name="later">Später</string>
     <string name="service_is_on">Der QuietHome-Dienst ist eingeschaltet.</string>

@@ -65,7 +65,7 @@
     <string name="service_how">V Přístupnosti vyberte QuietHome a zapněte ho.</string>
     <string name="service_restricted">Pokud je šedé („Omezené nastavení“), otevřete Informace o aplikaci, povolte tato nastavení a zkuste to znovu.</string>
     <string name="service_privacy">Služba vidí stisky kláves a název aplikace v popředí. Nemůže číst obrazovku a nic neodesílá.</string>
-    <string name="open_accessibility">Otevřít Přístupnost</string>
+    <string name="open_accessibility">Souhlasit a otevřít</string>
     <string name="app_info">Informace o aplikaci</string>
     <string name="later">Později</string>
     <string name="service_is_on">Služba QuietHome je zapnutá.</string>

@@ -65,7 +65,7 @@
     <string name="service_how">Valitse Saavutettavuus-kohdassa QuietHome ja ota se käyttöön.</string>
     <string name="service_restricted">Jos se on harmaa tai siinä lukee ”Rajoitettu asetus”, avaa Sovelluksen tiedot, salli rajoitetut asetukset ja yritä uudelleen.</string>
     <string name="service_privacy">Palvelu näkee näppäinten painallukset ja edessä olevan sovelluksen nimen. Se ei voi lukea näyttöä eikä lähetä mitään.</string>
-    <string name="open_accessibility">Avaa Saavutettavuus</string>
+    <string name="open_accessibility">Hyväksy ja avaa</string>
     <string name="app_info">Sovelluksen tiedot</string>
     <string name="later">Myöhemmin</string>
     <string name="service_is_on">QuietHome-palvelu on käytössä.</string>

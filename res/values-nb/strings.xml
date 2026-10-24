@@ -65,7 +65,7 @@
     <string name="service_how">Velg QuietHome i Tilgjengelighet, og slå den på.</string>
     <string name="service_restricted">Hvis den er grå eller viser «Begrenset innstilling», åpne Appinfo, tillat begrensede innstillinger og prøv igjen.</string>
     <string name="service_privacy">Tjenesten ser tastetrykk og navnet på appen i forgrunnen. Den kan ikke lese skjermen og sender ingenting.</string>
-    <string name="open_accessibility">Åpne Tilgjengelighet</string>
+    <string name="open_accessibility">Godta og åpne</string>
     <string name="app_info">Appinfo</string>
     <string name="later">Senere</string>
     <string name="service_is_on">QuietHome-tjenesten er på.</string>

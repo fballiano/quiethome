@@ -1,0 +1,5 @@
+{
+  "compression": {
+    "uncompressedGlob": ["assets/**.ttf", "assets/**.jpg"]
+  }
+}

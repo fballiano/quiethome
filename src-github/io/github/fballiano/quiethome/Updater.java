@@ -41,8 +41,12 @@ import java.util.concurrent.Executors;
  * Settings → Update QuietHome, the only network use of QuietHome. It reads the latest release from
  * the GitHub API and, when it is newer, downloads quiethome.apk, checks its SHA-256 digest and its
  * signature, and gives it to Android's package installer, which asks the user to confirm.
+ * Only in the GitHub build: in the Play build, src-play has a stub, because Google Play updates the app.
  */
 final class Updater {
+    /** Settings shows Update QuietHome. */
+    static final boolean AVAILABLE = true;
+
     private static final String LATEST = "https://api.github.com/repos/fballiano/quiethome/releases/latest";
     private static final String ASSET = "quiethome.apk";
     private static final int TIMEOUT_MS = 20000;

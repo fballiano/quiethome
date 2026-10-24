@@ -7,7 +7,11 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 
-/** Shown over Home while the QuietHome service is off: why it is needed, and a way to turn it on. */
+/**
+ * Shown over Home while the QuietHome service is off: why it is needed, and a way to turn it on.
+ * Settings opens it too, so the user always reads what the service sees and agrees before the
+ * Accessibility settings open. Google Play asks for this disclosure and this consent.
+ */
 final class SetupScreen extends Screen {
     /** "Later" hides this screen until QuietHome starts again. */
     static boolean later;

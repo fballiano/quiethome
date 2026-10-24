@@ -83,7 +83,7 @@ adb shell settings get secure enabled_accessibility_services
 
 QuietHome appends its service to that setting, so the services that were already on stay on. It also turns the service on again after a force stop.
 
-If `pm grant` fails or the service is not in the list, QuietHome shows its setup screen on the TV. Ask the user to select **Open Accessibility settings**, then **QuietHome**, and turn it on.
+If `pm grant` fails or the service is not in the list, QuietHome shows its setup screen on the TV. Ask the user to select **Agree and open settings**, then **QuietHome**, and turn it on.
 
 `adb shell input keyevent` cannot test the Home button: injected keys skip accessibility services. Ask the user to open any app and press Home on the remote.
 

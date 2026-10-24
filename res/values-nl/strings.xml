@@ -65,7 +65,7 @@
     <string name="service_how">Kies in Toegankelijkheid QuietHome en zet het aan.</string>
     <string name="service_restricted">Is het grijs of staat er ‘Beperkte instelling’? Open dan App-info, sta beperkte instellingen toe en probeer het opnieuw.</string>
     <string name="service_privacy">De service ziet toetsen en de naam van de app op de voorgrond. Hij kan het scherm niet lezen en verstuurt niets.</string>
-    <string name="open_accessibility">Toegankelijkheid openen</string>
+    <string name="open_accessibility">Akkoord en openen</string>
     <string name="app_info">App-info</string>
     <string name="later">Later</string>
     <string name="service_is_on">De QuietHome-service staat aan.</string>

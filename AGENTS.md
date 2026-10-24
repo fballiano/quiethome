@@ -2,7 +2,7 @@
 
 To install, configure or remove QuietHome on a TV, follow `.claude/skills/install-quiethome/SKILL.md`.
 
-Build with `sh build.sh`. To release, push an annotated tag such as `v1.2.0` whose message is the release notes: `git tag -a v1.2.0 --cleanup=verbatim -F notes.md`. Write the notes like the earlier releases: `### Added`, `### Changed`, `### Fixed` and `### Removed`, with only the changes that users see. `--cleanup=verbatim` keeps the `###` lines. `.github/workflows/build.yml` builds, signs and publishes `quiethome.apk` with these notes. A tag without a message stops the release. All drawing happens in `Stage` on a 1920 × 1080 design canvas; each screen is a `Screen` subclass in `src/`.
+Build with `sh build.sh`. To release, push an annotated tag such as `v1.2.0` whose message is the release notes: `git tag -a v1.2.0 --cleanup=verbatim -F notes.md`. Write the notes like the earlier releases: `### Added`, `### Changed`, `### Fixed` and `### Removed`, with only the changes that users see. `--cleanup=verbatim` keeps the `###` lines. `.github/workflows/build.yml` builds, signs and publishes `quiethome.apk` with these notes. A tag without a message stops the release. There are two builds. The GitHub build is the APK with Settings → Update QuietHome. The Play build (`STORE=play sh build.sh`, `out/quiethome.aab`, needs bundletool) has no update and no network, because Play rejects apps that update themselves. Code for one build only goes in `src-github/` or `src-play/`, with the same class in both. Manifest lines for the GitHub build only go between `<!-- github -->` and `<!-- /github -->`. CI builds both; upload the bundle from the tag's run to the Play Console. All drawing happens in `Stage` on a 1920 × 1080 design canvas; each screen is a `Screen` subclass in `src/`.
 
 Keep the README and its screenshots current in the same commit as the change. When a change alters what the user sees, retake the affected images in `docs/images/` on the emulator: 1600 px wide JPEG, with stub apps that use real brand package names (the List, Dock, All apps, Settings and button picker screens).
 
@@ -12,6 +12,7 @@ Keep the README and its screenshots current in the same commit as the change. Wh
 - New source files start with the two SPDX lines: `SPDX-FileCopyrightText: 2026 Fabrizio Balliano` and `SPDX-License-Identifier: GPL-3.0-or-later`.
 - Write the README, `SECURITY.md` and other docs in ASD-STE100 Simplified Technical English.
 - Smoothness comes first: `Stage` draws only while something animates. Keep per-frame work small (no blurred shadows on text that scales) and do slow work, such as the icon filter, off the main thread. Animation speeds are `Ui.FOCUS_MS` and `Ui.SCROLL_MS`.
+- Google Play asks for a disclosure and consent before an app's accessibility service is turned on. `SetupScreen` is that disclosure: open it, not the Accessibility settings, from every place that turns the service on.
 - Brand marks are Simple Icons (CC0) or our own drawings, each listed in `tools/icons/SOURCES.md` and `THIRD_PARTY_NOTICES.md`; regenerate with `python3 -I tools/svg2vector.py`. Brands that Disney owns get no mark (`mark` 0): Home then shows the app's own icon through the one-colour filter, like every app without a mark.
 
 ## Testing
