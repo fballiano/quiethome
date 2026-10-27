@@ -13,7 +13,7 @@ WHAT IT DOES
 
 THE QUIETHOME SERVICE
 
-QuietHome has an accessibility service. It is off until you turn it on. Before you turn it on, QuietHome shows what the service sees, and you select Agree and open settings.
+QuietHome has an accessibility service. It is off until you turn it on. Before you turn it on, QuietHome shows what the service does, and you select Agree and open settings.
 
 When the service is on:
 • The Home button always opens QuietHome, also on TVs that keep their own home screen.
