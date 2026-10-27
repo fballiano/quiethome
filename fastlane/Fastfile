@@ -1,0 +1,28 @@
+# SPDX-FileCopyrightText: 2026 Fabrizio Balliano
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+# The store listing is in fastlane/metadata/android: the text, the graphics, the TV screenshots
+# and the changelogs (changelogs/<version code>.txt, 500 characters at most).
+default_platform(:android)
+
+platform :android do
+  desc "Sends the store listing, the graphics and the TV screenshots to Google Play"
+  lane :metadata do
+    upload_to_play_store(
+      skip_upload_aab: true,
+      skip_upload_apk: true,
+      skip_upload_changelogs: true
+    )
+  end
+
+  desc "Sends out/quiethome.aab to a track (production by default) with its changelog"
+  lane :release do |options|
+    upload_to_play_store(
+      aab: "out/quiethome.aab",
+      track: options[:track] || "production",
+      skip_upload_metadata: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true
+    )
+  end
+end

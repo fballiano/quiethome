@@ -3,3 +3,5 @@ key.jks
 *.apk
 .DS_Store
 .idea/
+fastlane/README.md
+fastlane/report.xml

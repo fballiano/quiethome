@@ -1,0 +1,31 @@
+QuietHome is a quiet home screen for Android TV and Google TV. It shows your apps, your HDMI inputs, a photograph and the time. It has no rows of suggestions and no ads. It is made for the TV remote.
+
+WHAT IT DOES
+
+• List or Dock layout. Show names, icons or both. Show a 24-hour or 12-hour clock. You can also show the date under the clock.
+• One-colour icons. Known services use a built-in mark. For every other app, QuietHome turns the app's own icon into a mark in the same colour.
+• Backgrounds. Choose one of 15 photographs, a light colour or a dark colour. Photos can rotate each time Home opens, or every 5, 15 or 60 minutes.
+• All apps. It shows every TV app and every HDMI input. Hold OK on an app to close it and free its memory.
+• Your own order. Hold OK on an app on Home to move it or to remove it. You can put up to nine apps on Home.
+• Input names. Give an HDMI input a name that you know, for example "Game console".
+• Typography and focus. Choose Manrope, Geist or Newsreader. Choose Type focus or Glass focus, with a Soft, Frost or Clear material.
+• Your language. QuietHome uses the language of the TV, in 14 languages.
+
+THE QUIETHOME SERVICE
+
+QuietHome has an accessibility service. It is off until you turn it on. Before you turn it on, QuietHome shows what the service sees, and you select Agree and open settings.
+
+When the service is on:
+• The Home button always opens QuietHome, also on TVs that keep their own home screen.
+• You can give a remote button a new job: open an app or an HDMI input, open QuietHome or the TV settings, or do nothing.
+• When the TV turns on, QuietHome can open an HDMI input or an app.
+
+The service sees the key presses of the remote and the name of the app in front. It cannot read the screen. It does not keep or send the key presses or the app names.
+
+PRIVACY
+
+QuietHome does not use the network. It has no accounts, no analytics and no ads. It collects no data about you or your TV.
+
+FREE SOFTWARE
+
+QuietHome is free software under the GPL-3.0 licence. The source code is at https://github.com/fballiano/quiethome

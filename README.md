@@ -329,7 +329,7 @@ The workflow then builds the APK with that version, signs it with the release ke
 gh attestation verify quiethome.apk --repo fballiano/quiethome
 ```
 
-The App Bundle for Google Play is not in the release. Download it from the artifacts of the same workflow run, and upload it in the Play Console.
+The App Bundle for Google Play is not in the release. Download it from the artifacts of the same workflow run, and upload it in the Play Console. You can also send it with [fastlane](https://fastlane.tools): put it in `out/quiethome.aab` and run `fastlane release`. The Google Play listing (the text, the graphics and the TV screenshots) is in `fastlane/metadata/android/`. `fastlane metadata` sends it to Google Play. Fastlane needs a Google Play service account key in `~/.config/quiethome/play-service-account.json`.
 
 [PRIVACY.md](PRIVACY.md) tells what data QuietHome keeps and sends. [SECURITY.md](SECURITY.md) tells how to report a security problem, what rights the app has, and how releases are made and protected.
 
@@ -343,6 +343,7 @@ The App Bundle for Google Play is not in the release. Download it from the artif
 | `build.sh` | The build: aapt2, javac, d8, zipalign and apksigner, or bundletool for Google Play |
 | `bundle.json` | The App Bundle configuration: the fonts and photographs stay uncompressed |
 | `.github/workflows/` | The build on GitHub, and the releases |
+| `fastlane/` | The Google Play listing, and the fastlane lanes that send it and the App Bundle |
 
 ## Translate QuietHome
 

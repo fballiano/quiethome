@@ -1,0 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Fabrizio Balliano
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+# The service account key for the Google Play Developer API. Keep it out of the repository.
+json_key_file(ENV["PLAY_JSON_KEY"] || File.expand_path("~/.config/quiethome/play-service-account.json"))
+package_name("io.github.fballiano.quiethome")
