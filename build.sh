@@ -3,10 +3,10 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 # Builds out/quiethome.apk with the Android SDK alone: no Gradle, no libraries.
-# Needs a JDK (17 or newer) and the Android SDK with a platform (34+) and build-tools.
+# Needs a JDK (17 or newer) and the Android SDK with a platform (36+) and build-tools.
 #   macOS: brew install openjdk && brew install --cask android-commandlinetools
 #          sdkmanager "platforms;android-36" "build-tools;36.1.0"
-# Choose other versions with PLATFORM=android-35 BUILD_TOOLS=35.0.0 sh build.sh
+# Choose other versions with PLATFORM=android-37 BUILD_TOOLS=37.0.0 sh build.sh
 #
 # STORE=play builds out/quiethome.aab for Google Play instead: an App Bundle without Settings → Update
 # QuietHome, because Play updates the app. It also needs bundletool: brew install bundletool, or
@@ -56,7 +56,7 @@ fi
 "$BT/aapt2" compile --dir res -o out/res.zip
 link() {
   "$BT/aapt2" link -I "$JAR" --manifest out/AndroidManifest.xml -A assets \
-    --java out/gen --min-sdk-version 26 --target-sdk-version 34 \
+    --java out/gen --min-sdk-version 26 --target-sdk-version 36 \
     --version-code "$VERSION_CODE" --version-name "$VERSION_NAME" "$@" out/res.zip
 }
 # A bundle needs the resources in proto format; bundle.json keeps the fonts uncompressed there.
