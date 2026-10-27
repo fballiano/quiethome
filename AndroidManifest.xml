@@ -16,8 +16,13 @@
     <uses-feature android:name="android.software.leanback" android:required="false" />
     <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
 
-    <!-- Android 11+ only shows a home screen the apps it asks for: TV apps, phone apps and other launchers. -->
+    <!-- Android 11+ only shows a home screen the apps it asks for: TV apps, phone apps, other launchers
+         and a browser for the privacy policy. -->
     <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
+        </intent>
         <intent>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LEANBACK_LAUNCHER" />

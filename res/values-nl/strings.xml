@@ -158,6 +158,8 @@
     <!-- Updates -->
     <string name="update">QuietHome bijwerken</string>
     <string name="update_note">Downloadt en installeert de nieuwste versie</string>
+    <string name="privacy_policy">Privacybeleid</string>
+    <string name="privacy_no_browser">Deze tv heeft geen browser. Open het adres op je telefoon.</string>
     <string name="update_checking">Zoeken naar een nieuwe versie…</string>
     <string name="update_latest">QuietHome %1$s is de nieuwste versie.</string>
     <string name="update_downloading">QuietHome %1$s downloaden · %2$d%%</string>

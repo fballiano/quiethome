@@ -20,11 +20,11 @@ When the service is on:
 • You can give a remote button a new job: open an app or an HDMI input, open QuietHome or the TV settings, or do nothing.
 • When the TV turns on, QuietHome can open an HDMI input or an app.
 
-The service sees the key presses of the remote and the name of the app in front. It cannot read the screen. It does not keep or send the key presses or the app names.
+The service does not collect data. It checks each key press and each app that comes to the front on the TV, at that moment, and then it forgets. It does not keep or send anything. It cannot read the screen.
 
 PRIVACY
 
-QuietHome does not use the network. It has no accounts, no analytics and no ads. It collects no data about you or your TV.
+QuietHome does not collect data. It does not use the network. It has no accounts, no analytics and no ads.
 
 FREE SOFTWARE
 

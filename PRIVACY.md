@@ -1,21 +1,21 @@
 # Privacy
 
-QuietHome collects no data about you or your TV. It does not send data to us or to other persons. It has no accounts, no analytics and no ads.
+QuietHome does not collect data. It does not keep, send or share data about you, your TV or what you watch. It has no accounts, no analytics and no ads.
 
-## What QuietHome keeps on the TV
+## Your settings
 
-QuietHome keeps your settings in its private app storage on the TV: the look of Home, the apps on Home, the input names and the button mapping. Other apps cannot read this storage. Backups are off, so your settings do not go to a cloud backup. When you uninstall QuietHome, Android deletes your settings.
+Your settings stay on the TV, in the private app storage of QuietHome: the look of Home, the apps on Home, the input names and the button mapping. Other apps cannot read this storage. Backups are off, so your settings do not go to a cloud backup. When you uninstall QuietHome, Android deletes your settings.
 
-## What the QuietHome service sees
+## The QuietHome service
 
-The QuietHome service is an accessibility service. It is off until you turn it on. Before you turn it on, QuietHome shows what the service sees, and you select **Agree and open settings**.
+The QuietHome service is an accessibility service. It is off until you turn it on. Before you turn it on, QuietHome shows what the service does, and you select **Agree and open settings**.
 
-The service sees:
+The service does not collect data. It does two checks on the TV, at the moment that something occurs, and then it forgets:
 
-- The key presses of the remote. It uses them only to make Home open QuietHome and to give the buttons that you map a new job. All other key presses pass through.
-- The name of the app in front. It uses the name only to replace the TV's own home screen with QuietHome when that screen comes back.
+- When you press a button on the remote, the service checks if the button is Home or a button that you mapped. If it is, the service does the job of that button. All other key presses go to the TV as usual.
+- When a different app comes to the front, the service checks if it is the TV's own home screen. If it is, the service opens QuietHome.
 
-The service cannot read the screen. It does not keep or send the key presses or the app names.
+The service does not keep the key presses or the app names, and it does not send them. It cannot read the screen.
 
 ## Network
 

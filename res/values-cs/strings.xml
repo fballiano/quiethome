@@ -160,6 +160,8 @@
     <!-- Updates -->
     <string name="update">Aktualizovat QuietHome</string>
     <string name="update_note">Stáhne a nainstaluje nejnovější verzi</string>
+    <string name="privacy_policy">Zásady ochrany soukromí</string>
+    <string name="privacy_no_browser">Tato TV nemá prohlížeč. Otevřete adresu v telefonu.</string>
     <string name="update_checking">Hledání nové verze…</string>
     <string name="update_latest">QuietHome %1$s je nejnovější verze.</string>
     <string name="update_downloading">Stahování: QuietHome %1$s · %2$d %%</string>

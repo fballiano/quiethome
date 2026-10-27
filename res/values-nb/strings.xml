@@ -158,6 +158,8 @@
     <!-- Updates -->
     <string name="update">Oppdater QuietHome</string>
     <string name="update_note">Laster ned og installerer nyeste versjon</string>
+    <string name="privacy_policy">Personvernerklæring</string>
+    <string name="privacy_no_browser">TV-en har ingen nettleser. Åpne adressen på telefonen.</string>
     <string name="update_checking">Ser etter en ny versjon…</string>
     <string name="update_latest">QuietHome %1$s er den nyeste versjonen.</string>
     <string name="update_downloading">Laster ned QuietHome %1$s · %2$d %%</string>

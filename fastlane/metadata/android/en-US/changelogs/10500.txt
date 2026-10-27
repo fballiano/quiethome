@@ -1,0 +1,1 @@
+Settings has a new Privacy policy row. It shows where to read the policy, and OK opens it in the browser if the TV has one.

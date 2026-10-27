@@ -115,6 +115,8 @@ final class SettingsScreen extends Screen {
         p.rows.add(buttonMapping());
         p.rows.add(link(text(R.string.android_tv), () -> text(R.string.android_tv_note), () -> push(android())));
         if (Updater.AVAILABLE) p.rows.add(action(text(R.string.update), () -> text(R.string.update_note), () -> Updater.start(stage)));
+        p.rows.add(action(text(R.string.privacy_policy), () -> text(R.string.privacy_address),
+            () -> stage.toast(stage.catalog.openPage(text(R.string.privacy_url)))));
         return p;
     }
 

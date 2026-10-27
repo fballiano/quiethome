@@ -158,6 +158,8 @@
     <!-- Updates -->
     <string name="update">Actualizar QuietHome</string>
     <string name="update_note">Descarga e instala la versión más reciente</string>
+    <string name="privacy_policy">Política de privacidad</string>
+    <string name="privacy_no_browser">Esta TV no tiene navegador. Abre la dirección en tu móvil.</string>
     <string name="update_checking">Buscando una versión nueva…</string>
     <string name="update_latest">QuietHome %1$s es la versión más reciente.</string>
     <string name="update_downloading">Descargando QuietHome %1$s · %2$d %%</string>

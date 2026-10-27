@@ -257,6 +257,19 @@ final class Catalog {
         return start(new Intent(Settings.ACTION_SETTINGS));
     }
 
+    /**
+     * Opens a web page in the browser. Many TVs have none, only a stub that closes at once without a
+     * word: then it returns the reason.
+     */
+    String openPage(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        ResolveInfo browser = pm.resolveActivity(intent, 0);
+        if (browser == null || browser.activityInfo.packageName.endsWith(".frameworkpackagestubs") || start(intent) != null) {
+            return context.getString(R.string.privacy_no_browser);
+        }
+        return null;
+    }
+
     /** The other home screens, such as the stock launcher, best first. Setup and system tools stay out. */
     List<ResolveInfo> otherLaunchers() {
         List<ResolveInfo> out = new ArrayList<>();
