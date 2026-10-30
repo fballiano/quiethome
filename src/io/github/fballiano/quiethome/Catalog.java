@@ -63,6 +63,8 @@ final class Catalog {
 
     /** Things a mapped button can do besides opening an app or an input. */
     static final String ACTION_NONE = "action.none", ACTION_HOME = "action.home", ACTION_SETTINGS = "action.settings";
+    /** The system Back, for the app in front. Only the QuietHome service can do it. */
+    static final String ACTION_BACK = "action.back";
     /** Picker tiles only, never saved: a button's own job, and the Apps on Home editor. */
     static final String ACTION_DEFAULT = "action.default", ACTION_EDIT = "action.edit";
 
@@ -84,6 +86,7 @@ final class Catalog {
     List<Entry> actions() {
         List<Entry> out = new ArrayList<>();
         out.add(new Entry(ACTION_NONE, context.getString(R.string.nothing), null, null));
+        out.add(new Entry(ACTION_BACK, context.getString(R.string.back), null, null));
         out.add(new Entry(ACTION_HOME, context.getString(R.string.app_name), null, null));
         out.add(new Entry(ACTION_SETTINGS, context.getString(R.string.tv_settings), null, null));
         return out;

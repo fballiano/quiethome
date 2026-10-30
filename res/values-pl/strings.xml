@@ -32,6 +32,7 @@
     <string name="current">Obecne</string>
     <string name="its_own_job">Własne zadanie</string>
     <string name="nothing">Nic</string>
+    <string name="back">Wstecz</string>
     <string name="default_job">Domyślne</string>
     <string name="show_home">Ekran główny</string>
 
@@ -87,6 +88,7 @@
     <string name="needs_service_note">Wymaga usługi QuietHome.</string>
     <string name="button_mapping_needs_it">Przypisanie przycisków jej potrzebuje</string>
     <string name="does_nothing">Nic nie robi</string>
+    <string name="goes_back">Cofa</string>
     <string name="opens">Otwiera %1$s</string>
     <string name="add_a_button">Dodaj przycisk</string>
     <string name="add_a_button_note">Naciśnij go, a potem wybierz, co robi</string>
@@ -94,6 +96,7 @@
     <string name="choose_what_button_does">Co robi %1$s</string>
     <string name="button_default_again">%1$s znów wykonuje własne zadanie.</string>
     <string name="button_does_nothing">%1$s teraz nic nie robi.</string>
+    <string name="button_goes_back">%1$s teraz cofa.</string>
     <string name="button_opens">%1$s otwiera %2$s.</string>
 
     <!-- Settings -->

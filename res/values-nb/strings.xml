@@ -32,6 +32,7 @@
     <string name="current">Nåværende</string>
     <string name="its_own_job">Egen oppgave</string>
     <string name="nothing">Ingenting</string>
+    <string name="back">Tilbake</string>
     <string name="default_job">Standard</string>
     <string name="show_home">Vis startskjermen</string>
 
@@ -85,6 +86,7 @@
     <string name="needs_service_note">Krever QuietHome-tjenesten.</string>
     <string name="button_mapping_needs_it">Knappetildeling trenger den</string>
     <string name="does_nothing">Gjør ingenting</string>
+    <string name="goes_back">Går tilbake</string>
     <string name="opens">Åpner %1$s</string>
     <string name="add_a_button">Legg til en knapp</string>
     <string name="add_a_button_note">Trykk på den, og velg så hva den gjør</string>
@@ -92,6 +94,7 @@
     <string name="choose_what_button_does">Velg hva %1$s gjør</string>
     <string name="button_default_again">%1$s gjør sin egen oppgave igjen.</string>
     <string name="button_does_nothing">%1$s gjør ingenting nå.</string>
+    <string name="button_goes_back">%1$s går tilbake nå.</string>
     <string name="button_opens">%1$s åpner %2$s.</string>
 
     <!-- Settings -->

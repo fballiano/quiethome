@@ -140,7 +140,7 @@ Wrap the whole remote command in double quotes. Without them the TV's shell expa
 | `startOn` | A package name or HDMI input id to open when the TV turns on; `""` shows Home |
 | `home` | Up to nine package names or input ids, in order |
 | `inputNames` | Input id to a name; an empty name restores the TV's name |
-| `buttons` | Android keycode to a package, an input id, `action.none`, `action.home` or `action.settings`; an empty value removes it |
+| `buttons` | Android keycode to a package, an input id, `action.none`, `action.back`, `action.home` or `action.settings`; an empty value removes it |
 
 ## Safety
 

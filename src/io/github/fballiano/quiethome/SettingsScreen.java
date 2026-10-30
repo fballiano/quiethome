@@ -221,7 +221,8 @@ final class SettingsScreen extends Screen {
                 int code = b.getKey();
                 Catalog.Entry target = stage.catalog.get(b.getValue());
                 String opens = target == null ? b.getValue() : Catalog.title(target);
-                String does = Catalog.ACTION_NONE.equals(b.getValue()) ? text(R.string.does_nothing) : text(R.string.opens, opens);
+                String does = Catalog.ACTION_NONE.equals(b.getValue()) ? text(R.string.does_nothing)
+                    : Catalog.ACTION_BACK.equals(b.getValue()) ? text(R.string.goes_back) : text(R.string.opens, opens);
                 rows.add(link(RemoteButtons.name(stage.getContext(), code), () -> does, () -> pick(code)));
             }
             Row add = action(text(R.string.add_a_button), () -> text(R.string.add_a_button_note),
@@ -272,6 +273,7 @@ final class SettingsScreen extends Screen {
             Catalog.Entry e = stage.catalog.get(id);
             stage.toast(free ? text(R.string.button_default_again, name)
                 : Catalog.ACTION_NONE.equals(id) ? text(R.string.button_does_nothing, name)
+                : Catalog.ACTION_BACK.equals(id) ? text(R.string.button_goes_back, name)
                 : text(R.string.button_opens, name, e == null ? id : Catalog.title(e)));
         }, text(R.string.choose_what_button_does, name), lead, current == null ? Catalog.ACTION_DEFAULT : current);
         stage.open(picker[0]);

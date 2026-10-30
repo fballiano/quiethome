@@ -40,7 +40,7 @@ QuietHome is inspired by [CleanFrame](https://github.com/nthnclrk/CleanFrame), a
 - **Updates.** Settings shows the installed version under its title. Settings → Update QuietHome looks for a newer release on GitHub. If there is one, it downloads it, checks it, and starts the installation. Android asks you to confirm. The first time, Android asks you to let QuietHome install apps. After the update, QuietHome opens again.
 - **The QuietHome service.** An accessibility service that gives QuietHome the features below. If it is off, QuietHome shows how to turn it on.
   - **Home button.** Home always opens QuietHome, also on TVs that keep their own launcher (for example Google TV). When the stock launcher comes back by itself, for example after the TV wakes from standby, QuietHome replaces it at once. Settings → Android TV → Previous launcher still lets you visit it.
-  - **Button mapping.** Press a remote button, for example the Netflix key, and choose what it does: open an app or an HDMI input, open QuietHome or TV settings, or nothing. You do not need a separate button mapper app.
+  - **Button mapping.** Press a remote button, for example the Netflix key, and choose what it does: open an app or an HDMI input, open QuietHome or TV settings, go back, or nothing. You do not need a separate button mapper app.
   - **When the TV turns on.** For a TV that only shows a box (for example an Nvidia Shield) on one HDMI port: QuietHome opens that input at boot and each time the TV wakes. It can also open an app. Home still shows QuietHome.
 - **Network only for updates.** QuietHome connects to the network only when you select Settings → Update QuietHome, and only to GitHub. It never checks in the background. It has no accounts, no analytics and no ads.
 
@@ -227,9 +227,9 @@ On most Android TV and Google TV devices, the stock launcher is a system app wit
 2. Select **Add a button**. Press the remote button, then choose what it does.
 3. To change a mapping, select the button in the list. To remove it, choose **Default**: the button then does its own job again.
 
-![Choosing what a button does: Default, Nothing, QuietHome, TV settings, or an app](docs/images/picker.jpg)
+![Choosing what a button does: Default, Nothing, Back, QuietHome, TV settings, or an app](docs/images/picker.jpg)
 
-You cannot map these keys: arrows, OK, Back, Home, volume, mute and power. They always keep their usual job.
+You cannot map these keys: arrows, OK, Back, Home, volume, mute and power. They always keep their usual job. To get a second Back button, map a different button to **Back**. It then does the same as the Back button.
 
 Android lets an accessibility service see key presses. QuietHome acts only on Home and on the buttons that you map. All other keys pass through. The service also gets one event, "window changed", which gives the package name of the app in front. QuietHome uses it only to see when the stock launcher's home screen comes back. The service cannot read the screen, and it stores and sends nothing.
 
@@ -268,7 +268,7 @@ adb shell "am broadcast -n io.github.fballiano.quiethome/.Config --es config '{
 | `startOn` | A package name or HDMI input id to open when the TV turns on; `""` shows Home |
 | `home` | A list of up to nine package names or input ids |
 | `inputNames` | Input id to name. An empty name restores the TV's name. |
-| `buttons` | Android keycode to a package name, an input id, `action.none`, `action.home` or `action.settings`. An empty value removes the mapping. |
+| `buttons` | Android keycode to a package name, an input id, `action.none`, `action.back`, `action.home` or `action.settings`. An empty value removes the mapping. |
 
 HDMI input ids look like `hdmi:HW5`. To see them, send an empty configuration (`--es config '{}'`), then run `adb logcat -d -s QuietHome | grep 'HDMI input'`.
 

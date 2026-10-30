@@ -22,7 +22,7 @@ NS = "{http://www.w3.org/2000/svg}"
 ICONS = ["primevideo", "youtube", "netflix", "jellyfin", "twitch", "appletv", "stremio",
          "spotify", "hbomax", "tubi", "plex", "nuvio", "smarttube", "kodi", "vlc", "emby", "crunchyroll",
          "paramountplus", "dazn", "mubi", "steamlink", "youtubemusic", "youtubekids", "tidal", "deezer",
-         "console", "apps", "settings", "tvsettings", "home", "edit", "default"]
+         "console", "apps", "settings", "tvsettings", "home", "edit", "default", "back"]
 
 
 def num(value):

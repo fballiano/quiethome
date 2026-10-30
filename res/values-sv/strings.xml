@@ -32,6 +32,7 @@
     <string name="current">Nuvarande</string>
     <string name="its_own_job">Egen uppgift</string>
     <string name="nothing">Ingenting</string>
+    <string name="back">Tillbaka</string>
     <string name="default_job">Standard</string>
     <string name="show_home">Visa startskärmen</string>
 
@@ -85,6 +86,7 @@
     <string name="needs_service_note">Kräver QuietHome-tjänsten.</string>
     <string name="button_mapping_needs_it">Knapptilldelning behöver den</string>
     <string name="does_nothing">Gör ingenting</string>
+    <string name="goes_back">Går tillbaka</string>
     <string name="opens">Öppnar %1$s</string>
     <string name="add_a_button">Lägg till en knapp</string>
     <string name="add_a_button_note">Tryck på den och välj sedan vad den gör</string>
@@ -92,6 +94,7 @@
     <string name="choose_what_button_does">Välj vad %1$s gör</string>
     <string name="button_default_again">%1$s gör sin egen uppgift igen.</string>
     <string name="button_does_nothing">%1$s gör ingenting nu.</string>
+    <string name="button_goes_back">%1$s går tillbaka nu.</string>
     <string name="button_opens">%1$s öppnar %2$s.</string>
 
     <!-- Settings -->

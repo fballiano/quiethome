@@ -1,0 +1,1 @@
+A remote button can now work as Back. Go to Settings, Button mapping, add a button and choose Back. The button then does the same as the Back button of the remote, in QuietHome and in all other apps.

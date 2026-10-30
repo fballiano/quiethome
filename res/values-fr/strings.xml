@@ -32,6 +32,7 @@
     <string name="current">Actuel</string>
     <string name="its_own_job">Sa fonction normale</string>
     <string name="nothing">Rien</string>
+    <string name="back">Retour</string>
     <string name="default_job">Par défaut</string>
     <string name="show_home">Afficher l’accueil</string>
 
@@ -85,6 +86,7 @@
     <string name="needs_service_note">Nécessite le service QuietHome.</string>
     <string name="button_mapping_needs_it">L’attribution des boutons en a besoin</string>
     <string name="does_nothing">Ne fait rien</string>
+    <string name="goes_back">Revient en arrière</string>
     <string name="opens">Ouvre %1$s</string>
     <string name="add_a_button">Ajouter un bouton</string>
     <string name="add_a_button_note">Appuyez dessus, puis choisissez sa fonction</string>
@@ -92,6 +94,7 @@
     <string name="choose_what_button_does">Fonction de %1$s</string>
     <string name="button_default_again">%1$s retrouve sa fonction normale.</string>
     <string name="button_does_nothing">%1$s ne fait plus rien.</string>
+    <string name="button_goes_back">%1$s revient en arrière.</string>
     <string name="button_opens">%1$s ouvre %2$s.</string>
 
     <!-- Settings -->

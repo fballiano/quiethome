@@ -22,7 +22,7 @@ import java.util.Set;
 /**
  * The QuietHome service. An accessibility service that filters key events receives each key
  * before the system and the app in front, so it can give a remote button (for example a Netflix
- * key) a new job, turn it off, or make Home open QuietHome. Keys without a mapping pass through.
+ * key) a new job, make it work as Back, turn it off, or make Home open QuietHome. Keys without a mapping pass through.
  * It also receives the window-changed event, only to see when a stock launcher's home screen
  * comes back (after a wake from standby, for example) and to show QuietHome instead. It cannot
  * read the screen.
@@ -126,6 +126,10 @@ public final class RemoteButtons extends AccessibilityService {
         String target = mapping.get(code);
         if (target == null) return false;
         taken.put(code, true);
+        if (Catalog.ACTION_BACK.equals(target)) {
+            if (!performGlobalAction(GLOBAL_ACTION_BACK)) Log.w(Home.TAG, name(this, code) + " → Back: refused");
+            return true;
+        }
         if (Catalog.isHdmi(target) && catalog.get(target) == null) catalog.load();
         String problem = catalog.launch(target);
         if (problem != null) Log.w(Home.TAG, name(this, code) + " → " + target + ": " + problem);

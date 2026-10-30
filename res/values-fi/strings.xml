@@ -32,6 +32,7 @@
     <string name="current">Nykyinen</string>
     <string name="its_own_job">Oma tehtävä</string>
     <string name="nothing">Ei mitään</string>
+    <string name="back">Takaisin</string>
     <string name="default_job">Oletus</string>
     <string name="show_home">Aloitusnäyttö</string>
 
@@ -85,6 +86,7 @@
     <string name="needs_service_note">Vaatii QuietHome-palvelun.</string>
     <string name="button_mapping_needs_it">Painikkeiden määritys tarvitsee sen</string>
     <string name="does_nothing">Ei tee mitään</string>
+    <string name="goes_back">Palaa takaisin</string>
     <string name="opens">Avaa: %1$s</string>
     <string name="add_a_button">Lisää painike</string>
     <string name="add_a_button_note">Paina sitä ja valitse sitten sen tehtävä</string>
@@ -92,6 +94,7 @@
     <string name="choose_what_button_does">Valitse tehtävä: %1$s</string>
     <string name="button_default_again">%1$s tekee taas oman tehtävänsä.</string>
     <string name="button_does_nothing">%1$s ei nyt tee mitään.</string>
+    <string name="button_goes_back">%1$s palaa nyt takaisin.</string>
     <string name="button_opens">%1$s avaa: %2$s.</string>
 
     <!-- Settings -->
