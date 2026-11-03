@@ -8,7 +8,8 @@
 <img src="https://img.shields.io/badge/Android%20TV-8.0%2B-3D5A66?style=for-the-badge&labelColor=1B1F23&logo=android&logoColor=white" alt="Android TV 8.0 or later" />
 <a href="LICENSE"><img src="https://img.shields.io/badge/licence-GPL--3.0-3D5A66?style=for-the-badge&labelColor=1B1F23" alt="GPL-3.0 licence" /></a>
 </p>
-<p><a href="https://github.com/fballiano/quiethome/releases/latest"><img src="https://img.shields.io/badge/Download%20for%20Android%20TV-3D5A66?style=for-the-badge&labelColor=3D5A66&logo=data:image/svg%2Bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTQgMTd2MmEyIDIgMCAwIDAgMiAyaDEyYTIgMiAwIDAgMCAyIC0ydi0yIi8+PHBhdGggZD0iTTcgMTFsNSA1bDUgLTUiLz48cGF0aCBkPSJNMTIgNGwwIDEyIi8+PC9zdmc+" alt="Download for Android TV" height="36" /></a></p>
+<p><a href="https://github.com/fballiano/quiethome/releases/latest"><img src="https://img.shields.io/badge/Download%20for%20Android%20TV-3D5A66?style=for-the-badge&labelColor=3D5A66&logo=data:image/svg%2Bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTQgMTd2MmEyIDIgMCAwIDAgMiAyaDEyYTIgMiAwIDAgMCAyIC0ydi0yIi8+PHBhdGggZD0iTTcgMTFsNSA1bDUgLTUiLz48cGF0aCBkPSJNMTIgNGwwIDEyIi8+PC9zdmc+" alt="Download for Android TV" height="36" /></a>
+<a href="https://play.google.com/store/apps/details?id=io.github.fballiano.quiethome"><img src="https://img.shields.io/badge/Get%20it%20on%20Google%20Play-3D5A66?style=for-the-badge&labelColor=3D5A66&logo=googleplay&logoColor=white" alt="Get it on Google Play" height="36" /></a></p>
 </div>
 
 <table align=center><tr><td align=center>
@@ -22,7 +23,7 @@
 
 QuietHome shows your apps, your HDMI inputs, a photograph and the time. It is made for the TV remote.
 
-QuietHome is inspired by [CleanFrame](https://github.com/nthnclrk/CleanFrame), a quiet home screen for Samsung The Frame. It is a native Android app, with no WebView and no libraries (see [Why a native app](#why-a-native-app)). It uses the network only when you ask for an update.
+QuietHome is inspired by [CleanFrame](https://github.com/nthnclrk/CleanFrame), a quiet home screen for Samsung The Frame. It is a native Android app, with no WebView and no libraries (see [Why a native app](#why-a-native-app)). The GitHub version uses the network only when you ask for an update. The Google Play version never uses the network.
 
 ![QuietHome on a TV in a living room: the List and Dock layouts over photographs, then the Light background](docs/images/home.webp)
 
@@ -37,12 +38,12 @@ QuietHome is inspired by [CleanFrame](https://github.com/nthnclrk/CleanFrame), a
 - **Input names.** Give an HDMI input a name that you know, for example "Nintendo Switch". Hold OK on the input, select **Rename**, and type the name with the TV keyboard. **Use the TV's name** removes your name. When the name has Switch, Xbox or PlayStation in it, Home shows a game controller mark.
 - **Typography and focus.** Choose Manrope, Geist or Newsreader. Choose Type focus or Glass focus, with a Soft, Frost or Clear material.
 - **Your language.** QuietHome uses the language of the TV, in 14 languages (see [Languages](#languages)).
-- **Updates.** Settings shows the installed version under its title. Settings → Update QuietHome looks for a newer release on GitHub. If there is one, it downloads it, checks it, and starts the installation. Android asks you to confirm. The first time, Android asks you to let QuietHome install apps. After the update, QuietHome opens again.
+- **Updates.** Settings shows the installed version under its title. Google Play updates the Google Play version. In the GitHub version, Settings → Update QuietHome looks for a newer release on GitHub. If there is one, it downloads it, checks it, and starts the installation. Android asks you to confirm. The first time, Android asks you to let QuietHome install apps. After the update, QuietHome opens again.
 - **The QuietHome service.** An accessibility service that gives QuietHome the features below. If it is off, QuietHome shows how to turn it on.
   - **Home button.** Home always opens QuietHome, also on TVs that keep their own launcher (for example Google TV). When the stock launcher comes back by itself, for example after the TV wakes from standby, QuietHome replaces it at once. Settings → Android TV → Previous launcher still lets you visit it.
   - **Button mapping.** Press a remote button, for example the Netflix key, and choose what it does: open an app or an HDMI input, open QuietHome or TV settings, go back, or nothing. You do not need a separate button mapper app.
   - **When the TV turns on.** For a TV that only shows a box (for example an Nvidia Shield) on one HDMI port: QuietHome opens that input at boot and each time the TV wakes. It can also open an app. Home still shows QuietHome.
-- **Network only for updates.** QuietHome connects to the network only when you select Settings → Update QuietHome, and only to GitHub. It never checks in the background. It has no accounts, no analytics and no ads.
+- **Network only for updates.** The Google Play version has no permission to use the network. The GitHub version connects to the network only when you select Settings → Update QuietHome, and only to GitHub. It never checks in the background. It has no accounts, no analytics and no ads.
 
 ## Make it yours
 
@@ -81,8 +82,8 @@ QuietHome starts from the idea of CleanFrame: the List and Dock layouts, the fon
 | Made with | HTML, CSS and JavaScript | Native Android views, no libraries |
 | Made for | The author's Samsung The Frame | Any Android TV (see [Compatibility](#compatibility)) |
 | Home button | Undocumented native helpers | The QuietHome service (accessibility API) |
-| Install | Developer mode, Samsung tools, your own certificate | Downloader and the remote, or ADB |
-| Updates | Sign and install again | Settings → Update QuietHome |
+| Install | Developer mode, Samsung tools, your own certificate | Google Play, Downloader and the remote, or ADB |
+| Updates | Sign and install again | Google Play, or Settings → Update QuietHome |
 | Button mapping | No | Yes |
 | HDMI inputs | No | Show, rename, open when the TV turns on |
 | App icons | Marks for a fixed list of services | A one-colour mark for every app |
@@ -145,9 +146,21 @@ Measure on your own TV with `adb shell dumpsys meminfo io.github.fballiano.quiet
 
 QuietHome keeps the photo while another app is in front, so Home comes back at once, with no new decode.
 
+## Install from Google Play
+
+This is the easiest way. You need no computer, and Google Play updates QuietHome.
+
+1. On the TV, open the Play Store and search for **QuietHome**. You can also open [QuietHome on Google Play](https://play.google.com/store/apps/details?id=io.github.fballiano.quiethome) on a phone or a computer, and install it on the TV from there.
+2. Select **Install**, then **Open**.
+3. QuietHome shows how to turn on its service. Select **Agree and open settings**, then **QuietHome**, and turn it on.
+
+Press Home: QuietHome opens.
+
+The Google Play version does not have Settings → Update QuietHome, because Google Play updates it. All other features are the same. If the GitHub version is on the TV and Google Play does not install over it, uninstall QuietHome first. This removes your settings.
+
 ## Install with the remote only
 
-You need no computer for this. It works on Android TV and Google TV.
+This installs the GitHub version. You need no computer for this. It works on Android TV and Google TV.
 
 1. Install **Downloader** by AFTVnews from the Play Store on the TV.
 2. Open Downloader. Allow it to install apps when the TV asks. If the TV does not ask, go to Settings → Apps → Security & restrictions → Unknown sources (the path changes a little between TVs) and turn on Downloader.
